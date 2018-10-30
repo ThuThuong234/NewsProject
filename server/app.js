@@ -48,9 +48,5 @@ app.use(function (err, req, res) {
 
 module.exports = router;
 module.exports = app;
-// var host = config.get("server.host");
-// var port = config.get("server.port");
-//
-// app.listen(port,host, function () {
-//     console.log("server is running on port",port);
-// });
+
+
