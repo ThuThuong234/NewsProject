@@ -4,12 +4,12 @@ var dynamodb = AWSConnect.dynamoConnection;
 var params = {
     TableName: "Feedbacks",
     KeySchema: [
-        { AttributeName: "id", KeyType: "HASH"},
-        { AttributeName: "news_id", KeyType: "RANGE"}
+        { AttributeName: "feedback_id", KeyType: "HASH"},
+        { AttributeName: "email", KeyType: "RANGE"}
     ],
     AttributeDefinitions : [
-        {AttributeName:"id", AttributeType:"N"},
-        {AttributeName:"news_id", AttributeType:"N"}
+        {AttributeName:"feedback_id", AttributeType:"N"},
+        {AttributeName:"email", AttributeType:"S"}
     ],
     ProvisionedThroughput:{
         ReadCapacityUnits:10,

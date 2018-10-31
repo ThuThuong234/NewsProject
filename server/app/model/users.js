@@ -9,7 +9,7 @@ var params = {
     ],
     AttributeDefinitions : [
         {AttributeName:"username", AttributeType:"S"},
-        {AttributeName:"username", AttributeType:"S"}
+        {AttributeName:"password", AttributeType:"S"}
     ],
     ProvisionedThroughput:{
         ReadCapacityUnits:10,

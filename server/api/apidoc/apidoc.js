@@ -1,22 +1,3 @@
-/**
- * @apiDefine HR HR account access only
- * Active users that belong to Human Resource Role
- */
-
-/**
- * @apiDefine Admin Admin accounts access only
- * Active users that belong to Admin Role
- */
-
-/**
- * @apiDefine AdminHR Admin & HR accounts access only
- * Active users that belong to Admin Role
- */
-
-/**
- * @apiDefine Any Any account that authenticated
- * Active users
- */
 
 /**
  * @apiDefine FailedResponse
@@ -47,11 +28,6 @@
  */
 
 /**
- * @api {get} /users/pa-requests Get PA Requests of User
- * @apiVersion 1.0.0
- * @apiPermission Any
- * @apiGroup Users
- *
  * @apiUse TokenHeader
  * @apiUse PagingParam
  *

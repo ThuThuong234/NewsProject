@@ -1,0 +1,137 @@
+[2018-11-01T02:37:17.198] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:37:28.137] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:44:55.942] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:45:05.714] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:46:28.777] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:46:40.282] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:50:23.944] [INFO] server - Express server listening on port 8080
+[2018-11-01T02:51:56.727] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:01:46.348] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:01:57.239] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:09:11.358] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:09:54.483] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:14:23.430] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:17:34.929] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:17:45.546] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:18:37.504] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:20:15.864] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:20:25.977] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:20:32.306] [ERROR] auth_utils - { ResourceNotFoundException: Cannot do operations on a non-existent table
+    at Request.extractError (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\protocol\json.js:48:27)
+    at Request.callListeners (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:106:20)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:78:10)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:683:14)
+    at Request.transition (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:22:10)
+    at AcceptorStateMachine.runTo (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:14:12)
+    at D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:26:10
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:38:9)
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:685:12)
+    at Request.callListeners (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:116:18)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:78:10)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:683:14)
+    at Request.transition (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:22:10)
+    at AcceptorStateMachine.runTo (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:14:12)
+    at D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:26:10
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:38:9)
+  message: 'Cannot do operations on a non-existent table',
+  code: 'ResourceNotFoundException',
+  time: 2018-10-31T20:20:32.303Z,
+  requestId: 'be756109-0bbc-4a8f-a424-60c2771fb08c',
+  statusCode: 400,
+  retryable: false,
+  retryDelay: 6.738413676662325 }
+[2018-11-01T03:24:13.946] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:24:24.239] [ERROR] auth_utils - { ResourceNotFoundException: Cannot do operations on a non-existent table
+    at Request.extractError (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\protocol\json.js:48:27)
+    at Request.callListeners (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:106:20)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:78:10)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:683:14)
+    at Request.transition (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:22:10)
+    at AcceptorStateMachine.runTo (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:14:12)
+    at D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:26:10
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:38:9)
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:685:12)
+    at Request.callListeners (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:116:18)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\sequential_executor.js:78:10)
+    at Request.emit (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:683:14)
+    at Request.transition (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:22:10)
+    at AcceptorStateMachine.runTo (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:14:12)
+    at D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\state_machine.js:26:10
+    at Request.<anonymous> (D:\hoctap\hocKi7\CNM\project\code\News\server\node_modules\aws-sdk\lib\request.js:38:9)
+  message: 'Cannot do operations on a non-existent table',
+  code: 'ResourceNotFoundException',
+  time: 2018-10-31T20:24:24.232Z,
+  requestId: 'da3172cc-4a9e-47b1-8b78-663b731f2943',
+  statusCode: 400,
+  retryable: false,
+  retryDelay: 39.060745688492645 }
+[2018-11-01T03:25:50.044] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:27:05.940] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:27:58.220] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:28:16.176] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:30:23.172] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:30:36.324] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:31:46.428] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:33:14.487] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:33:16.011] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:33:36.763] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:34:54.057] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:38:18.462] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:40:13.907] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:40:30.296] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:41:23.152] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:43:59.871] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:44:15.120] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:45:29.918] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:45:47.695] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:48:11.778] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:50:07.240] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:51:08.575] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:52:24.170] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:52:32.411] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:53:22.844] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:53:30.446] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:54:25.085] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:54:36.923] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:58:25.381] [INFO] server - Express server listening on port 8080
+[2018-11-01T03:59:17.074] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:02:26.294] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:03:39.807] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:06:40.808] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:07:59.947] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:08:29.563] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:19:35.979] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:20:20.783] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:20:32.739] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:22:02.802] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:23:31.412] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:23:52.191] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:24:03.981] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:25:54.565] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:26:02.819] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:26:36.440] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:26:41.013] [ERROR] auth_utils - { message: 'Feedback that is assigned to this user has been created.',
+  code: 'FEEDBACK_02' }
+[2018-11-01T04:28:57.558] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:29:01.267] [ERROR] auth_utils - { message: 'Feedback that is assigned to this user has been created.',
+  code: 'FEEDBACK_02' }
+[2018-11-01T04:31:12.011] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:31:18.864] [ERROR] auth_utils - { message: 'Feedback that is assigned to this user has been created.',
+  code: 'FEEDBACK_02' }
+[2018-11-01T04:31:38.472] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:31:46.498] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:31:47.734] [ERROR] auth_utils - TypeError: docClient.put(...).then is not a function
+    at docClient.get.promise.then.feedback (D:\hoctap\hocKi7\CNM\project\code\News\server\app\services\feedbacksServices.js:53:42)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[2018-11-01T04:32:20.655] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:33:05.363] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:33:11.050] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:36:32.268] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:36:33.567] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:37:04.154] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:37:34.790] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:38:05.183] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:38:11.546] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:38:42.692] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:40:29.130] [INFO] server - Express server listening on port 8080
+[2018-11-01T04:42:25.172] [INFO] server - Express server listening on port 8080

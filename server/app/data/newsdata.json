@@ -1,3 +1,73 @@
-{
-
-}
+[
+  {
+    "id": 1,
+    "username": "thuong4",
+    "password": "123456",
+    "news_data": [
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "image": "fsdfds"
+      },
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "image": "fsdfds",
+        "comments": [
+          {
+            "username": "thuong",
+            "content": "1234568526"
+          },
+          {
+            "username": "thuong2",
+            "content": "1234568526"
+          },
+          {
+            "username": "thuong5",
+            "content": "1234568526"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "username": "dat",
+    "password": "123456",
+    "news_data": [
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "image": "fsdfds"
+      },
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "image": "fsdfds"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "username": "minh",
+    "password": "123456",
+    "news_data": [
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "HINHANH": "fsdfds"
+      },
+      {
+        "id": 1,
+        "title": "aaaa",
+        "content": "sfddsds",
+        "image": "fsdfds"
+      }
+    ]
+  }
+]

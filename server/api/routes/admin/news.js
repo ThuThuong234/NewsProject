@@ -1,20 +1,19 @@
 const express = require('express');
+var bodyParser = require('body-parser');
 // const app = express();
 const router = express.Router();
 
 // get list
     router.get('/', (req, res, next) => {
         res.status(200).json({
-            message: "get success",
-            // TODO
+            //   TODO
         })
     });
 
 //get detail of item
     router.get('/id', (req, res, next) => {
         res.status(200).json({
-            message: "get item success",
-            // TODO
+            //   TODO
         })
     });
 
@@ -29,15 +28,14 @@ const router = express.Router();
 // update item
     router.put('/id', (req, res, next) => {
         res.status(200).json({
-            message: "put success",
+            //   TODO
         })
     });
 
 // delete item
     router.delete('/id', (req, res, next) => {
         res.status(200).json({
-            message: "delete success",
-            // TODO
+            //   TODO
         })
     });
 module.exports = router;
