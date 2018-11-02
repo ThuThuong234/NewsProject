@@ -8,13 +8,15 @@
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
-        "image": "fsdfds"
+        "image": "fsdfds",
+        "postdate": "02/11/2018"
       },
       {
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
         "image": "fsdfds",
+        "postdate" : "02/11/2018",
         "comments": [
           {
             "username": "thuong",
@@ -41,13 +43,15 @@
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
-        "image": "fsdfds"
+        "image": "fsdfds",
+        "postdate" : "02/11/2018"
       },
       {
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
-        "image": "fsdfds"
+        "image": "fsdfds",
+        "postdate" : "02/11/2018"
       }
     ]
   },
@@ -60,13 +64,15 @@
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
-        "HINHANH": "fsdfds"
+        "image": "fsdfds",
+        "postdate" : "02/11/2018"
       },
       {
         "id": 1,
         "title": "aaaa",
         "content": "sfddsds",
-        "image": "fsdfds"
+        "image": "fsdfds",
+        "postdate" : "02/11/2018"
       }
     ]
   }

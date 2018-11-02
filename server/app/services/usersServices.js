@@ -22,6 +22,7 @@ var loadAllData = allUser.forEach(function (user) {
             "title": news.title,
             "content": news.content,
             "image": news.image,
+            "postdate": news.postdate,
             "comments": load_comments
         }
     });
@@ -32,7 +33,7 @@ var loadAllData = allUser.forEach(function (user) {
             "user_id": 1,
             "username": user.username,
             "password": user.password,
-            "news": load_news
+            "news_data": load_news
         }
     };
 
