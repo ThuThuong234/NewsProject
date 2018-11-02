@@ -1,7 +1,11 @@
 const express = require('express');
 var bodyParser = require('body-parser');
-// const app = express();
+//var app = express();
 const router = express.Router();
+const auth_utils = require('../../../lib/auth_utils');
+const utils = require('../../../app/helpers/api_helper');
+const usersServices = require("../../../app/services/usersServices");
+router.use(bodyParser.json());
 
 // get list
     router.get('/', (req, res, next) => {
@@ -11,18 +15,26 @@ const router = express.Router();
     });
 
 //get detail of item
-    router.get('/id', (req, res, next) => {
-        res.status(200).json({
-            //   TODO
-        })
-    });
+    router.get('/id', function (req, res) {
+
+    feedbacksServices.getNews().then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
+});
 
 // add item
-    router.post('/', (req, res, next) => {
-        res.status(201).json({
-            message: "post success",
-            // TODO
+    router.post('/', function(req, res) {
+        var body = req.body;
+        usersServices.insertNews(body).then(data => {
+            res.status(200).json(utils.successResponse(data));
         })
+            .catch(error => {
+                res.json(utils.failedResponse(error));
+
+        });
     });
 
 // update item

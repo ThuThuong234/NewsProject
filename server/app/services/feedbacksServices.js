@@ -59,7 +59,6 @@ exports.insertFeedbacks = function (data) {
         })
     });
 }
-
 exports.getFeedbacks = function () {
     return new Promise(function (resolve, reject) {
         var params = {
