@@ -11,7 +11,7 @@ app.post('/', function (req, res) {
     var body = req.body;
     console.log(body);
     feedbacksServices.insertFeedbacks(body).then(data => {
-        res.status(200).json(utils.successResponse(data));
+        res.status(200).json(utils.successResponse());
     })
         .catch(error => {
             res.json(utils.failedResponse(error));

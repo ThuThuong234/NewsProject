@@ -12,9 +12,17 @@ var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
 var params = {
     TableName: 'Feedbacks',
+    ProjectionExpression:"#feedback_id",
+    KeyConditionExpression: "#feedback_id = :feedback_id",
+    ExpressionAttributeNames:{
+        "#feedback_id": "feedback_id"
+    },
+    ExpressionAttributeValues: {
+        ":feedback_id": 20
+    }
 
 };
-docClient.scan(params, onScan);
+docClient.query(params, onScan);
 function onScan(err,data ) {
     if (err) {
         console.error("dataUnable to scan the table. Error JSON:", JSON.stringify(err, null, 2));

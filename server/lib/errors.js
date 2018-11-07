@@ -10,7 +10,7 @@ module.exports = {
     UPDATE: 'Something wrong! Cannot update data.',
     DELETE: 'Something wrong! Cannot delete data.',
     FEEDBACK_01: 'Feedback does not exist.',
-    FEEDBACK_02: 'Feedback that is assigned to this user has been created.',
+    FEEDBACK_02: 'Feedback has been created.',
     REQUEST_01: 'Request does not exist.',
     REQUEST_02: 'Request for employee in this season has been created.',
     POSITION_01: 'Position does not exist.',

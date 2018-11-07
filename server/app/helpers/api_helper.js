@@ -1,6 +1,8 @@
 'use strict';
 
 const errors = require("../../lib/errors");
+var AWSConnect = require("../connectAWS/ConnectAWS");
+var docClient = AWSConnect.docClient;
 
 exports.successResponse = function (data = null) {
     if (data == null) {
@@ -56,3 +58,33 @@ exports.failedResponse = function (error = null) {
         code: 'SERVICE_01'
     };
 };
+
+exports.findFeedbackbyID = function (feedback_id) {
+    return new Promise(function (resolve, reject) {
+        var request_id = {
+            TableName: "Feedbacks",
+            ProjectionExpression: "#feedback_id",
+            KeyConditionExpression: "#feedback_id = :feedback_id",
+            ExpressionAttributeNames: {
+                "#feedback_id": "feedback_id"
+            },
+            ExpressionAttributeValues: {
+                ":feedback_id": feedback_id
+            }
+        };
+
+        docClient.query(request_id, function (err, feedback) {
+            console.log("getfeedback from id: " + feedback.Items);
+            if (err)
+                return reject(+err);
+            else if (feedback.Items.length != 0){
+                var notice = {
+                    message: errors.FEEDBACK_02,
+                    code: 'FEEDBACK_02'
+                }
+                return reject(notice);
+            }
+            else resolve(feedback);
+        });
+    });
+}

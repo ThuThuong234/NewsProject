@@ -1,12 +1,11 @@
+
 var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
-
-// const Promise = require('bluebird');
 const log4js = require('log4js');
 const logger = log4js.getLogger('auth_utils');
 const errors = require('../../lib/errors');
-var fs = require("fs");
-
+const helper = require('../helpers/api_helper')
+// var fs = require("fs");
 // var allFeedbacks = JSON.parse(fs.readFileSync("../data/feedbacks.json", "utf-8"));
 // var loadAllData = allFeedbacks.forEach(function (feedback) {
 //
@@ -27,38 +26,33 @@ var fs = require("fs");
 //     });
 // });
 
-exports.insertFeedbacks = function (data) {
-    return new Promise(function (resolve, reject) {
-        console.log(data.feedback_id);
-        var request_id = {
-            TableName: "Feedbacks",
-            Key: {
-                "feedback_id": data.feedback_id,
-                "email" : data.email
-            }
-        };
-
-        docClient.get(request_id).then(feedback => {
-            if (!feedback) {
-                 console.log(feedback);
-                throw {
-                    message: errors.FEEDBACK_02,
-                    code: 'FEEDBACK_02'
-                };
-            }
-
+exports.insertFeedbacks = function(data) {
+    return  new Promise(function (resolve, reject) {
+           helper.findFeedbackbyID(data.feedback_id).then(function (){
             var params = {
                 TableName: "Feedbacks",
                 Item: data
             };
 
-            return docClient.put(params).catch(error => {
-                logger.error(error);
-                return reject(error);
-            });
-        })
+            return docClient.put(params, function (err, data) {
+                console.log("put ne " + data);
+                if (err) {
+                    resolve({
+                        statusCode: 400,
+                        error: `Could not create message: ${err.stack}`
+                    });
+
+                } else {
+                    resolve({ statusCode: 200, body: JSON.stringify(params.Item) });
+                }
+            })
+        }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
     });
 }
+
 exports.getFeedbacks = function () {
     return new Promise(function (resolve, reject) {
         var params = {
