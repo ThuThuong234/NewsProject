@@ -11,7 +11,7 @@
   "author": "thuongxinhdep",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.344.0",
+    "aws-sdk": "^2.351.0",
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
     "ejs": "^2.6.1",

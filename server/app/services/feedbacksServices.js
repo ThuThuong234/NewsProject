@@ -5,8 +5,8 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('auth_utils');
 const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper')
-// var fs = require("fs");
-// var allFeedbacks = JSON.parse(fs.readFileSync("../data/feedbacks.json", "utf-8"));
+var fs = require("fs");
+var allFeedbacks = JSON.parse(fs.readFileSync("../data/feedbacks.json", "utf-8"));
 // var loadAllData = allFeedbacks.forEach(function (feedback) {
 //
 //     var feedback_params = {

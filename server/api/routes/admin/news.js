@@ -1,8 +1,7 @@
 const express = require('express');
-var bodyParser = require('body-parser');
-//var app = express();
 const router = express.Router();
-const auth_utils = require('../../../lib/auth_utils');
+var bodyParser = require('body-parser');
+const auth_untils = require('../../../lib/auth_utils');
 const utils = require('../../../app/helpers/api_helper');
 const usersServices = require("../../../app/services/usersServices");
 router.use(bodyParser.json());
@@ -16,8 +15,7 @@ router.use(bodyParser.json());
 
 //get detail of item
     router.get('/id', function (req, res) {
-
-    feedbacksServices.getNews().then(data => {
+    usersServices.getNews().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {

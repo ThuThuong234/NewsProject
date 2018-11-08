@@ -5,6 +5,7 @@ var fs = require("fs");
 const log4js = require('log4js');
 const logger = log4js.getLogger('auth_utils');
 const errors = require('../../lib/errors');
+const helper = require('../helpers/api_helper');
 
 console.log("Importing data into DynamoDB. Please wait.");
 // var allUser = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
@@ -52,36 +53,28 @@ console.log("Importing data into DynamoDB. Please wait.");
 //     loadAllData: loadAllData
 // };
 exports.insertNews = function (data) {
-    return new Promise(function (resolve,reject) {
-        var request_id = {
-            TableName : "Users",
-            Key: {
-                "news_id":data.news_id,
-                "title": data.title,
-                "content": data.content,
-                "image": data.image,
-                "postdate": data.postdate,
-                "comments": data.comments
-            }
-        };
-        docClient.get(request_id).then(news => {
-            if(!news){
-                console.log(news);
-                throw {
-                    message:errors.NEWS_01,
-                    code:'NEWS_01'
-                };
-            }
+    return new Promise(function (resolve, reject) {
+        helper.findNewsbyID(data.news_id).then(function () {
             var params = {
-                TableName:"Users",
-                Item:data
-            };
-            return docClient.put(params).catch(error =>{
-                logger.error(error);
-                return reject(error);
-
-            });
+                TableName: "Users",
+                Item: data
+            }
+        });
+        return docClient.put(params, function (err, data) {
+            console.log("Dang put code" + data);
+            if (err) {
+                resolve({
+                    statusCode: 400,
+                    erro: 'Could not create massege:${err.stack} '
+                });
+            }
+            else {
+                resolve({statusCode: 200, body: JSON.stringify(param.Item)});
+            }
         })
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
     });
 }
 exports.getNews = function () {
@@ -89,9 +82,6 @@ exports.getNews = function () {
 
         var params = {
             TableName:'Users',
-            Key:{
-                news_id: data.news_id
-            }
         };
         return docClient.scan(params).promise().then(result =>{
             if (result ==null)
