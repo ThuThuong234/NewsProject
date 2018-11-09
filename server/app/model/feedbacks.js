@@ -16,7 +16,6 @@ var params = {
         WriteCapacityUnits:10
     }
 };
-
 var createTable = dynamodb.createTable(params,function (err, data) {
     if(err)
         console.log("Unable to create table. Error Json: ",JSON.stringify(err,null,2));

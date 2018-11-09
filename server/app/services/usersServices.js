@@ -53,7 +53,7 @@ console.log("Importing data into DynamoDB. Please wait.");
 //     loadAllData: loadAllData
 // };
 exports.insertNews = function (data) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve,reject) {
         helper.findNewsbyID(data.news_id).then(function () {
             var params = {
                 TableName: "Users",
@@ -65,7 +65,7 @@ exports.insertNews = function (data) {
             if (err) {
                 resolve({
                     statusCode: 400,
-                    erro: 'Could not create massege:${err.stack} '
+                    err: 'Could not create massege:${err.stack} '
                 });
             }
             else {
@@ -82,8 +82,14 @@ exports.getNews = function () {
 
         var params = {
             TableName:'Users',
+            KeyConditionExpression: "#id:= yyyy",
+            ExpressionAttributeNames:{  "#id": "id"
+    },
+        ExpressionAttributeValues: {
+            ":yyyy": parseInt(req.params.id)
+        }
         };
-        return docClient.scan(params).promise().then(result =>{
+        return docClient.query(params).promise().then(result =>{
             if (result ==null)
             {
                 throw {
@@ -99,3 +105,37 @@ exports.getNews = function () {
             });
     });
 };
+exports.updateNews = function (data) {
+    return new Promise(function (resolve,reject) {
+        helper.findNewsbyID(data.news_id).then(function () {
+            var params = {
+                TableName: "Users",
+                Key: {
+                    "id": body.id,
+                    "title": body.title,
+                    "content": body.content,
+                    "image": body.image,
+                    "postdate": body.postdate
+                }
+            };
+            console.log("Updating the item...");
+            return docClient.update(params, function (err, data) {
+                console.log("Dang update item" + data);
+                if (err) {
+                    resolve({
+                        statusCode: 400,
+                        err: 'Could not update massege:${err.stack} '
+                    });
+                }
+                else {
+                    resolve({statusCode: 200, body: JSON.stringify(param.Item)});
+                }
+            })
+        }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
+    })
+}
+
+

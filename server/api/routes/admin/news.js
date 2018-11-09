@@ -14,7 +14,7 @@ router.use(bodyParser.json());
     });
 
 //get detail of item
-    router.get('/id', function (req, res) {
+    router.get('/:id', function (req, res) {
     usersServices.getNews().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
@@ -36,9 +36,13 @@ router.use(bodyParser.json());
     });
 
 // update item
-    router.put('/id', (req, res, next) => {
-        res.status(200).json({
-            //   TODO
+    router.put('/updateNews',function (req, res) {
+        var body = req.body;
+        usersServices.updateNews().then(data => {
+            res.status(200).json(utils.successResponse(data));
+        })
+            .catch(error => {
+                res.json(utils.failedResponse(error));
         })
     });
 
