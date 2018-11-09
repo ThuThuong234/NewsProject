@@ -10,34 +10,13 @@ const helper = require('../helpers/api_helper');
 console.log("Importing data into DynamoDB. Please wait.");
 // var allUser = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
 // var loadAllData = allUser.forEach(function (user) {
-//     var news_data = user.news_data;
-//     console.log("aaa " + news_data);
-//
-//     var load_comments = news_data.comments.forEach(function () {
-//         return {
-//             "username": news_data.comments.username,
-//             "content": news_data.comments.content
-//         }
-//     })
-//
-//     var load_news = news_data.forEach(function (news) {
-//         return {
-//             "news_id": news.id,
-//             "title": news.title,
-//             "content": news.content,
-//             "image": news.image,
-//             "postdate": news.postdate,
-//             "comments": load_comments
-//         }
-//     });
 //
 //     var user_params = {
 //         TableName: "Users",
 //         Item: {
-//             "user_id": 1,
+//             "user_id": user.id,
 //             "username": user.username,
 //             "password": user.password,
-//             "news_data": load_news
 //         }
 //     };
 //

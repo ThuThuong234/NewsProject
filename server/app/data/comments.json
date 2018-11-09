@@ -1,0 +1,21 @@
+[
+  {
+    "email" : "thuong@gmail.com",
+    "news_id": "comment.email",
+    "comments_content":"comment.comments_content",
+    "comment_time": "comment.comment_time"
+  },
+  {
+    "email" : "thuong3@gmail.com",
+    "news_id": "comment.email",
+    "comments_content":"comment.comments_content",
+    "comment_time": "comment.comment_time"
+  },
+  {
+    "email" : "thuong2@gmail.com",
+    "news_id": "comment.email",
+    "comments_content":"comment.comments_content",
+    "comment_time": "comment.comment_time"
+  }
+
+]
