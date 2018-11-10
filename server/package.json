@@ -17,6 +17,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "ldapjs": "^1.0.2",
     "log4js": "^3.0.6"
   },
   "devDependencies": {

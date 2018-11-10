@@ -1,11 +1,10 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const Promise = require('bluebird');
 const log4js = require('log4js');
-const logger = log4js.getLogger('auth_utils');
-const constants = require('../lib/constants');
-const errors = require('../lib/errors');
+const constants = require('./constants');
+const errors = require('./errors');
+const utils = require('../app/helpers/api_helper')
 
 function getToken(user) {
     return jwt.sign(user, constants.SECRET, { expiresIn: constants.AUTHENTICATE_EXPIRE });
@@ -91,14 +90,14 @@ exports.getToken = getToken;
 //         });
 // };
 
-// exports.authorizeHeader = function (req, res, next) {
-//     let apiKey = req.headers['x-api-key'];
-//     if (apiKey != constants.API_KEY) {
-//         res.json(utils.failedResponse({
-//             message: errors.AUTHORIZE_01,
-//             code: 'AUTHORIZE_01'
-//         }));
-//     } else {
-//         next();
-//     }
-// };
+exports.authorizeHeader = function (req, res, next) {
+    let apiKey = req.headers['x-api-key'];
+    if (apiKey != constants.API_KEY) {
+        res.json(utils.failedResponse({
+            message: errors.AUTHORIZE_01,
+            code: 'AUTHORIZE_01'
+        }));
+    } else {
+        next();
+    }
+};

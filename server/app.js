@@ -7,8 +7,8 @@ var bodyParser = require("body-parser");
 var app= express();
 var router = express.Router();
 
-const adminRoutes = require("./api/routes/admin/admin");
-const readerRoutes = require("./api/routes/reader/index");
+const adminRoutes = require("./api/routes/admin");
+const readerRoutes = require("./api/routes/index");
 
 
 /**
