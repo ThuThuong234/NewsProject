@@ -51,11 +51,11 @@ var loadAllData = allFeedbacks.forEach(function (news) {
  };
  exports.Deletenews =function (id) {
     return new Promise(function (resolve, reject) {
-
+        helper.findNewsbyID(data.news_id).then(function (){
         var params = {
           TableName: 'Users',
              Key:{
-               "news_id": id
+               "id":body.id
              },
              ConditionExpression:"info.rating <= :val",
              ExpressionAttributeValues: {
@@ -63,27 +63,25 @@ var loadAllData = allFeedbacks.forEach(function (news) {
              },
 
         };
-         docClient.query(request_id).then(news_id => {
-            if (!news_id) {
-                console.log(news_id);
-               throw {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                };
-          }
-
-           var params = {
-                TableName: "Users",
-                Item: data
-            };
-
             return docClient.delete(params).catch(error => {
+                console.log("Dang xoa" + data);
+                if (err) {
+                    resolve({
+                        statusCode: 400,
+                        err: 'Could not delete massege:${err.stack} '
+                    });
+                }
+                else {
+                    resolve({statusCode: 200, body: JSON.stringify(param.Item)});
+                }
+            })
+        }).catch(error => {
             logger.error(error);
-             return reject(error);
-         });
-     })
-     });
- };
+            return reject(error);
+        });
+    })
+ }
+
 // exports.Getlastestnews =function (date) {
 //     return new Promise(function (resolve, reject) {
 //
