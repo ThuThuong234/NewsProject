@@ -1,6 +1,11 @@
 var AWSConnect = require("../connectAWS/ConnectAWS");
 var fs = require("fs");
-
+const log4js = require('log4js');
+const logger = log4js.getLogger('auth_utils');
+const auth_utils = require('../../lib/auth_utils');
+const ldap_utils = require('../../lib/ldap_utils');
+const errors = require('../../lib/errors')
+const helper = require('../helpers/api_helper');
 var docClient = AWSConnect.docClient;
 
 var fs = require("fs");
@@ -80,40 +85,37 @@ var loadAllData = allFeedbacks.forEach(function (news) {
             return reject(error);
         });
     })
- }
+ };
 
-// exports.Getlastestnews =function (date) {
-//     return new Promise(function (resolve, reject) {
-//
-//         var params = {
-//             TableName: 'News',
-//             Key:{
-//                 "news_id": id
-//             },
-//             ConditionExpression:"info.rating <= :val",
-//             ExpressionAttributeValues: {
-//                 ":val": 8.0
-//             },
-//
-//         };
-//         docClient.query(request_date).then(news_date => {
-//             if (!news_date) {
-//                 console.log(news_date);
-//                 throw {
-//                     message: errors.TEMPLATE_01,
-//                     code: 'TEMPLATE_01'
-//                 };
-//             }
-//
-//             var params = {
-//                 TableName: "News",
-//                 Item: data
-//             };
-//
-//             return docClient.get(params).catch(error => {
-//                 logger.error(error);
-//                 return reject(error);
-//             });
-//         })
-//     });
-// };
+exports.Getlastestnews = function (news_id) {
+    return new Promise(function (resolve, reject) {
+        var params = {
+            TableName: "Users",
+            Limit: '10',
+            ProjectionExpression: "#news_id",
+            KeyConditionExpression: "#news_id = :news_id",
+            ExpressionAttributeNames: {
+                "#news_id": "news_id"
+            },
+            ExpressionAttributeValues: {
+                ":news_id": news_id
+            }
+        };
+
+        return docClient.scan(params).catch(error => {
+            console.log("Dang lay ve" + data);
+            if (err) {
+                resolve({
+                    statusCode: 400,
+                    err: 'Could not get new:${err.stack} '
+                });
+            }
+            else {
+                resolve({statusCode: 200, body: JSON.stringify(param.Item)});
+            }
+        })
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
+    });
+};
