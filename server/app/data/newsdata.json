@@ -8,7 +8,7 @@
     "postdate": "02/11/2018"
   },
   {
-    "news_id": 1,
+    "news_id": 2,
     "user_id":1,
     "title": "aaaa",
     "content": "sfddsds",
@@ -16,7 +16,7 @@
     "postdate": "02/11/2018"
   },
   {
-    "news_id": 1,
+    "news_id": 4,
     "user_id":2,
     "title": "aaaa",
     "content": "sfddsds",
@@ -24,11 +24,12 @@
     "postdate": "02/11/2018"
   },
   {
-    "news_id": 1,
+    "news_id": 5,
     "user_id":3,
     "title": "aaaa",
     "content": "sfddsds",
     "image": "fsdfds",
     "postdate": "02/11/2018"
   }
+
 ]

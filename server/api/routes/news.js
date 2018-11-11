@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 const auth_untils = require('../../lib/auth_utils');
 const utils = require('../../app/helpers/api_helper');
 const usersServices = require("../../app/services/usersServices");
+const newsServicers = require("../../app/services/newsServicers");
 router.use(bodyParser.json());
 
 // get list
@@ -47,9 +48,14 @@ router.use(bodyParser.json());
     });
 
 // delete item
-    router.delete('/id', (req, res, next) => {
-        res.status(200).json({
-            //   TODO
+    router.get('/id', (req, res, ) => {
+
+        newsServicers.Deletenews(req.id).then(function () {
+
+            res.status(200).json(utils.successResponse());
         })
-    });
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        })
+});
 module.exports = router;
