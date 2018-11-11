@@ -1,0 +1,21 @@
+[2018-11-10T17:39:29.715] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:39:30.966] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:39:44.830] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T17:42:43.245] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:42:46.550] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T17:54:59.776] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:55:03.061] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T17:57:04.310] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:57:39.801] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T17:58:44.516] [INFO] server - Express server listening on port 8080
+[2018-11-10T17:58:48.611] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T18:59:51.174] [INFO] server - Express server listening on port 8080
+[2018-11-10T18:59:54.399] [INFO] http - ::1 - - "POST /admin/signin HTTP/1.1" 404 2102 "" "PostmanRuntime/7.4.0"
+[2018-11-10T19:02:36.589] [INFO] server - Express server listening on port 8080
+[2018-11-10T19:07:29.308] [INFO] server - Express server listening on port 8080
+[2018-11-10T19:07:32.324] [ERROR] auth_utils - { message: 'Username or password is not correct.',
+  code: 'AUTHENTICATE_01' }
+[2018-11-10T19:14:17.383] [ERROR] auth_utils - { message: 'Username or password is not correct.',
+  code: 'AUTHENTICATE_01' }
+[2018-11-10T19:14:47.100] [INFO] server - Express server listening on port 8080
+[2018-11-10T19:15:24.268] [INFO] server - Express server listening on port 8080
