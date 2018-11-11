@@ -2,7 +2,13 @@
 .idea/vcs.xml
 .idea/sources.iml
 .idea/modules.xml
-.idea/misc.xml
 .idea/Example.iml
 server/node_modules
 server/dynamodb/DynamoDBLocal_lib/sqlite4java-win32-x86.dll
+server/node_modules
+.idea/News.iml
+.gitignore_LOCAL_34056
+.gitignore_BACKUP_34056
+.idea/misc.xml
+.gitignore_BASE_34056
+.gitignore_REMOTE_34056
