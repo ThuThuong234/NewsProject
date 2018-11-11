@@ -5,3 +5,4 @@
 .idea/misc.xml
 .idea/Example.iml
 server/node_modules
+server/dynamodb/DynamoDBLocal_lib/sqlite4java-win32-x86.dll
