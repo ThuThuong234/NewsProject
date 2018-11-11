@@ -77,13 +77,6 @@ exports.findFeedbackbyID = function (feedback_id) {
             console.log("getfeedback from id: " + feedback.Items);
             if (err)
                 return reject(+err);
-            else if (feedback.Items.length != 0){
-                var notice = {
-                    message: errors.FEEDBACK_02,
-                    code: 'FEEDBACK_02'
-                }
-                return reject(notice);
-            }
             else resolve(feedback);
         });
     });
@@ -105,7 +98,7 @@ exports.findNewsbyID = function (news_id) {
         docClient.query(request_id, function (err, news) {
             console.log("get News from id: " + news.Items);
             if (err)
-                return reject(+err);
+                return reject(err);
             else if (news.Items.length != 0){
                 var notice = {
                     message: errors.NEWS_02,
