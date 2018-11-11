@@ -26,11 +26,24 @@ var fs = require("fs");
 //
 //     docClient.put(feedback_params, function (err, data) {
 //         if (err)
-//             console.log("Unable to add news ", data.news_id, ". Error Json:", JSON.stringify(err, null, 2));
+//             console.log("Unable to add news ", news.title, ". Error Json:", JSON.stringify(err, null, 2));
 //         else
-//             console.log("PutItem Successed: ", data.news_id);
+//             console.log("PutItem Successed: ", news.title);
 //     });
 // });
+var params = {
+    TableName: 'News',
+};
+docClient.scan(params, onScan);
+function onScan(err,data ) {
+    if (err) {
+        console.error("dataUnable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        console.log(data);
+
+        return;
+    }
+}
 
 //  exports.getlist = function () {
 //     return new Promise(function (resolve, reject) {
@@ -88,35 +101,35 @@ var fs = require("fs");
 //     });
 // };
 //
-exports.Getlastestnews = function (news_id) {
-    return new Promise(function (resolve, reject) {
-        var params = {
-            TableName: "News",
-            Limit: 2,
-            ProjectionExpression: "#news_id",
-            KeyConditionExpression: "#news_id = :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": news_id
-            }
-        };
-
-        return docClient.scan(params).catch(error => {
-            console.log("Dang lay ve" + data);
-            if (err) {
-                resolve({
-                    statusCode: 400,
-                    err: 'Could not get new:${err.stack} '
-                });
-            }
-            else {
-                resolve({statusCode: 200, body: JSON.stringify(param.Item)});
-            }
-        })
-    }).catch(error => {
-        logger.error(error);
-        return reject(error);
-    });
-};
+// exports.Getlastestnews = function (news_id) {
+//     return new Promise(function (resolve, reject) {
+//         var params = {
+//             TableName: "News",
+//             Limit: 2,
+//             ProjectionExpression: "#news_id",
+//             KeyConditionExpression: "#news_id = :news_id",
+//             ExpressionAttributeNames: {
+//                 "#news_id": "news_id"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":news_id": news_id
+//             }
+//         };
+//
+//         return docClient.scan(params).catch(error => {
+//             console.log("Dang lay ve" + data);
+//             if (err) {
+//                 resolve({
+//                     statusCode: 400,
+//                     err: 'Could not get new:${err.stack} '
+//                 });
+//             }
+//             else {
+//                 resolve({statusCode: 200, body: JSON.stringify(param.Item)});
+//             }
+//         })
+//     }).catch(error => {
+//         logger.error(error);
+//         return reject(error);
+//     });
+// };

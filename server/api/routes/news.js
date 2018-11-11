@@ -1,22 +1,22 @@
 const express = require('express');
-const router = express.Router();
 var bodyParser = require('body-parser');
 const auth_untils = require('../../lib/auth_utils');
 const utils = require('../../app/helpers/api_helper');
 const usersServices = require("../../app/services/usersServices");
 const newsServicers = require("../../app/services/newsServicers");
-router.use(bodyParser.json());
+var app = express();
+app.use(bodyParser.json());
 
 // get list
-    router.get('/', (req, res, next) => {
-        res.status(200).json({
-            //   TODO
-        })
-    });
+// app.get('/', (req, res, next) => {
+//     res.status(200).json({
+//         //   TODO
+//     })
+// });
 
 //get detail of item
-    router.get('/:id', function (req, res) {
-    usersServices.getNews().then(data => {
+app.get('/:id', function (req, res) {
+    usersServices.getNews(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -25,37 +25,37 @@ router.use(bodyParser.json());
 });
 
 // add item
-    router.post('/', function(req, res) {
-        var body = req.body;
-        usersServices.insertNews(body).then(data => {
-            res.status(200).json(utils.successResponse(data));
-        })
-            .catch(error => {
-                res.json(utils.failedResponse(error));
+app.post('/', function (req, res) {
+    var body = req.body;
+    usersServices.insertNews(body).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
 
         });
-    });
+});
 
 // update item
-    router.put('/updateNews',function (req, res) {
-        var body = req.body;
-        usersServices.updateNews().then(data => {
-            res.status(200).json(utils.successResponse(data));
-        })
-            .catch(error => {
-                res.json(utils.failedResponse(error));
-        })
-    });
-
-// delete item
-    router.get('/id', (req, res, ) => {
-
-        newsServicers.Deletenews(req.id).then(function () {
-
-            res.status(200).json(utils.successResponse());
-        })
+app.put('/:id', function (req, res) {
+    var body = req.body;
+    usersServices.updateNews(body).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
         .catch(error => {
             res.json(utils.failedResponse(error));
         })
 });
-module.exports = router;
+
+// delete item
+app.delete('/id', (req, res,) => {
+
+    newsServicers.Deletenews(req.id).then(function () {
+
+        res.status(200).json(utils.successResponse());
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        })
+});
+module.exports = app;

@@ -22,5 +22,5 @@ module.exports = {
     TEMPLATE_01: 'Template does not have item.',
     TEMPLATE_02: 'Can not delete this template.',
     NEWS_01: 'News that is assigned to this user has been created.',
-    GETNEWS_02: 'Template does not have item.'
+
 };

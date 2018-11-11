@@ -84,7 +84,7 @@ exports.findFeedbackbyID = function (feedback_id) {
 exports.findNewsbyID = function (news_id) {
     return new Promise(function (resolve, reject) {
         var request_id = {
-            TableName: "Users",
+            TableName: "News",
             ProjectionExpression: "#news_id",
             KeyConditionExpression: "#news_id = :news_id",
             ExpressionAttributeNames: {
@@ -99,13 +99,6 @@ exports.findNewsbyID = function (news_id) {
             console.log("get News from id: " + news.Items);
             if (err)
                 return reject(err);
-            else if (news.Items.length != 0){
-                var notice = {
-                    message: errors.NEWS_02,
-                    code: 'NEWS_02'
-                }
-                return reject(notice);
-            }
             else resolve(news);
         });
     });
