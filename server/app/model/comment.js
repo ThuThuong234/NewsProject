@@ -8,8 +8,8 @@ var params = {
         { AttributeName: "comments_content", KeyType: "RANGE"}
     ],
     AttributeDefinitions : [
-        {AttributeName:"news_id", AttributeType:"S"},
-        {AttributeName:"comments_content", AttributeType:"N"}
+        {AttributeName:"news_id", AttributeType:"N"},
+        {AttributeName:"comments_content", AttributeType:"S"}
     ],
     ProvisionedThroughput:{
         ReadCapacityUnits:10,
