@@ -2,11 +2,13 @@ var express = require("express");
 const app = express();
 var bodyParser = require('body-parser');
 const newsRoutes =  require("./news");
+const commentsRoutes =  require("./comment");
 const feedbacksRoutes =  require("./feedbacks");
 const usersServices = require("../../app/services/usersServices");
 const utils = require('../../app/helpers/api_helper');
 app.use("/news",newsRoutes);
 app.use("/feedbacks",feedbacksRoutes);
+app.use("/comments",commentsRoutes);
 app.use(bodyParser.json())
 app.get("/",(req,res,next) => {
     res.status(200).json({

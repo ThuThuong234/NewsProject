@@ -81,7 +81,7 @@ exports.findFeedbackbyID = function (feedback_id) {
         });
     });
 }
-exports.findNewsbyID = function (news_id) {
+exports.findNewsbyID = function (comment_id) {
     return new Promise(function (resolve, reject) {
         var request_id = {
             TableName: "News",
@@ -97,6 +97,28 @@ exports.findNewsbyID = function (news_id) {
 
         docClient.query(request_id, function (err, news) {
             console.log("get News from id: " + news.Items);
+            if (err)
+                return reject(err);
+            else resolve(news);
+        });
+    });
+};
+exports.findCommentbyID = function (news_id) {
+    return new Promise(function (resolve, reject) {
+        var request_id = {
+            TableName: "Comments",
+            ProjectionExpression: "#news_id",
+            KeyConditionExpression: "#news_id = :news_id",
+            ExpressionAttributeNames: {
+                "#news_id": "news_id"
+            },
+            ExpressionAttributeValues: {
+                ":news_id": news_id
+            }
+        };
+
+        docClient.query(request_id, function (err, news) {
+            console.log("get Comments from id: " + news.Items);
             if (err)
                 return reject(err);
             else resolve(news);

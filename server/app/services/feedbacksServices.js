@@ -68,6 +68,7 @@ exports.getFeedbacks = function () {
             TableName: 'Feedbacks',
 
         };
+        console.log("aaaa")
         return docClient.scan(params).promise().then(result => {
             if (result == null) {
                 throw {
@@ -82,5 +83,67 @@ exports.getFeedbacks = function () {
                 return reject(error);
             });
     });
+};
+exports.getFeedbackdetails = function () {
+    return new Promise(function (resolve, reject) {
+        var params = {
+            TableName: 'Feebbacks',
+            ProjectionExpression: "#feedback_id,email,email,content",
+            KeyConditionExpression: "#feedback_id= :feedback_id",
+            ExpressionAttributeNames: {
+                "#feedback_id": "feedback_id"
+            },
+            ExpressionAttributeValues: {
+                ":feedback_id": parseInt(news_id)
+            }
+        };
+
+
+        return docClient.query(params).promise().then(result => {
+            if (result == null) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
+exports.Deletefeedback =function (data) {
+    return new Promise(function (resolve, reject) {
+        helper.findFeedbackbyID(data.feedbacks_id).then(function () {
+
+            var params = {
+                TableName: 'Feedbacks',
+                Key: {
+                    "feedbacks_id": data.feedbacks_id
+                },
+                ConditionExpression: "info.rating <= :val",
+                ExpressionAttributeValues: {
+                    ":val": 5.0
+                }
+            };
+            return docClient.delete(params, function (err, data) {
+                console.log("Dang xoa" + data);
+                if (err) {
+                    resolve({
+                        statusCode: 400,
+                        err: 'Could not delete massege:${err.stack} '
+                    });
+                }
+                else {
+                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                }
+            })
+        }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
+    })
 };
 
