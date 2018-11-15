@@ -5,11 +5,11 @@ var params = {
     TableName: "News",
     KeySchema: [
         { AttributeName: "news_id", KeyType: "HASH"},
-        { AttributeName: "user_id", KeyType: "RANGE"}
+        { AttributeName: "username", KeyType: "RANGE"}
     ],
     AttributeDefinitions : [
         {AttributeName:"news_id", AttributeType:"N"},
-        {AttributeName:"user_id", AttributeType:"N"}
+        {AttributeName:"username", AttributeType:"S"}
     ],
     ProvisionedThroughput:{
         ReadCapacityUnits:10,

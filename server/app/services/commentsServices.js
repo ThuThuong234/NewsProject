@@ -98,7 +98,7 @@ exports.getCommentsdetails = function () {
                 return reject(error);
             });
     });
-};
+}
 exports.Deletecomments = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findCommentbyID(data.news_id).then(function () {

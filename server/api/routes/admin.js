@@ -10,10 +10,14 @@ app.use("/news",newsRoutes);
 app.use("/feedbacks",feedbacksRoutes);
 app.use("/comments",commentsRoutes);
 app.use(bodyParser.json())
-app.get("/",(req,res,next) => {
-    res.status(200).json({
-    //   TODO
+app.get('/', function (req, res) {
+
+    usersServices.getAllUser().then(data => {
+        res.status(200).json(utils.successResponse(data));
     })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
 });
 app.post("/signin",(req,res) => {
     let username = req.body.username;
@@ -27,4 +31,25 @@ app.post("/signin",(req,res) => {
             res.json(utils.failedResponse(error));
         });
 });
+app.get('/:username', function (req, res) {
+    usersServices.getUser(req.params.username).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
+});
+
+// add item
+app.post('/', function (req, res) {
+    var body = req.body;
+    usersServices.insertUsers(body).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+
+        });
+});
+
 module.exports = app;

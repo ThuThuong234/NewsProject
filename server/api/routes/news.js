@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 //get detail of item
 app.get('/:id', function (req, res) {
+    console.log(req.params.id);
     usersServices.getNews(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })

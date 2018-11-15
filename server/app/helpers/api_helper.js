@@ -85,13 +85,13 @@ exports.findNewsbyID = function (comment_id) {
     return new Promise(function (resolve, reject) {
         var request_id = {
             TableName: "News",
-            ProjectionExpression: "#news_id",
+            ProjectionExpression: "#news_id,username,title,content,image,postdate",
             KeyConditionExpression: "#news_id = :news_id",
             ExpressionAttributeNames: {
                 "#news_id": "news_id"
             },
             ExpressionAttributeValues: {
-                ":news_id": news_id
+                ":news_id": parseInt(news_id)
             }
         };
 
@@ -122,6 +122,26 @@ exports.findCommentbyID = function (news_id) {
             if (err)
                 return reject(err);
             else resolve(news);
+}
+exports.findUsersbyName = function (username) {
+    return new Promise(function (resolve, reject) {
+        var request_id = {
+            TableName: "Users",
+            ProjectionExpression: "#username,password",
+            KeyConditionExpression: "#username = :username",
+            ExpressionAttributeNames: {
+                "#username": "username"
+            },
+            ExpressionAttributeValues: {
+                ":username": username
+            }
+        };
+
+        docClient.query(request_id, function (err, user) {
+            console.log("get Users from name: " + user.Items );
+            if (err)
+                return reject(err);
+            else resolve(user);
         });
     });
 }

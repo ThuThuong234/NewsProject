@@ -17,7 +17,6 @@ console.log("Importing data into DynamoDB. Please wait.");
 //     var user_params = {
 //         TableName: "Users",
 //         Item: {
-//             "user_id": user.id,
 //             "username": user.username,
 //             "password": user.password,
 //                 "last_login" : user.last_login,
@@ -103,32 +102,32 @@ exports.authenticate = function (username, password) {
 exports.insertNews = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findNewsbyID(data.news_id).then(news => {
-                if (news.Items.length != 0) {
-                    var notice = {
-                        message: errors.NEWS_01,
-                        code: 'NEWS_01'
+            if (news.Items.length != 0) {
+                var notice = {
+                    message: errors.NEWS_01,
+                    code: 'NEWS_01'
+                }
+                return reject(notice);
+            }
+            else {
+                var params = {
+                    TableName: "News",
+                    Item: data
+                };
+                return docClient.put(params, function (err, data) {
+                    console.log("Dang put code" + data);
+                    if (err) {
+                        resolve({
+                            statusCode: 400,
+                            err: 'Could not create massege:${err.stack} '
+                        });
                     }
-                    return reject(notice);
-                }
-                else {
-                    var params = {
-                        TableName: "News",
-                        Item: data
-                    };
-                    return docClient.put(params, function (err, data) {
-                        console.log("Dang put code" + data);
-                        if (err) {
-                            resolve({
-                                statusCode: 400,
-                                err: 'Could not create massege:${err.stack} '
-                            });
-                        }
-                        else {
-                            resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                        }
-                    })
-                }
-            }).catch(error => {
+                    else {
+                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                    }
+                })
+            }
+        }).catch(error => {
             logger.error(error);
             return reject(error);
         });
@@ -136,24 +135,15 @@ exports.insertNews = function (data) {
 }
 exports.getNews = function (news_id) {
     return new Promise(function (resolve, reject) {
-        var params = {
-            TableName: 'News',
-            ProjectionExpression: "#news_id,user_id,title,content,image,postdate",
-            KeyConditionExpression: "#news_id= :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": parseInt(news_id)
-            }
-        };
-        return docClient.query(params).promise().then(result => {
-            if (result.Items.length== 0 ) {
+        console.log(news_id);
+        helper.findNewsbyID(news_id).then(result => {
+            if (result.Items.length == 0) {
                 throw {
                     message: errors.TEMPLATE_01,
                     code: 'TEMPLATE_01'
                 };
             }
+            console.log(result);
             return resolve(result);
         })
             .catch(error => {
@@ -170,14 +160,14 @@ exports.updateNews = function (data) {
                     TableName: "News",
                     Key: {
                         "news_id": data.news_id,
-                        "user_id": data.user_id,
+                        "username": data.username,
                     },
                     UpdateExpression: "set title = :t, content=:c, image=:i,postdate=:p",
-                    ExpressionAttributeValues:{
-                        ":t":data.title,
-                        ":c":data.content,
-                        ":i":data.image,
-                        ":p" : data.postdate,
+                    ExpressionAttributeValues: {
+                        ":t": data.title,
+                        ":c": data.content,
+                        ":i": data.image,
+                        ":p": data.postdate,
 
                     },
                     ReturnValue: "UPDATE_NEW"
@@ -201,4 +191,78 @@ exports.updateNews = function (data) {
     })
 }
 
+exports.getAllUser = function () {
+    return new Promise(function (resolve, reject) {
+        var params = {
+            TableName: 'Users',
 
+        };
+        return docClient.scan(params).promise().then(result => {
+            if (result == null) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
+exports.insertUsers = function (data) {
+    return new Promise(function (resolve, reject) {
+        helper.findUsersbyName(data.username).then(user => {
+            if (user.Items.length != 0) {
+                var notice = {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                }
+                return reject(notice);
+            }
+            else {
+                var params = {
+                    TableName: "Users",
+                    Item: data
+                };
+                return docClient.put(params, function (err, data) {
+                    console.log("Dang put code" + data);
+                    if (err) {
+                        resolve({
+                            statusCode: 400,
+                            err: 'Could not create massege:${err.stack} '
+                        });
+                    }
+                    else {
+                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                    }
+                })
+            }
+        }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
+    });
+}
+exports.getUser = function (username) {
+    return new Promise(function (resolve, reject) {
+        console.log(username);
+        helper.findUsersbyName(username)
+            .then(result => {
+            if (result.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            console.log(result);
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};

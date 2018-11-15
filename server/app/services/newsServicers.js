@@ -16,9 +16,9 @@ var fs = require("fs");
 //         TableName: "News",
 //         Item: {
 //             "news_id": news.news_id,
-//             "user_id":news.user_id,
+//             "username":news.username,
 //             "title": news.title,
-//             "news_content": news.content,
+//             "content": news.content,
 //             "image": news.image,
 //             "postdate": news.postdate
 //         }
@@ -31,9 +31,9 @@ var fs = require("fs");
 //             console.log("PutItem Successed: ", news.title);
 //     });
 // });
-var params = {
-    TableName: 'News',
-};
+// var params = {
+//     TableName: 'News',
+// };
 // docClient.scan(params, onScan);
 // function onScan(err,data ) {
 //     if (err) {
@@ -44,7 +44,6 @@ var params = {
 //         return;
 //     }
 // }
-
 //  exports.getlist = function () {
 //     return new Promise(function (resolve, reject) {
 //         var params = {
