@@ -14,10 +14,10 @@ app.get("/",(req,res,next) => {
     })
 });
 app.post("/signin",(req,res) => {
-    let account = req.body.username;
+    let username = req.body.username;
     let password = req.body.password;
 
-    usersServices.authenticate(account, password)
+    usersServices.authenticate(username, password)
         .then(data => {
             res.json(utils.successResponse(data));
         })
