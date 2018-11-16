@@ -3,6 +3,7 @@
 const errors = require("../../lib/errors");
 var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
+const uuid = require('uuid/v1');
 
 exports.successResponse = function (data = null) {
     if (data == null) {
@@ -58,90 +59,95 @@ exports.failedResponse = function (error = null) {
         code: 'SERVICE_01'
     };
 };
+//
+// exports.findFeedbackbyID = function (feedback_id) {
+//     return new Promise(function (resolve, reject) {
+//         var request_id = {
+//             TableName: "Feedbacks",
+//             ProjectionExpression: "#feedback_id",
+//             KeyConditionExpression: "#feedback_id = :feedback_id",
+//             ExpressionAttributeNames: {
+//                 "#feedback_id": "feedback_id"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":feedback_id": feedback_id
+//             }
+//         };
+//
+//         docClient.query(request_id, function (err, feedback) {
+//             console.log("getfeedback from id: " + feedback.Items);
+//             if (err)
+//                 return reject(+err);
+//             else resolve(feedback);
+//         });
+//     });
+// }
+// exports.findNewsbyID = function (comment_id) {
+//     return new Promise(function (resolve, reject) {
+//         var request_id = {
+//             TableName: "News",
+//             ProjectionExpression: "#news_id,username,title,content,image,postdate",
+//             KeyConditionExpression: "#news_id = :news_id",
+//             ExpressionAttributeNames: {
+//                 "#news_id": "news_id"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":news_id": parseInt(news_id)
+//             }
+//         };
+//
+//         docClient.query(request_id, function (err, news) {
+//             console.log("get News from id: " + news.Items);
+//             if (err)
+//                 return reject(err);
+//             else resolve(news);
+//         });
+//     });
+// };
+// exports.findCommentbyID = function (news_id) {
+//     return new Promise(function (resolve, reject) {
+//         var request_id = {
+//             TableName: "Comments",
+//             ProjectionExpression: "#news_id",
+//             KeyConditionExpression: "#news_id = :news_id",
+//             ExpressionAttributeNames: {
+//                 "#news_id": "news_id"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":news_id": news_id
+//             }
+//         };
+//
+//         docClient.query(request_id, function (err, news) {
+//             console.log("get Comments from id: " + news.Items);
+//             if (err)
+//                 return reject(err);
+//             else resolve(news);
+// }
+// exports.findUsersbyName = function (username) {
+//     return new Promise(function (resolve, reject) {
+//         var request_id = {
+//             TableName: "Users",
+//             ProjectionExpression: "#username,password",
+//             KeyConditionExpression: "#username = :username",
+//             ExpressionAttributeNames: {
+//                 "#username": "username"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":username": username
+//             }
+//         };
+//
+//         docClient.query(request_id, function (err, user) {
+//             console.log("get Users from name: " + user.Items );
+//             if (err)
+//                 return reject(err);
+//             else resolve(user);
+//         });
+//     });
+// }
 
-exports.findFeedbackbyID = function (feedback_id) {
-    return new Promise(function (resolve, reject) {
-        var request_id = {
-            TableName: "Feedbacks",
-            ProjectionExpression: "#feedback_id",
-            KeyConditionExpression: "#feedback_id = :feedback_id",
-            ExpressionAttributeNames: {
-                "#feedback_id": "feedback_id"
-            },
-            ExpressionAttributeValues: {
-                ":feedback_id": feedback_id
-            }
-        };
-
-        docClient.query(request_id, function (err, feedback) {
-            console.log("getfeedback from id: " + feedback.Items);
-            if (err)
-                return reject(+err);
-            else resolve(feedback);
-        });
-    });
-}
-exports.findNewsbyID = function (comment_id) {
-    return new Promise(function (resolve, reject) {
-        var request_id = {
-            TableName: "News",
-            ProjectionExpression: "#news_id,username,title,content,image,postdate",
-            KeyConditionExpression: "#news_id = :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": parseInt(news_id)
-            }
-        };
-
-        docClient.query(request_id, function (err, news) {
-            console.log("get News from id: " + news.Items);
-            if (err)
-                return reject(err);
-            else resolve(news);
-        });
-    });
+exports.genrenateID = ()=> {
+    console.log(uuid());
+    return (uuid());
 };
-exports.findCommentbyID = function (news_id) {
-    return new Promise(function (resolve, reject) {
-        var request_id = {
-            TableName: "Comments",
-            ProjectionExpression: "#news_id",
-            KeyConditionExpression: "#news_id = :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": news_id
-            }
-        };
-
-        docClient.query(request_id, function (err, news) {
-            console.log("get Comments from id: " + news.Items);
-            if (err)
-                return reject(err);
-            else resolve(news);
-}
-exports.findUsersbyName = function (username) {
-    return new Promise(function (resolve, reject) {
-        var request_id = {
-            TableName: "Users",
-            ProjectionExpression: "#username,password",
-            KeyConditionExpression: "#username = :username",
-            ExpressionAttributeNames: {
-                "#username": "username"
-            },
-            ExpressionAttributeValues: {
-                ":username": username
-            }
-        };
-
-        docClient.query(request_id, function (err, user) {
-            console.log("get Users from name: " + user.Items );
-            if (err)
-                return reject(err);
-            else resolve(user);
-        });
-    });
-}

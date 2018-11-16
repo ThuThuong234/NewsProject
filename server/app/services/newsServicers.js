@@ -1,5 +1,4 @@
 var AWSConnect = require("../connectAWS/ConnectAWS");
-var uuid = require('uuid');
 var fs = require("fs");
 const log4js = require('log4js');
 const logger = log4js.getLogger('auth_utils');
@@ -12,12 +11,12 @@ var docClient = AWSConnect.docClient;
 var fs = require("fs");
 var allFeedbacks = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
 var loadAllData = allFeedbacks.forEach(function (news) {
-   id = generate();
+  id = helper.genrenateID();
     var feedback_params = {
         TableName: "News",
         Item: {
-            "news_id":id,
-            "user_id": news.user_id,
+            "news_id": id,
+            "username": news.username,
             "title": news.title,
             "news_content": news.content,
             "image": news.image,
@@ -27,16 +26,12 @@ var loadAllData = allFeedbacks.forEach(function (news) {
 
     docClient.put(feedback_params, function (err, data) {
         if (err)
-            console.log("Unable to add news ", news.news_id, ". Error Json:", JSON.stringify(err, null, 2));
+            console.log("Unable to add news ", id, ". Error Json:", JSON.stringify(err, null, 2));
         else
-            console.log("PutItem Successed: ", news.news_id);
+            console.log("PutItem Successed: ", id);
 
     });
 });
-exports.genrenate = ()=> {
-    console.log(uuid.v1());
-  return  uuid.v1();
-};
 
 // var params = {
 //     TableName: 'News',
@@ -212,6 +207,8 @@ exports.genrenate = ()=> {
 //             TableName: 'News',
 //             KeyConditionExpression: "#news_id= :news_id",
 //             Limit: 2,
+//             ScanIndexForward: false
+//
 //
 //         };
 //         return docClient.query(params).promise().then(result => {
