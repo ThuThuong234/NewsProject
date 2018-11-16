@@ -1,4 +1,5 @@
 var AWSConnect = require("../connectAWS/ConnectAWS");
+var uuid = require('uuid');
 var fs = require("fs");
 const log4js = require('log4js');
 const logger = log4js.getLogger('auth_utils');
@@ -9,28 +10,34 @@ const helper = require('../helpers/api_helper');
 var docClient = AWSConnect.docClient;
 
 var fs = require("fs");
-// var allFeedbacks = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
-// var loadAllData = allFeedbacks.forEach(function (news) {
-//
-//     var feedback_params = {
-//         TableName: "News",
-//         Item: {
-//             "news_id": news.news_id,
-//             "username":news.username,
-//             "title": news.title,
-//             "content": news.content,
-//             "image": news.image,
-//             "postdate": news.postdate
-//         }
-//     };
-//
-//     docClient.put(feedback_params, function (err, data) {
-//         if (err)
-//             console.log("Unable to add news ", news.title, ". Error Json:", JSON.stringify(err, null, 2));
-//         else
-//             console.log("PutItem Successed: ", news.title);
-//     });
-// });
+var allFeedbacks = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
+var loadAllData = allFeedbacks.forEach(function (news) {
+   id = generate();
+    var feedback_params = {
+        TableName: "News",
+        Item: {
+            "news_id":id,
+            "user_id": news.user_id,
+            "title": news.title,
+            "news_content": news.content,
+            "image": news.image,
+            "postdate": news.postdate
+        }
+    };
+
+    docClient.put(feedback_params, function (err, data) {
+        if (err)
+            console.log("Unable to add news ", news.news_id, ". Error Json:", JSON.stringify(err, null, 2));
+        else
+            console.log("PutItem Successed: ", news.news_id);
+
+    });
+});
+exports.genrenate = ()=> {
+    console.log(uuid.v1());
+  return  uuid.v1();
+};
+
 // var params = {
 //     TableName: 'News',
 // };
@@ -58,8 +65,8 @@ var fs = require("fs");
 //                    code: 'TEMPLATE_01'
 //               };
 //              }
-//            return resolve(result);
-//         })
+// //            return resolve(result);
+// //         })
 //            .catch(error => {
 //                logger.error(error);
 //                 return reject(error);
@@ -143,91 +150,85 @@ var fs = require("fs");
 //         return;
 //     }
 // }
-
-exports.getlistnews = function () {
-    return new Promise(function (resolve, reject) {
-        var params = {
-            TableName: 'News',
-
-        };
-        return docClient.scan(params).promise().then(result => {
-            if (result.Items.length== 0 ) {
-                throw {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                };
-            }
-            return resolve(result);
-        })
-            .catch(error => {
-                logger.error(error);
-                return reject(error);
-            });
-    });
-};
-exports.Deletenews =function (data) {
-    return new Promise(function (resolve, reject) {
-        helper.findNewsbyID(data.news_id).then(function () {
-
-            var params = {
-                TableName: 'Users',
-                Key: {
-                    "news_id": data.news_id
-                },
-                ConditionExpression: "info.rating <= :val",
-                ExpressionAttributeValues: {
-                    ":val": 5.0
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                    resolve({
-                        statusCode: 400,
-                        err: 'Could not delete massege:${err.stack} '
-                    });
-                }
-                else {
-                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                }
-            })
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
-        });
-    })
-};
-
-
-exports.Getlastestnews = function (news_id) {
-    return new Promise(function (resolve, reject) {
-        var params = {
-            TableName: 'News',
-            Limit: 2,
-            ProjectionExpression: "#news_id,user_id,title,content,image,postdate",
-            KeyConditionExpression: "#news_id= :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": parseInt(news_id)
-            }
-        };
-        return docClient.scan(params).promise().then(result => {
-            if (result.Items.length== 0 ) {
-                throw {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                };
-            }
-            return resolve(result);
-        })
-            .catch(error => {
-                logger.error(error);
-                return reject(error);
-            });
-    });
-};
+//
+// exports.getlistnews = function () {
+//     return new Promise(function (resolve, reject) {
+//         var params = {
+//             TableName: 'News',
+//
+//         };
+//         return docClient.scan(params).promise().then(result => {
+//             if (result.Items.length== 0 ) {
+//                 throw {
+//                     message: errors.TEMPLATE_01,
+//                     code: 'TEMPLATE_01'
+//                 };
+//             }
+//             return resolve(result);
+//         })
+//             .catch(error => {
+//                 logger.error(error);
+//                 return reject(error);
+//             });
+//     });
+// };
+// exports.Deletenews =function (data) {
+//     return new Promise(function (resolve, reject) {
+//         helper.findNewsbyID(data.news_id).then(function () {
+//
+//             var params = {
+//                 TableName: 'Users',
+//                 Key: {
+//                     "news_id": data.news_id
+//                 },
+//                 ConditionExpression: "info.rating <= :val",
+//                 ExpressionAttributeValues: {
+//                     ":val": 5.0
+//                 }
+//             };
+//             return docClient.delete(params, function (err, data) {
+//                 console.log("Dang xoa" + data);
+//                 if (err) {
+//                     resolve({
+//                         statusCode: 400,
+//                         err: 'Could not delete massege:${err.stack} '
+//                     });
+//                 }
+//                 else {
+//                     resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+//                 }
+//             })
+//         }).catch(error => {
+//             logger.error(error);
+//             return reject(error);
+//         });
+//     })
+// };
+//
+//
+// exports.Getlastestnews = function () {
+//     return new Promise(function (resolve, reject) {
+//         var params = {
+//             TableName: 'News',
+//             KeyConditionExpression: "#news_id= :news_id",
+//             Limit: 2,
+//
+//         };
+//         return docClient.query(params).promise().then(result => {
+//             if (result.Items.length== 0 ) {
+//                 throw {
+//                     message: errors.TEMPLATE_01,
+//                     code: 'TEMPLATE_01'
+//                 };
+//             }
+//             return resolve(result);
+//         })
+//             .catch(error => {
+//                 logger.error(error);
+//                 return reject(error);
+//             });
+//     });
+// };
 // exports.Search = function (news_id) {
 //     return new Promise(function (resolve, reject) {
 //         var params = {
