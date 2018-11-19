@@ -4,14 +4,21 @@ import { Routes, RouterModule } from '@angular/router';
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
 import { AuthorizeService } from './services/authorize.service';
+import {DefaultAdminLayoutComponent} from "./containers/default-admin-layout/default-admin-layout.component";
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
+
   {
-    path: '',
+    path: '/',
+    component: DefaultLayoutComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: '/login',
     component: LoginComponent,
     pathMatch: 'full',
   },
@@ -43,7 +50,7 @@ const routes: Routes = [
   },
   {
     path: '/admin',
-    component: DefaultLayoutComponent,
+    component: DefaultAdminLayoutComponent,
     canActivate: [AuthorizeService],
     children: [
       // {

@@ -13,13 +13,11 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: './default-layout.component.html'
 })
 export class DefaultLayoutComponent implements OnInit {
-  public navItems = [];
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement = document.body;
-  public session: SessionVM;
 
-  constructor(private authService: AuthenticateService,
+  constructor(
               private router: Router,
               private toastr: ToastrService,
               private translate: TranslateService) {
@@ -33,21 +31,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.session$.subscribe(
-      data => {
-        this.session = data;
-        if (this.session && this.session.token != null)
-          this.navItems = adminNavItems;
-        else
-          this.navItems = readerNavItems;
-
-      }
-    );
   }
 
-  logout() {
-    this.authService.clearSession();
-    this.toastr.success(this.translate.instant('LOGOUT.SUCCESS'));
-    this.router.navigate(['/login']);
-  }
+
 };
