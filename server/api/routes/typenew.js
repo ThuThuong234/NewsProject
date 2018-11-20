@@ -4,12 +4,13 @@ const auth_untils = require('../../lib/auth_utils');
 const utils = require('../../app/helpers/api_helper');
 const usersServices = require("../../app/services/usersServices");
 const newsServicers = require("../../app/services/newsServicers");
+const typenewServices = require("../../app/services/typenewServices");
 var app = express();
 app.use(bodyParser.json());
-
-// get list
+//getType
 app.get('/', function (req, res) {
-    newsServicers.getlistnews().then(data => {
+
+    typenewServices.getalltype().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -18,7 +19,8 @@ app.get('/', function (req, res) {
 });
 //get detail of item
 app.get('/:id', function (req, res) {
-    usersServices.getNews(req.params.id).then(data => {
+    console.log(req.params.id);
+    typenewServices.getDetailType(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -29,7 +31,7 @@ app.get('/:id', function (req, res) {
 // add item
 app.post('/', function (req, res) {
     var body = req.body;
-    usersServices.insertNews(body).then(data => {
+    typenewServices.insertType(body).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -37,22 +39,10 @@ app.post('/', function (req, res) {
 
         });
 });
-
-// update item
-app.put('/:id', function (req, res) {
-    var body = req.body;
-    usersServices.updateNews(body).then(data => {
-        res.status(200).json(utils.successResponse(data));
-    })
-        .catch(error => {
-            res.json(utils.failedResponse(error));
-        })
-});
-
 // delete item
 app.delete('/:id', (req, res,) => {
     var body = req.body;
-    newsServicers.Deletenews(body).then(function () {
+    typenewServices.DeleteType(body).then(function () {
         res.status(200).json(utils.successResponse());
     })
         .catch(error => {

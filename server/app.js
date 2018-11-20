@@ -16,7 +16,6 @@ const readerRoutes = require("./api/routes/index");
  */
 app.use("/admin",adminRoutes );
 app.use("/",readerRoutes);
-
 app.use(bodyParser.json());
 
 /**

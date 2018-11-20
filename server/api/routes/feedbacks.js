@@ -18,8 +18,7 @@ app.post('/', function (req,res) {
 });
 //getfeedback
 app.get('/', function (req, res) {
-
-    feedbacksServices.getFeedbacks(req.params.id).then(data => {
+    feedbacksServices.getFeedbacks().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -27,9 +26,8 @@ app.get('/', function (req, res) {
         });
 });
 //getdetail
-app.get('/', function (req, res) {
-
-    feedbacksServices.getFeedbackdetails(req.params.id).then(data => {
+app.get('/:id', function (req, res) {
+    feedbacksServices.getFeedbacksDetail(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -37,9 +35,9 @@ app.get('/', function (req, res) {
         });
 });
 //delete
-app.delete('/id', (req, res,) => {
-
-    feedbacksServices.Deletefeedback(req.id).then(function () {
+app.delete('/:id', (req, res,) => {
+    var body = req.body;
+    feedbacksServices.Deletefeedback(body).then(function () {
 
         res.status(200).json(utils.successResponse());
     })

@@ -14,3 +14,4 @@ server/node_modules
 .gitignore_REMOTE_34056
 .idea/ProjectCloud.iml
 .idea/project.iml
+server/logs/blog-2018-11-17.log
