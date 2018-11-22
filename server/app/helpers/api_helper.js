@@ -3,6 +3,7 @@
 const errors = require("../../lib/errors");
 var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
+var aws = AWSConnect.dynamoConnection;
 const uuid = require('uuid/v1');
 
 exports.successResponse = function (data = null) {
@@ -59,9 +60,22 @@ exports.failedResponse = function (error = null) {
         code: 'SERVICE_01'
     };
 };
-exports.genrenateID = ()=> {
-    console.log(uuid());
-    return (uuid());
+exports.genrenateID = async function(table_name ){
+   return new Promise((resolve, reject) => {
+       var params = {
+           TableName: table_name,
+
+       };
+       aws.scan(params, function(err, data) {
+           if (err) {
+               console.log(err);
+               reject(err);
+           } else {
+               console.log(data.Items.length);
+               resolve(data.Items.length);
+           }
+       });
+   })
 };
 exports.findFeedbackbyID = function (feedback_id) {
     return new Promise(function (resolve, reject) {
