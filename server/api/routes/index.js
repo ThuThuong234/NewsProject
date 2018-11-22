@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 const utils = require('../../app/helpers/api_helper');
 const feedbacksServices = require("../../app/services/feedbacksServices");
 const newsServicers = require("../../app/services/newsServicers");
+const usersServices = require("../../app/services/usersServices");
 const auth_utils = require('../../lib/auth_utils');
 app.use(bodyParser.json());
 app.get('/', function (req, res) {
@@ -35,5 +36,21 @@ app.get('/', function (req, res) {
         .catch(error => {
             res.json(utils.failedResponse(error));
         });
+});
+app.get('/type/:id', function (req, res) {
+    usersServices.getNewsbyTypeId(req.params.id).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
+});
+app.get('/:search_data', (req, res,) => {
+    newsServicers.Search(req.params.search_data).then(function (data) {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        })
 });
 module.exports = app;

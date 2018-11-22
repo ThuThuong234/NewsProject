@@ -25,6 +25,7 @@ app.get('/:id', function (req, res) {
             res.json(utils.failedResponse(error));
         });
 });
+//get detail new by type id
 
 // add item
 app.post('/', function (req, res) {

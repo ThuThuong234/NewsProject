@@ -82,32 +82,24 @@ exports.Getlastestnews = function (news_id) {
             });
     });
 };
-exports.Search = function (title) {
-    return new Promise(function (resolve, reject) {
+exports.Search = function (search_data) {
+    return new Promise(function (resolve, reject) {console.log(search_data)
         var params = {
             TableName: "News",
-            ProjectionExpression: "title",
-            ExpressionAttributeNames: {
-                //   "postdate": "postdate",
-                "title": "title"
-            },
-            ExpressionAttributeValues: {
-                ":title": title,
-                //   ":postdate": postdate,
-
+            ScanFilter: {
+                'title': {
+                    ComparisonOperator: "CONTAINS",
+                    AttributeValueList: [
+                        search_data,
+                    ]
+                },
             }
-        };
-        docClient.query(params, function (err, data) {
+        }
+        docClient.scan(params, function(err, data) {
             console.log("Dang tim" + data);
-            if (err) {
-                resolve({
-                    statusCode: 400,
-                    err: 'Could not find massege:${err.stack} '
-                });
-            }
-            else {
-                resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-            }
+            if (err)
+                return reject(err);
+            else resolve(data);
         })
     }).catch(error => {
         logger.error(error);
@@ -150,3 +142,4 @@ exports.Deletenews = function (news_id) {
        });
     })
 };
+

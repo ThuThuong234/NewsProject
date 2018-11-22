@@ -38,6 +38,16 @@ app.get('/:id', function (req, res) {
             res.json(utils.failedResponse(error));
         });
 });
+// update item
+app.put('/:id', function (req, res) {
+    var body = req.body;
+    commentsServices.updateComment(body).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        })
+});
 
 // delete item
 app.delete('/:id', (req, res,) => {

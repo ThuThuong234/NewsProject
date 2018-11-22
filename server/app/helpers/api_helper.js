@@ -142,6 +142,7 @@ exports.findUsersbyName = function (username) {
                 ":username": username
             }
         };
+
         docClient.query(request_id, function (err, user) {
             console.log("Get Users from name: " + user.Items);
             if (err)
@@ -172,3 +173,22 @@ exports.findTypebyId = function (type_id) {
         });
     });
 }
+exports.findNewsbyTypeId = function (type_id) {
+    return new Promise(function (resolve, reject) {
+        var request_id = {
+            TableName: "News",
+            ProjectionExpression: "news_id,username,type_id,title,content,image,postdate",
+            FilterExpression: "type_id = :type_id",
+            ExpressionAttributeValues: {
+                ":type_id": parseInt(type_id)
+            }
+        };
+        docClient.scan(request_id, function (err, type) {
+            // console.log("Get News Type from id: " + type.Items);
+            if (err)
+                return reject(err);
+            else resolve(type);
+        });
+    });
+}
+

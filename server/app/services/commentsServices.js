@@ -108,6 +108,41 @@ exports.getCommentsdetails = function (news_id) {
             });
     });
 }
+exports.updateComment = function (data) {
+    return new Promise(function (resolve, reject) {
+        helper.findCommentbyID(data.news_id)
+            .then(function () {
+                var params = {
+                    TableName: "Comments",
+                    Key: {
+                        "news_id": data.news_id,
+                        "comments_content" : data.comments_content
+                    },
+                    UpdateExpression: "set email = :e,comment_time= :c",
+                    ExpressionAttributeValues: {
+                        ":e": data.email,
+                        ":c": data.comment_time,
+                    },
+                    ReturnValue: "UPDATE_COMMENT"
+                };
+                return docClient.update(params, function (err, data) {
+                    console.log("Dang update item" + data);
+                    if (err) {
+                        resolve({
+                            statusCode: 400,
+                            err: 'Could not update massege:${err.stack} '
+                        });
+                    }
+                    else {
+                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                    }
+                })
+            }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
+    })
+}
 exports.Deletecomments = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findCommentbyID(data.news_id).then(function () {

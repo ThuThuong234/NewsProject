@@ -146,6 +146,26 @@ exports.getNews = function (news_id) {
             });
     });
 };
+exports.getNewsbyTypeId = function (type_id) {
+    return new Promise(function (resolve, reject) {
+        console.log(type_id);
+        helper.findNewsbyTypeId(type_id).then(result => {
+            console.log(result.Items);
+                if (result.Items.length == 0) {
+                    throw {
+                        message: errors.TEMPLATE_01,
+                        code: 'TEMPLATE_01'
+                    };
+                }
+                console.log(result);
+                return resolve(result);
+            })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
 exports.updateNews = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findNewsbyID(data.news_id)
@@ -163,7 +183,6 @@ exports.updateNews = function (data) {
                         ":c": data.content,
                         ":i": data.image,
                         ":p": data.postdate,
-
                     },
                     ReturnValue: "UPDATE_NEW"
                 };
@@ -185,7 +204,6 @@ exports.updateNews = function (data) {
         });
     })
 }
-
 exports.getAllUser = function () {
     return new Promise(function (resolve, reject) {
         var params = {
