@@ -53,38 +53,6 @@ exports.getlistnews = function () {
             });
     });
 };
-exports.Deletenews = function (data) {
-    return new Promise(function (resolve, reject) {
-        helper.findNewsbyID(data.news_id).then(function () {
-
-            var params = {
-                TableName: 'News',
-                Key: {
-                    "news_id": data.news_id
-                },
-                ConditionExpression: "info.rating <= :val",
-                ExpressionAttributeValues: {
-                    ":val": 5.0
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                    resolve({
-                        statusCode: 400,
-                        err: 'Could not delete massege:${err.stack} '
-                    });
-                }
-                else {
-                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                }
-            })
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
-        });
-    })
-};
 exports.Getlastestnews = function (news_id) {
     return new Promise(function (resolve, reject) {
         var params = {
@@ -114,33 +82,71 @@ exports.Getlastestnews = function (news_id) {
             });
     });
 };
-exports.Search = function (news_id) {
+exports.Search = function (title) {
     return new Promise(function (resolve, reject) {
         var params = {
             TableName: "News",
-            ProjectionExpression: "#postdate, title, info.genres, info.actors[0]",
-            KeyConditionExpression: "#string = :yyyy and title between :letter1 and :letter2",
+            ProjectionExpression: "title",
             ExpressionAttributeNames: {
-                "#postdate": "postdate"
-
+                //   "postdate": "postdate",
+                "title": "title"
             },
             ExpressionAttributeValues: {
-                ":postdate": parseInt(req.params.txtYear),
-                ":letter1": "A",
-                ":letter2": "L"
+                ":title": title,
+                //   ":postdate": postdate,
+
             }
         };
         docClient.query(params, function (err, data) {
+            console.log("Dang tim" + data);
             if (err) {
-                console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
-            } else {
-                console.log("Query succeeded.");
-                data.Items.forEach(function (item) {
-                    console.log(" -", item.postdate + ": " + item.title
-                        + " ... " + item.info.genres
-                        + " ... " + item.info.actors[0]);
+                resolve({
+                    statusCode: 400,
+                    err: 'Could not find massege:${err.stack} '
                 });
             }
-        });
+            else {
+                resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+            }
+        })
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
     });
-}
+};
+exports.Deletenews = function (news_id) {
+    return new Promise(function (resolve, reject) {
+       helper.findNewsbyID(news_id).then(search_news => {
+           console.log(search_news.Items);
+           if(search_news.Items.length==0){
+               throw {
+                   message: errors.TEMPLATE_01,
+                   code: 'TEMPLATE_01'
+               };
+           }
+           else {
+               console.log(search_news.Items[0].news_id);
+               console.log(search_news.Items[0].username);
+               var params = {
+                   TableName: 'News',
+                   Key: {
+                       "news_id": search_news.Items[0].news_id,
+                       "username": search_news.Items[0].username
+                   },
+               };
+               return docClient.delete(params, function (err, data) {
+                   console.log("Dang xoa" + data);
+                   if (err) {
+                       reject(err);
+                   }
+                   else {
+                       resolve(data);
+                   }
+               })
+           }
+       }).catch(error => {
+           logger.error(error);
+           return reject(error);
+       });
+    })
+};

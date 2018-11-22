@@ -51,12 +51,20 @@ app.put('/:id', function (req, res) {
 
 // delete item
 app.delete('/:id', (req, res,) => {
-    var body = req.body;
-    newsServicers.Deletenews(body).then(function () {
+    newsServicers.Deletenews(req.params.id).then(function () {
         res.status(200).json(utils.successResponse());
     })
         .catch(error => {
             res.json(utils.failedResponse(error));
         })
+});
+// search new
+app.get('/:title', function (req, res) {
+    newsServicers.Search(req.params.title).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
 });
 module.exports = app;

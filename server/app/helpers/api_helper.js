@@ -142,7 +142,6 @@ exports.findUsersbyName = function (username) {
                 ":username": username
             }
         };
-
         docClient.query(request_id, function (err, user) {
             console.log("Get Users from name: " + user.Items);
             if (err)
