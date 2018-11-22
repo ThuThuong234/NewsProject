@@ -27,7 +27,6 @@ app.get('/:id', function (req, res) {
             res.json(utils.failedResponse(error));
         });
 });
-
 // add item
 app.post('/', function (req, res) {
     var body = req.body;
@@ -38,15 +37,5 @@ app.post('/', function (req, res) {
             res.json(utils.failedResponse(error));
 
         });
-});
-// delete item
-app.delete('/:id', (req, res,) => {
-    var body = req.body;
-    typenewServices.DeleteType(body).then(function () {
-        res.status(200).json(utils.successResponse());
-    })
-        .catch(error => {
-            res.json(utils.failedResponse(error));
-        })
 });
 module.exports = app;

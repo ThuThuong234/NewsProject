@@ -55,7 +55,6 @@ function findUser(username, password) {
         });
     });
 }
-
 exports.authenticate = function (username, password) {
 
     return new Promise(function (resolve, reject) {
@@ -315,31 +314,40 @@ exports.updateUser = function (data) {
         });
     })
 }
-exports.deleteUser =function (username) {
+exports.deleteUser = function (username) {
     return new Promise(function (resolve, reject) {
-        helper.findUsersbyName(username).then(function () {
-            var params = {
-                TableName: 'Users',
-                Key: {
-                    "username": username,
-                },
-                ConditionExpression:"username = :val",
-                ExpressionAttributeValues: {
-                    ":val":username
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                   reject(err);
-                }
-                else {
-                    resolve(data);
-                }
-            })
+        helper.findUsersbyName(username).then(search_username => {
+            console.log(search_username.Items);
+            if(search_username.Items.length==0){
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            else {
+                console.log(search_username.Items[0].username);
+                console.log(search_username.Items[0].password);
+                var params = {
+                    TableName: 'Users',
+                    Key: {
+                        "news_id": search_username.Items[0].username,
+                        "username": search_username.Items[0].password
+                    },
+                };
+                return docClient.delete(params, function (err, data) {
+                    console.log("Dang xoa" + data);
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            }
         }).catch(error => {
             logger.error(error);
             return reject(error);
         });
     })
 };
+

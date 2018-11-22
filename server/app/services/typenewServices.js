@@ -83,38 +83,6 @@ exports.insertType = function (data) {
         });
     });
 }
-exports.DeleteType =function (data) {
-    return new Promise(function (resolve, reject) {
-        helper.findTypebyId(data.type_id).then(function () {
-
-            var params = {
-                TableName: 'TypeNew',
-                Key: {
-                    "type_id": data.type_id
-                },
-                ConditionExpression: "info.rating <= :val",
-                ExpressionAttributeValues: {
-                    ":val": 5.0
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                    resolve({
-                        statusCode: 400,
-                        err: 'Could not delete massege:${err.stack} '
-                    });
-                }
-                else {
-                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                }
-            })
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
-        });
-    })
-};
 exports.getDetailType = function (type_id) {
     return new Promise(function (resolve, reject) {
         helper.findTypebyId(type_id).then(result => {

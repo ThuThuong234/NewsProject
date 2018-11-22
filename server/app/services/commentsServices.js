@@ -143,35 +143,41 @@ exports.updateComment = function (data) {
         });
     })
 }
-exports.Deletecomments = function (data) {
+exports.deleteComment = function (news_id) {
     return new Promise(function (resolve, reject) {
-        helper.findCommentbyID(data.news_id).then(function () {
-
-            var params = {
-                TableName: 'Comments',
-                Key: {
-                    "comments_content": data.comments_content
-                },
-                ConditionExpression: "info.rating <= :val",
-                ExpressionAttributeValues: {
-                    ":val": 5.0
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                    resolve({
-                        statusCode: 400,
-                        err: 'Could not delete massege:${err.stack} '
-                    });
-                }
-                else {
-                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                }
-            })
+        helper.findCommentbyID(news_id).then(search_newsid => {
+            console.log(search_newsid.Items);
+            if(search_newsid.Items.length==0){
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            else {
+                console.log(search_newsid.Items[0].news_id);
+                console.log(search_newsid.Items[0].comments_content);
+                var params = {
+                    TableName: 'Comments',
+                    Key: {
+                        "news_id": search_newsid.Items[0].news_id,
+                        "username": search_newsid.Items[0].comments_content
+                    },
+                };
+                return docClient.delete(params, function (err, data) {
+                    console.log("Dang xoa" + data);
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            }
         }).catch(error => {
             logger.error(error);
             return reject(error);
         });
     })
 };
+
+

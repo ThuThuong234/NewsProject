@@ -51,8 +51,7 @@ app.put('/:id', function (req, res) {
 
 // delete item
 app.delete('/:id', (req, res,) => {
-    var body = req.body;
-    commentsServices.Deletecomments(body).then(function () {
+    commentsServices.deleteComment(req.params.id).then(function () {
         res.status(200).json(utils.successResponse());
     })
         .catch(error => {
