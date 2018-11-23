@@ -12,8 +12,8 @@ var params = {
         {AttributeName:"username", AttributeType:"S"}
     ],
     ProvisionedThroughput:{
-        ReadCapacityUnits:10,
-        WriteCapacityUnits:10
+        ReadCapacityUnits:1,
+        WriteCapacityUnits:1
     }
 };
 var createTable = dynamodb.createTable(params,function (err, data) {

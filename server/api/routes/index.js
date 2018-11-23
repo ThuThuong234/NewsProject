@@ -8,7 +8,6 @@ const usersServices = require("../../app/services/usersServices");
 const auth_utils = require('../../lib/auth_utils');
 app.use(bodyParser.json());
 app.get('/', function (req, res) {
-    var body = req.body;
     console.log();
     newsServicers.Getlastestnews().then(data => {
         res.status(200).json(utils.successResponse(data));

@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // get list
 app.get('/', function (req, res) {
-    newsServicers.getlistnews().then(data => {
+    newsServicers.Getlastestnews().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 });
 //get detail of item
 app.get('/:id', function (req, res) {
-    usersServices.getNews(req.params.id).then(data => {
+    newsServicers.getNews(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {
@@ -30,8 +30,8 @@ app.get('/:id', function (req, res) {
 // add item
 app.post('/', function (req, res) {
     var body = req.body;
-    usersServices.insertNews(body).then(data => {
-        res.status(200).json(utils.successResponse(data));
+    newsServicers.insertNews(body).then(data => {
+        res.status(200).json(utils.successResponse());
     })
         .catch(error => {
             res.json(utils.failedResponse(error));
@@ -42,7 +42,7 @@ app.post('/', function (req, res) {
 // update item
 app.put('/:id', function (req, res) {
     var body = req.body;
-    usersServices.updateNews(body).then(data => {
+    newsServicers.updateNews(body).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {

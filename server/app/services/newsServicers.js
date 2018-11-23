@@ -8,65 +8,14 @@ const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper');
 var docClient = AWSConnect.docClient;
 
-var fs = require("fs");
-// var allFeedbacks = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
-// var loadAllData = allFeedbacks.forEach(function (news) {
-//
-//     var feedback_params = {
-//         TableName: "News",
-//         Item: {
-//             "news_id": news.news_id,
-//             "username":news.username,
-//             "type_id": news.type_id,
-//             "title": news.title,
-//             "content": news.content,
-//             "image": news.image,
-//             "postdate": news.postdate
-//         }
-//     };
-//
-//     docClient.put(feedback_params, function (err, data) {
-//         if (err)
-//             console.log("Unable to add news ", news.title, ". Error Json:", JSON.stringify(err, null, 2));
-//         else
-//             console.log("PutItem Successed: ", news.title);
-//     });
-// });
-exports.getlistnews = function () {
+exports.Getlastestnews = function () {
     return new Promise(function (resolve, reject) {
         var params = {
             TableName: 'News',
-
-        };
-        return docClient.scan(params).promise().then(result => {
-            if (result.Items.length == 0) {
-                throw {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                };
-            }
-            return resolve(result);
-        })
-            .catch(error => {
-                logger.error(error);
-                return reject(error);
-            });
-    });
-};
-exports.Getlastestnews = function (news_id) {
-    return new Promise(function (resolve, reject) {
-        var params = {
-            TableName: 'News',
-            Limit: 2,
-            ProjectionExpression: "#news_id,user_id,title,content,image,postdate",
-            KeyConditionExpression: "#news_id= :news_id",
-            ExpressionAttributeNames: {
-                "#news_id": "news_id"
-            },
-            ExpressionAttributeValues: {
-                ":news_id": parseInt(news_id)
-            }
-        };
+            Limit: 1,
+            ProjectionExpression: "news_id,user_id,title,content,image,postdate",
+            ScanIndexForward : false,
+        }
         return docClient.scan(params).promise().then(result => {
             if (result.Items.length == 0) {
                 throw {
@@ -83,7 +32,8 @@ exports.Getlastestnews = function (news_id) {
     });
 };
 exports.Search = function (search_data) {
-    return new Promise(function (resolve, reject) {console.log(search_data)
+    return new Promise(function (resolve, reject) {
+        console.log(search_data)
         var params = {
             TableName: "News",
             ScanFilter: {
@@ -95,7 +45,7 @@ exports.Search = function (search_data) {
                 },
             }
         }
-        docClient.scan(params, function(err, data) {
+        docClient.scan(params, function (err, data) {
             console.log("Dang tim" + data);
             if (err)
                 return reject(err);
@@ -108,38 +58,150 @@ exports.Search = function (search_data) {
 };
 exports.Deletenews = function (news_id) {
     return new Promise(function (resolve, reject) {
-       helper.findNewsbyID(news_id).then(search_news => {
-           console.log(search_news.Items);
-           if(search_news.Items.length==0){
-               throw {
-                   message: errors.TEMPLATE_01,
-                   code: 'TEMPLATE_01'
-               };
-           }
-           else {
-               console.log(search_news.Items[0].news_id);
-               console.log(search_news.Items[0].username);
-               var params = {
-                   TableName: 'News',
-                   Key: {
-                       "news_id": search_news.Items[0].news_id,
-                       "username": search_news.Items[0].username
-                   },
-               };
-               return docClient.delete(params, function (err, data) {
-                   console.log("Dang xoa" + data);
-                   if (err) {
-                       reject(err);
-                   }
-                   else {
-                       resolve(data);
-                   }
-               })
-           }
-       }).catch(error => {
-           logger.error(error);
-           return reject(error);
-       });
+        helper.findNewsbyID(news_id).then(search_news => {
+            console.log(search_news.Items);
+            if (search_news.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            else {
+                console.log(search_news.Items[0].news_id);
+                console.log(search_news.Items[0].username);
+                var params = {
+                    TableName: 'News',
+                    Key: {
+                        "news_id": search_news.Items[0].news_id,
+                        "username": search_news.Items[0].username
+                    },
+                };
+                return docClient.delete(params, function (err, data) {
+                    console.log("Dang xoa" + data);
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            }
+        }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
     })
 };
+exports.insertNews = function (data) {
+    return new Promise(async function (resolve, reject) {
+        var id = await helper.genrenateID("News");
+        var params = {
+            TableName: "News",
+            Item: {
+                "news_id": ++id,
+                "username": data.username,
+                "type_id": data.type_id,
+                "title": data.title,
+                "content": data.content,
+                "image": data.image,
+                "postdate": data.postdate
+            }
+        };
+        return docClient.put(params, function (err, data) {
+            console.log("Dang put" + data);
+            if (err) {
+                reject(err);
+            }
+            else {
+                if (data == null) {
+                    throw {
+                        message: errors.CREATE,
+                        code: 'CREATE'
+                    };
+                }
+                else
+                    resolve(data);
+            }
+        });
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
+    });
+}
+exports.getNews = function (news_id) {
+    return new Promise(function (resolve, reject) {
+        helper.findNewsbyID(news_id).then(result => {
+            if (result.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            console.log(result);
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
+exports.getNewsbyTypeId = function (type_id) {
+    return new Promise(function (resolve, reject) {
+        console.log(type_id);
+        helper.findNewsbyTypeId(type_id).then(result => {
+            console.log(result.Items);
+            if (result.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            console.log(result);
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
+exports.updateNews = function (data) {
+    return new Promise(function (resolve, reject) {
+        helper.findNewsbyID(data.news_id)
+            .then(function () {
+                var params = {
+                    TableName: "News",
+                    Key: {
+                        "news_id": data.news_id,
+                        "username": data.username,
+                    },
+                    UpdateExpression: "set title = :t,type_id=:y, content=:c, image=:i,postdate=:p",
+                    ExpressionAttributeValues: {
+                        ":t": data.title,
+                        ":y": data.type_id,
+                        ":c": data.content,
+                        ":i": data.image,
+                        ":p": data.postdate,
+                    },
+                    ReturnValue: "UPDATE_NEW"
+                };
+                return docClient.update(params, function (err, data) {
+                    console.log("Dang update item" + data);
+                    if (err) {
+                        resolve({
+                            statusCode: 400,
+                            err: 'Could not update massege:${err.stack} '
+                        });
+                    }
+                    else {
+                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                    }
+                })
+            }).catch(error => {
+            logger.error(error);
+            return reject(error);
+        });
+    })
+}
 
