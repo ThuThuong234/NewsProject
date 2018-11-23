@@ -50,7 +50,8 @@ exports.getalltype = function () {
     });
 };
 exports.insertType = function (data) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(async function (resolve, reject) {
+        var id = await helper.genrenateID("Feedbacks");
         helper.findTypebyId(data.type_id).then(type => {
             if (type.Items.length != 0) {
                 var notice = {
@@ -62,8 +63,11 @@ exports.insertType = function (data) {
             else {
                 var params = {
                     TableName: "TypeNew",
-                    Item: data
-                };
+                    Item: {
+                        "type_id": id++,
+                        "typename":data.typename
+
+                    }                };
                 return docClient.put(params, function (err, data) {
                     console.log("Dang put code" + data);
                     if (err) {
