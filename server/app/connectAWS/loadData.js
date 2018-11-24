@@ -1,11 +1,8 @@
 const helper = require('../helpers/api_helper');
 var AWSConnect = require("../connectAWS/ConnectAWS");
+var datetime = require('node-datetime');
 var docClient = AWSConnect.docClient;
 var fs = require("fs");
-
-let feedback_id = 0;
-let news_id = 0;
-let type_id = 0;
 
 var allFeedbacks = JSON.parse(fs.readFileSync("../data/feedbacks.json", "utf-8"));
 var allNews = JSON.parse(fs.readFileSync("../data/newsdata.json", "utf-8"));
@@ -13,13 +10,15 @@ var allLoai = JSON.parse(fs.readFileSync("../data/typenew.json", "utf-8"));
 var allUser = JSON.parse(fs.readFileSync("../data/users.json", "utf-8"));
 var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 
-var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
+var pastDateTime = datetime.create();
 
-    console.log("dfadf" + feedback_id);
+var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
+    let pastNow = pastDateTime.now();
+    console.log("date: " + pastNow);
     var feedback_params = {
         TableName: "Feedbacks",
         Item: {
-            "feedback_id": ++feedback_id,
+            "feedback_id": Number(pastNow) ,
             "email": feedback.email,
             "content": feedback.content
         }
@@ -36,11 +35,11 @@ var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
 });
 
 var loadAllDataNews = allNews.forEach(function (news) {
-
+    let pastNow = pastDateTime.now();
     var new_params = {
         TableName: "News",
         Item: {
-            "news_id": ++news_id,
+            "news_id": Number(pastNow),
             "username":news.username,
             "type_id": news.type_id,
             "title": news.title,
@@ -52,9 +51,9 @@ var loadAllDataNews = allNews.forEach(function (news) {
 
     docClient.put(new_params, function (err, data) {
         if (err)
-            console.log("Unable to add news ", news_id, ". Error Json:", JSON.stringify(err, null, 2));
+            console.log("Unable to add news ", ". Error Json:", JSON.stringify(err, null, 2));
         else
-            console.log("PutItem Successed: ", news_id);
+            console.log("PutItem Successed: ");
     });
 });
 var loadAllComment = allComments.forEach(function (comment) {
@@ -75,11 +74,11 @@ var loadAllComment = allComments.forEach(function (comment) {
     });
 });
 var loadAlltype = allLoai.forEach(async function (loai) {
-    console.log("dfadf" + type_id);
+    let pastNow = pastDateTime.now();
     var type_params = {
         TableName: "TypeNew",
         Item: {
-            "type_id": loai.type_id,
+            "type_id": Number(pastNow),
             "typename": loai.typename
         }
     };
