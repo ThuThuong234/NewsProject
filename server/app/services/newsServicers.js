@@ -6,6 +6,8 @@ const auth_utils = require('../../lib/auth_utils');
 const ldap_utils = require('../../lib/ldap_utils');
 const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper');
+
+
 var docClient = AWSConnect.docClient;
 
 exports.Getlastestnews = function () {
@@ -94,11 +96,12 @@ exports.Deletenews = function (news_id) {
 };
 exports.insertNews = function (data) {
     return new Promise(async function (resolve, reject) {
-        var id = await helper.genrenateID("News");
+
+        let id = helper.genrenateID();
         var params = {
             TableName: "News",
             Item: {
-                "news_id": ++id,
+                "news_id": id,
                 "username": data.username,
                 "type_id": data.type_id,
                 "title": data.title,

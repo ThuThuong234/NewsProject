@@ -1,6 +1,5 @@
 const helper = require('../helpers/api_helper');
 var AWSConnect = require("../connectAWS/ConnectAWS");
-var datetime = require('node-datetime');
 var docClient = AWSConnect.docClient;
 var fs = require("fs");
 
@@ -10,15 +9,13 @@ var allLoai = JSON.parse(fs.readFileSync("../data/typenew.json", "utf-8"));
 var allUser = JSON.parse(fs.readFileSync("../data/users.json", "utf-8"));
 var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 
-var pastDateTime = datetime.create();
 
 var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
-    let pastNow = pastDateTime.now();
-    console.log("date: " + pastNow);
+    let id = helper.genrenateID()
     var feedback_params = {
         TableName: "Feedbacks",
         Item: {
-            "feedback_id": Number(pastNow) ,
+            "feedback_id":id ,
             "email": feedback.email,
             "content": feedback.content
         }
@@ -35,11 +32,11 @@ var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
 });
 
 var loadAllDataNews = allNews.forEach(function (news) {
-    let pastNow = pastDateTime.now();
+    let id = helper.genrenateID();
     var new_params = {
-        TableName: "News",
-        Item: {
-            "news_id": Number(pastNow),
+            TableName: "News",
+            Item: {
+            "news_id": id,
             "username":news.username,
             "type_id": news.type_id,
             "title": news.title,
@@ -74,11 +71,11 @@ var loadAllComment = allComments.forEach(function (comment) {
     });
 });
 var loadAlltype = allLoai.forEach(async function (loai) {
-    let pastNow = pastDateTime.now();
+    let id = helper.genrenateID();
     var type_params = {
         TableName: "TypeNew",
         Item: {
-            "type_id": Number(pastNow),
+            "type_id": id,
             "typename": loai.typename
         }
     };
