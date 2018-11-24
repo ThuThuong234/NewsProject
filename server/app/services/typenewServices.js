@@ -67,25 +67,30 @@ exports.insertType = function (data) {
                         "type_id": id++,
                         "typename":data.typename
 
-                    }                };
-                return docClient.put(params, function (err, data) {
-                    console.log("Dang put code" + data);
+                    }
+                };
+                return docClent.put(params, function (err, data) {
+                    console.log("Dang cap nhat" + data);
                     if (err) {
-                        resolve({
-                            statusCode: 400,
-                            err: 'Could not create massege:${err.stack} '
-                        });
+                        reject(err);
                     }
                     else {
-                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                        if (data == null) {
+                            throw {
+                                message: errors.CREATE,
+                                code: 'CREATE'
+                            };
+                        }
+                        else
+                            resolve(data);
                     }
-                })
-            }
+                });
+                }
         }).catch(error => {
             logger.error(error);
             return reject(error);
         });
-    });
+})
 }
 exports.getDetailType = function (type_id) {
     return new Promise(function (resolve, reject) {

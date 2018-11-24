@@ -130,23 +130,27 @@ exports.insertUsers = function (data) {
                     Item: data
                 };
                 return docClient.put(params, function (err, data) {
-                    console.log("Dang put code" + data);
+                    console.log("Dang nhap user" + data);
                     if (err) {
-                        resolve({
-                            statusCode: 400,
-                            err: 'Could not create massege:${err.stack} '
-                        });
+                        reject(err);
                     }
                     else {
-                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                        if (data == null) {
+                            throw {
+                                message: errors.CREATE,
+                                code: 'CREATE'
+                            };
+                        }
+                        else
+                            resolve(data);
                     }
-                })
+                });
             }
         }).catch(error => {
             logger.error(error);
             return reject(error);
         });
-    });
+    })
 }
 exports.getUser = function (username) {
     return new Promise(function (resolve, reject) {
@@ -187,15 +191,12 @@ exports.updateUser = function (data) {
                     ReturnValue: "UPDATE_User"
                 };
                 return docClient.update(params, function (err, data) {
-                    console.log("Dang update item" + data);
+                    console.log("Dang cap nhat" + data);
                     if (err) {
-                        resolve({
-                            statusCode: 400,
-                            err: 'Could not update massege:${err.stack} '
-                        });
+                        reject(err);
                     }
                     else {
-                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                        resolve(data);
                     }
                 })
             }).catch(error => {
@@ -204,6 +205,8 @@ exports.updateUser = function (data) {
         });
     })
 }
+
+
 exports.deleteUser = function (username) {
     return new Promise(function (resolve, reject) {
         helper.findUsersbyName(username).then(search_username => {

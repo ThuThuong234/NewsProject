@@ -187,15 +187,12 @@ exports.updateNews = function (data) {
                     ReturnValue: "UPDATE_NEW"
                 };
                 return docClient.update(params, function (err, data) {
-                    console.log("Dang update item" + data);
+                    console.log("Dang cap nhat" + data);
                     if (err) {
-                        resolve({
-                            statusCode: 400,
-                            err: 'Could not update massege:${err.stack} '
-                        });
+                        reject(err);
                     }
                     else {
-                        resolve({statusCode: 200, body: JSON.stringify(params.Item)});
+                        resolve(data);
                     }
                 })
             }).catch(error => {
