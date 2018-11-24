@@ -6,31 +6,36 @@ const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper')
 exports.insertFeedbacks = function (data) {
     return new Promise(async function (resolve, reject) {
-        var id = await helper.genrenateID("Feedbacks");
+        let id = await helper.genrenateID();
         var params = {
             TableName: "Feedbacks",
             Item: {
-                "feedback_id": ++id,
+                "feedback_id": id,
                 "email": data.email,
                 "content": data.content
             }
         };
-
         return docClient.put(params, function (err, data) {
-            console.log("put ne " + data);
+            console.log(" Dang put " + data);
             if (err) {
-                reject(err)
-
-            } else {
-                resolve(data);
+                reject(err);
             }
-        })
+            else {
+                if (data == null){
+                    throw {
+                        message: errors.CREATE,
+                        code: 'CREATE'
+                    };
+            }
+        else
+            resolve(data);
+        }
+        });
     }).catch(error => {
         logger.error(error);
         return reject(error);
     });
 }
-
 exports.getFeedbacks = function () {
     return new Promise(function (resolve, reject) {
         var params = {

@@ -26,42 +26,37 @@ var fs = require("fs");
 //     });
 // });
 exports.insertComment = function (data) {
-    return new Promise(function (resolve, reject) {
-        helper.findCommentbyID(data.news_id).then(type => {
-            if (type.Items.length != 0) {
-                var notice = {
-                    message: errors.NEWS_01,
-                    code: 'NEWS_01'
-                }
-                return reject(notice);
+    return new Promise(async function (resolve, reject) {
+        let id = await helper.genrenateID();
+        var params = {
+            TableName: "Comments",
+            Item: {
+                "email": data.email,
+                "news_id": id,
+                "comments_content": data.comments_content,
+                "comment_time": data.comment_time
+            }
+        };
+        return docClient.put(params, function (err, data) {
+            console.log("Dang put" + data);
+            if (err) {
+                reject(err);
             }
             else {
-                var params = {
-                    TableName: "Comments",
-                    Item: data
-                };
-                return docClient.put(params, function (err, data) {
-                    console.log("Dang them" + data);
-                    if (err) {
-                        reject(err);
-                    }
-                    else {
-                        if (data == null) {
-                            throw {
-                                message: errors.CREATE,
-                                code: 'CREATE'
-                            };
-                        }
-                        else
-                            resolve(data);
-                    }
-                });
+                if (data == null) {
+                    throw {
+                        message: errors.CREATE,
+                        code: 'CREATE'
+                    };
+                }
+                else
+                    resolve(data);
             }
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
         });
-    })
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
+    });
 }
 exports.getComments = function () {
     return new Promise(function (resolve, reject) {
@@ -120,7 +115,7 @@ exports.updateComment = function (data) {
                     TableName: "Comments",
                     Key: {
                         "news_id": data.news_id,
-                        "comments_content" : data.comments_content
+                        "comments_content": data.comments_content
                     },
                     UpdateExpression: "set email = :e,comment_time= :c",
                     ExpressionAttributeValues: {
@@ -144,12 +139,11 @@ exports.updateComment = function (data) {
         });
     })
 }
-
 exports.deleteComment = function (news_id) {
     return new Promise(function (resolve, reject) {
         helper.findCommentbyID(news_id).then(search_newsid => {
             console.log(search_newsid.Items);
-            if(search_newsid.Items.length==0){
+            if (search_newsid.Items.length == 0) {
                 throw {
                     message: errors.TEMPLATE_01,
                     code: 'TEMPLATE_01'

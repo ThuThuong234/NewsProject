@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // get list
 app.get('/', function (req, res) {
-    newsServicers.Getlastestnews().then(data => {
+    newsServicers.getallNews().then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {

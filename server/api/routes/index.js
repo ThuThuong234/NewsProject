@@ -26,18 +26,8 @@ app.post('/feedback', function (req, res) {
             res.json(utils.failedResponse(error));
         });
 });
-app.get('/', function (req, res) {
-    var body = req.body;
-    console.log(body);
-    newsServicers.Getlastestnews(body).then(data => {
-        res.status(200).json(utils.successResponse(data));
-    })
-        .catch(error => {
-            res.json(utils.failedResponse(error));
-        });
-});
 app.get('/type/:id', function (req, res) {
-    usersServices.getNewsbyTypeId(req.params.id).then(data => {
+    newsServicers.getNewsbyTypeId(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {

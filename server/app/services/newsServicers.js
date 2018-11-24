@@ -96,8 +96,7 @@ exports.Deletenews = function (news_id) {
 };
 exports.insertNews = function (data) {
     return new Promise(async function (resolve, reject) {
-
-        let id = helper.genrenateID();
+        let id = await helper.genrenateID();
         var params = {
             TableName: "News",
             Item: {
@@ -203,5 +202,26 @@ exports.updateNews = function (data) {
             return reject(error);
         });
     })
-}
+};
+exports.getallNews = function () {
+    return new Promise(function (resolve, reject) {
+        var params = {
+            TableName: 'News',
+
+        };
+        return docClient.scan(params).promise().then(result => {
+            if (result.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            return resolve(result);
+        })
+            .catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+    });
+};
 

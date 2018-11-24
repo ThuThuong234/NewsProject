@@ -1,6 +1,5 @@
 [
   {
-    //id 1
     "username":"dat",
     "type_id":2,
     "title": "Apple bị tố đạo công nghệ camera kép trên iPhone7 Plus,8 Plus",
@@ -9,7 +8,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 2
+
     "username":"dat",
     "type_id":2,
     "title": "iPhone X có viền siêu mỏng, nhưng đã ấn tượng?",
@@ -18,7 +17,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 3
+
     "username":"thuong",
     "type_id":4,
     "title": "Thuý Vi 3 năm sau ngày nổi tiếng: 'Nếu con gái Vi lặp lại những gì mình từng làm trong quá khứ, Vi sẽ tát cho nó tỉnh!'",
@@ -27,7 +26,6 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 4
     "username":"dat",
     "type_id":1,
     "title": "Người nhà nạn nhân vụ chạy thận ở Hòa Bình: 'BS Lương không có tội, bác sĩ rất tận tụy, thương bệnh nhân như người nhà'",
@@ -36,7 +34,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 5
+
     "username":"minh",
     "type_id":5,
     "title": "Cuộc hôn nhân hạnh phúc suốt 22 năm của người sói Hugh Jackman hóa ra chỉ gói gọn trong một bí quyết đơn giản đến vậy",
@@ -45,7 +43,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 6
+
     "username":"dat",
     "type_id":4,
     "title": "Show thực tế tiết lộ quy trình chăm da của sao Hàn ngày nay: Bảo sao mặt idol cứ nhỏ lại một cách thần kỳ",
@@ -54,7 +52,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 7
+
     "username":"thuong",
     "type_id":4,
     "title": "Thanh Hằng nói về hình ảnh bị ảnh hưởng tại The Face: 'Người làm trời nhìn, thì không cớ gì phải nóng vội!'",
@@ -63,7 +61,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 8
+
     "username":"minh",
     "type_id":5,
     "title": "Cuộc hôn nhân hạnh phúc suốt 22 năm của người sói Hugh Jackman hóa ra chỉ gói gọn trong một bí quyết đơn giản đến vậy",
@@ -72,7 +70,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 9
+
     "username":"dat",
     "type_id":6,
     "title": "Đưa thiếu nữ vào nhà hoang để hiếp dâm rồi cướp điện thoại nạn nhân để quay clip",
@@ -81,7 +79,7 @@
     "postdate": "17/11/2018"
   },
   {
-    //id 10
+
     "username":"minh",
     "type_id":3,
     "title": "Quán cà phê sang chảnh cho ngày lạnh ngắm vẻ đẹp Hà Nội",
@@ -91,7 +89,7 @@
   },
 
   {
-    //id 11
+
     "username":"dat",
     "type_id":7,
     "title": "Tình yêu và oan nghiệt",
@@ -101,7 +99,7 @@
   },
 
   {
-    //id 12
+
     "username":"thuong",
     "type_id":1,
     "title": "Cháy rừng ở California: Số người thiệt mạng tăng lên hơn 70 người",
@@ -111,7 +109,7 @@
   },
 
   {
-    //id 13
+
     "username":"minh",
     "type_id":4,
     "title": "Chồng MC Hoàng Linh xin lỗi, tiết lộ nguyên nhân khiến vợ đòi chia tay",
@@ -121,7 +119,7 @@
   },
 
   {
-    //id 14
+
     "username":"dat",
     "type_id":5,
     "title": "Giữ gìn là đúng nhưng hãy ăn hỏi đi, được không, rồi ra Bắc với chồng tương lai và cưới?",
@@ -131,7 +129,7 @@
   },
 
   {
-    //id 15
+
     "username":"minh",
     "type_id":3,
     "title": "Khoảnh khắc phụ nữ 7 ngày",
@@ -141,7 +139,7 @@
   },
 
   {
-    //id 16
+
     "username":"dat",
     "loaibaiviet":2,
     "title": "PGS Bùi Hiền công bố đã có phần mềm chuyển đổi 'tiếw Việt'",
@@ -151,7 +149,7 @@
   },
 
   {
-    //id 17
+
     "username":"thuong",
     "type_id":7,
     "title": "Ngôi nhà gỗ đơn giản bên ngoài, hiện đại bên trong",
@@ -161,7 +159,7 @@
   },
 
   {
-    //id 18
+
     "username":"dat",
     "type_id":6,
     "title": "Vụ nghi can cướp giật tử vong khi bị tạm giữ ở Sài Gòn: Danh tính 2 công an bị khởi tố",
@@ -171,7 +169,7 @@
   },
 
   {
-    //id 19
+
     "username":"minh",
     "type_id":5,
     "title": "Cuộc hôn nhân hạnh phúc suốt 22 năm của người sói Hugh Jackman hóa ra chỉ gói gọn trong một bí quyết đơn giản đến vậy",
@@ -181,7 +179,7 @@
   },
 
   {
-    //id 20
+
     "username":"thuong",
     "type_id":3,
     "title": "Trao giải và triển lãm Cuộc thi ảnh nghệ thuật Biển, đảo quê hương",
@@ -191,7 +189,7 @@
   },
 
   {
-    //id 21
+
     "username":"dat",
     "type_id":4,
     "title": "Sau Hương Giang, ‘ngọc nữ Bolero’ Tố My gây chú ý với quan điểm người thứ ba",
@@ -201,7 +199,7 @@
   },
 
   {
-    //id 22
+
     "username":"thuong",
     "type_id":1,
     "title": "Xe bồn bê tông Việt Hàn bất chấp quyết định xử phạt vẫn 'tung hoành'",
@@ -211,7 +209,7 @@
   },
 
   {
-    //id 23
+
     "username":"minh",
     "type_id":5,
     "title": "'Mình đã đúng khi chọn trường tư cho con!'",
@@ -221,7 +219,7 @@
   },
 
   {
-    //id 24
+
     "username":"dat",
     "type_id":6,
     "title": "Bắt giữ hai cán bộ công an để điều tra hành vi dùng nhục hình",
@@ -231,7 +229,7 @@
   },
 
   {
-    //id 25
+
     "username":"thuong",
     "type_id":4,
     "title": "Á vương Liên lục địa Hanas Trần: 'Tôi không được hỗ trợ thông dịch viên, MC tự ý đưa Google dịch'",

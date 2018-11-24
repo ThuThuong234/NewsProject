@@ -11,7 +11,7 @@ var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 
 
 var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
-    let id = helper.genrenateID()
+    let id = await helper.genrenateID()
     var feedback_params = {
         TableName: "Feedbacks",
         Item: {
@@ -31,13 +31,14 @@ var loadAllDataFeedbacks = allFeedbacks.forEach(async function (feedback) {
 
 });
 
-var loadAllDataNews = allNews.forEach(function (news) {
-    let id = helper.genrenateID();
+var loadAllDataNews = allNews.forEach(async function (news) {
+    let id = await helper.genrenateID();
+    console.log("da" + id);
     var new_params = {
-            TableName: "News",
-            Item: {
+        TableName: "News",
+        Item: {
             "news_id": id,
-            "username":news.username,
+            "username": news.username,
             "type_id": news.type_id,
             "title": news.title,
             "content": news.content,
@@ -71,7 +72,7 @@ var loadAllComment = allComments.forEach(function (comment) {
     });
 });
 var loadAlltype = allLoai.forEach(async function (loai) {
-    let id = helper.genrenateID();
+    let id = await helper.genrenateID();
     var type_params = {
         TableName: "TypeNew",
         Item: {

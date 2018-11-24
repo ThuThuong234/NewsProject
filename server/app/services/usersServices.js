@@ -205,8 +205,6 @@ exports.updateUser = function (data) {
         });
     })
 }
-
-
 exports.deleteUser = function (username) {
     return new Promise(function (resolve, reject) {
         helper.findUsersbyName(username).then(search_username => {

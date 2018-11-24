@@ -35,7 +35,7 @@ exports.getalltype = function () {
 
         };
         return docClient.scan(params).promise().then(result => {
-            if (result.Items.length== 0 ) {
+            if (result.Items.length == 0) {
                 throw {
                     message: errors.TEMPLATE_01,
                     code: 'TEMPLATE_01'
@@ -51,46 +51,34 @@ exports.getalltype = function () {
 };
 exports.insertType = function (data) {
     return new Promise(async function (resolve, reject) {
-        var id = await helper.genrenateID("Feedbacks");
-        helper.findTypebyId(data.type_id).then(type => {
-            if (type.Items.length != 0) {
-                var notice = {
-                    message: errors.NEWS_01,
-                    code: 'NEWS_01'
-                }
-                return reject(notice);
+        let id = await helper.genrenateID();
+        var params = {
+            TableName: "TypeNew",
+            Item: {
+                "type_id": id,
+                "typename": data.typename
+            }
+        };
+        return docClent.put(params, function (err, data) {
+            console.log("Dang put " + data);
+            if (err) {
+                reject(err);
             }
             else {
-                var params = {
-                    TableName: "TypeNew",
-                    Item: {
-                        "type_id": id++,
-                        "typename":data.typename
-
-                    }
-                };
-                return docClent.put(params, function (err, data) {
-                    console.log("Dang cap nhat" + data);
-                    if (err) {
-                        reject(err);
-                    }
-                    else {
-                        if (data == null) {
-                            throw {
-                                message: errors.CREATE,
-                                code: 'CREATE'
-                            };
-                        }
-                        else
-                            resolve(data);
-                    }
-                });
+                if (data == null) {
+                    throw {
+                        message: errors.CREATE,
+                        code: 'CREATE'
+                    };
                 }
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
+                else
+                    resolve(data);
+            }
         });
-})
+    }).catch(error => {
+        logger.error(error);
+        return reject(error);
+    });
 }
 exports.getDetailType = function (type_id) {
     return new Promise(function (resolve, reject) {
