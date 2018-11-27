@@ -4,6 +4,7 @@ var express = require('express');
 var config = require("config");
 const log4js = require('log4js');
 var bodyParser = require("body-parser");
+const cors = require('cors');
 var app= express();
 var router = express.Router();
 
@@ -14,6 +15,7 @@ const readerRoutes = require("./api/routes/index");
 /**
  * Setup routes
  */
+app.use(cors());
 app.use("/admin",adminRoutes );
 app.use("/",readerRoutes);
 app.use(bodyParser.json());

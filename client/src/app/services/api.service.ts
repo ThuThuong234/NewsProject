@@ -83,10 +83,10 @@ export class APIService {
     if (currentUser != null) {
       const session = deserialize(SessionVM, currentUser);
       if (session && session.token) {
-        headers = headers.set(ApiConstants.HEADER_AUTH, session.token);
+        // headers = headers.set(ApiConstants.HEADER_AUTH, session.token);
       }
     }
-
+    console.log(headers);
     return headers;
   }
 

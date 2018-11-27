@@ -17,8 +17,9 @@ export class NewsService extends APIService {
 
   public getLatestNews(current_page: number) {
     let params = new HttpParams();
-    params = params.set('current_page', current_page.toString());
-    return super.apiGet<GetNewsApiResults>('/', params, true);
+    let a = super.apiGet<GetNewsApiResults>('/', params, true);
+    console.log(" fadhfgdffg: "+ a.toString());
+    return a;
   }
 
   public getNewsList(current_page: number/*, keywords: string*/) {

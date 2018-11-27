@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ModuleWithProviders, OnInit} from '@angular/core';
 import {plainToClass} from "class-transformer";
 import {NewsPaging} from "./view-models/news/news-paging";
 import {Title} from "@angular/platform-browser";
 import {ToastrService} from "ngx-toastr";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
+// import {BsModalService} from "ngx-bootstrap/modal";
+// import { BsModalRef } from 'ngx-bootstrap/modal';
 import {NewsService} from "./services/news.service";
 import {Observable, Subscription} from "rxjs";
 import { Router, NavigationEnd } from '@angular/router';
@@ -15,25 +16,17 @@ import {FormGroup} from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-
-  list_news = [];
-  news = {};
-  searchForm: FormGroup;
-  private selectedNewsId;
-  private selectedTypeId;
-  private currentPage = 1;
-  private pageSize = 10;
-  FIRST_PAGE = 1;
   newsPaging: NewsPaging;
   keywords = '';
   // bsModalRef: BsModalRef;
-  // $timer: Observable<number>;
-  // subscription: Subscription;
+  $timer: Observable<number>;
+  subscription: Subscription;
 
-  constructor(private router: Router, translate: TranslateService, private titleService: Title,
+  constructor(private router: Router,
+              private titleService: Title,
               private toastr: ToastrService,
               private translate: TranslateService,
-              private modalService: BsModalService,
+              // private modalService: BsModalService,
               private newsService: NewsService,) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
@@ -43,12 +36,13 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    // this.router.events.subscribe((evt) => {
-    //   if (!(evt instanceof NavigationEnd)) {
-    //     return;
-    //   }
-    //   window.scrollTo(0, 0);
-    // });
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+    console.log("bbbbbb");
     this.getNews();
   }
 
@@ -56,14 +50,22 @@ export class AppComponent implements OnInit{
     this.newsService.getLatestNews(newPage).subscribe(
       res =>{
         if (res.success && res.data) {
+          console.log("res day :    ");
+          console.log(res.data);
           this.newsPaging = plainToClass(NewsPaging, res.data);
         } else {
-          this.toastr.error(res.message);
+          this.toastr.error(" res is not succeeds" +res.message);
         }
       },
       error => {
-        this.toastr.error(this.translate.instant('COMMON.GET.FAILED'));
+        this.toastr.error("error while get news" + this.translate.instant('COMMON.GET.FAILED'));
       })
+  }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AppComponent,
+      providers: [TranslateService]
+    };
   }
 
 }

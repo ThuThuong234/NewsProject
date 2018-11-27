@@ -92,6 +92,9 @@ exports.getToken = getToken;
 
 exports.authorizeHeader = function (req, res, next) {
     let apiKey = req.headers['x-api-key'];
+    console.log("server" + constants.API_KEY);
+    console.log("client" + apiKey);
+
     if (apiKey != constants.API_KEY) {
         res.json(utils.failedResponse({
             message: errors.AUTHORIZE_01,

@@ -4,7 +4,7 @@ import {NewsService} from "../../services/news.service";
 import {Title} from "@angular/platform-browser";
 import {ToastrService} from "ngx-toastr";
 import {TranslateService} from "@ngx-translate/core";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
+// import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {NewsPaging} from "../../view-models/news/news-paging";
 import {Observable, Subscription} from "rxjs";
 import {plainToClass} from "class-transformer";
@@ -26,7 +26,7 @@ export class NewsComponent implements OnInit {
 
   newsPaging: NewsPaging;
   keywords = '';
-  bsModalRef: BsModalRef;
+  // bsModalRef: BsModalRef;
   $timer: Observable<number>;
   subscription: Subscription;
 
@@ -34,7 +34,7 @@ export class NewsComponent implements OnInit {
     private titleService: Title,
     private toastr: ToastrService,
     private translate: TranslateService,
-    private modalService: BsModalService,
+    // private modalService: BsModalService,
     private newsService: NewsService,) {}
 
   ngOnInit() {

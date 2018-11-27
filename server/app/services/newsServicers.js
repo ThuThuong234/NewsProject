@@ -14,7 +14,7 @@ exports.Getlastestnews = function () {
     return new Promise(function (resolve, reject) {
         var params = {
             TableName: 'News',
-            Limit: 1,
+            Limit: 10,
             ProjectionExpression: "news_id,user_id,title,content,image,postdate",
             ScanIndexForward : false,
         }
@@ -25,7 +25,7 @@ exports.Getlastestnews = function () {
                     code: 'TEMPLATE_01'
                 };
             }
-            return resolve(result);
+            return resolve(result.Items);
         })
             .catch(error => {
                 logger.error(error);
