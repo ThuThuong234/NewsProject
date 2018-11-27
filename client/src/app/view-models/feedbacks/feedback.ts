@@ -1,4 +1,4 @@
-export class FeedbackVM {
+export class Feedback {
   feedback_id: number;
   email: string;
   content: string;

@@ -5,11 +5,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiResult } from '../data-transfer/api-result';
 import { SpinService } from './spin.service';
 
-import { LoginVM } from '../view-models/users/login-vm';
+import { Login } from '../view-models/users/login';
 import { LoginApiResult } from '../data-transfer/users/login.api-result';
 import { GetUsersApiResult } from '../data-transfer/users/getUsers.api-result';
 import { GetUserApiResult } from '../data-transfer/users/getUser.api-result';
-import { UserVM } from '../view-models/users/user-vm';
+import { User } from '../view-models/users/user';
 import { GetUserOptionsApiResult } from '../data-transfer/users/getUserOptions.api-result';
 
 @Injectable()
@@ -18,8 +18,8 @@ export class UserService extends APIService {
     super(http, spintService);
   }
 
-  public login(loginVM: LoginVM) {
-    return super.apiPost<LoginApiResult>('/users/login', loginVM);
+  public login(login: Login) {
+    return super.apiPost<LoginApiResult>('/users/login', login);
   }
 
   public logout() {
@@ -43,7 +43,7 @@ export class UserService extends APIService {
     return super.apiGet<GetUserOptionsApiResult>('/users/options', null, true);
   }
 
-  public updateUser(id, user: UserVM) {
+  public updateUser(id, user: User) {
     const data = {
       fullname: user.username
     };

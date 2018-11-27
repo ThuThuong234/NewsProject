@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LoginVM } from '../../view-models/users/login-vm';
+import { Login } from '../../view-models/users/login';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { SessionVM } from '../../view-models/session/session-vm';
 import { UserService } from '../../services/user.service';
@@ -13,7 +13,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model: LoginVM = new LoginVM();
+  model: Login = new Login();
   session: SessionVM;
 
   constructor(private router: Router,

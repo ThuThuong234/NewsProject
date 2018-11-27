@@ -1,6 +1,6 @@
 import { ApiResult } from '../api-result';
-import { UserVM } from '../../view-models/users/user-vm';
+import { User } from '../../view-models/users/user';
 
 export class GetUserApiResult extends ApiResult {
-  data: UserVM;
+  data: User;
 }

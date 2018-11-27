@@ -1,6 +1,6 @@
 import { ApiResult } from '../api-result';
-import { UserPagingVM } from '../../view-models/users/user-paging-vm';
+import { UserPaging } from '../../view-models/users/user-paging';
 
 export class GetUsersApiResult extends ApiResult {
-  data: UserPagingVM;
+  data: UserPaging;
 }

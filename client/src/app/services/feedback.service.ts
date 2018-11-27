@@ -7,7 +7,7 @@ import { SpinService } from './spin.service';
 import { GetFeedbacksApiResult } from '../data-transfer/feedbacks/getFeedbacks.api-result';
 import { GetFeedbackApiResult } from '../data-transfer/feedbacks/getFeedback.api-result';
 import { ApiResult } from '../data-transfer/api-result';
-import { FeedbackVM } from '../view-models/feedbacks/feedback-vm';
+import { Feedback } from '../view-models/feedbacks/feedback';
 
 // ket noi call api
 @Injectable()
@@ -34,7 +34,7 @@ export class FeedbackService extends APIService {
     return super.apiGet<GetFeedbackApiResult>('/admin/feedbacks/' + id, params, true);
   }
 
-  public createFeedback(feedback: FeedbackVM) {
+  public createFeedback(feedback: Feedback) {
     return super.apiPost<ApiResult>('/feedbacks', feedback, null, true);
   }
 

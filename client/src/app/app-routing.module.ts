@@ -12,18 +12,18 @@ import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
 
+  // {
+  //   path: '/',
+  //   component: DefaultLayoutComponent,
+  //   pathMatch: 'full',
+  // },
   {
-    path: '/',
-    component: DefaultLayoutComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: '/login',
+    path: 'login',
     component: LoginComponent,
     pathMatch: 'full',
   },
   {
-    path: '/admin',
+    path: 'admin',
     redirectTo: 'login',
     pathMatch: 'full',
   },
@@ -49,7 +49,7 @@ const routes: Routes = [
     }
   },
   {
-    path: '/admin',
+    path: 'admin',
     component: DefaultAdminLayoutComponent,
     canActivate: [AuthorizeService],
     children: [

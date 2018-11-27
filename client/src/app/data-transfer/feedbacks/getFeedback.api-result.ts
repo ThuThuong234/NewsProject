@@ -1,6 +1,6 @@
 import { ApiResult } from '../api-result';
-import { FeedbackDetailVM } from '../../view-models/feedbacks/feedback-detail-vm';
+import { Feedback } from '../../view-models/feedbacks/feedback';
 
 export class GetFeedbackApiResult extends ApiResult {
-  data: FeedbackDetailVM;
+  data: Feedback ;
 }
