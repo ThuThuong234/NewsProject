@@ -95,8 +95,8 @@ exports.Deletenews = function (news_id) {
     })
 };
 exports.insertNews = function (data) {
-    return new Promise(async function (resolve, reject) {
-        let id = await helper.genrenateID();
+    return new Promise(function (resolve, reject) {
+        let id = helper.genrenateID();
         var params = {
             TableName: "News",
             Item: {
