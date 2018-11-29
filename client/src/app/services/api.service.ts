@@ -13,7 +13,7 @@ export class APIService {
 
   constructor(private httpClient: HttpClient, private spinService: SpinService) { }
 
-  protected apiGet<T>(path: string, params: HttpParams = null, hasToken: boolean = false): Observable<T> {
+  protected apiGet<T>(path: string,params: HttpParams = null, hasToken: boolean = false): Observable<T> {
     return this.apiRun('get', path, null, params, hasToken);
   }
 

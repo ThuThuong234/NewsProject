@@ -43,7 +43,7 @@ export class NewsComponent implements OnInit {
   }
 
   getNews(newPage = 1){
-    this.newsService.getNewsList(newPage).subscribe(
+    this.newsService.getNewsList().subscribe(
       res =>{
       if (res.success && res.data) {
         this.newsPaging = plainToClass(NewsPaging, res.data);

@@ -10,7 +10,7 @@ const utils = require('../../app/helpers/api_helper');
 app.use("/news",newsRoutes);
 app.use("/feedbacks",feedbacksRoutes);
 app.use("/comments",commentsRoutes);
-app.use("/type",typeRoutres);
+app.use("/types",typeRoutres);
 app.use(bodyParser.json());
 app.get('/', function (req, res) {
     usersServices.getAllUser().then(data => {

@@ -551,6 +551,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #about .about-img {
   overflow: hidden;
+  height: 300px;
 }
 
 #about .about-img img {
@@ -613,6 +614,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #services .box {
+  height: 250px;
   padding: 40px;
   margin-bottom: 40px;
   box-shadow: 10px 10px 15px rgba(73, 78, 92, 0.1);
@@ -832,6 +834,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #testimonials .testimonial-item p {
+  height: 150px;
   font-style: italic;
   margin: 0 auto 15px auto;
 }
@@ -917,7 +920,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #team .member .pic img {
+  width: 350px;
   max-width: 100%;
+  height: 300px;
 }
 
 #team .member .details {

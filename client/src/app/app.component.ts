@@ -10,6 +10,10 @@ import {Observable, Subscription} from "rxjs";
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {FormGroup} from "@angular/forms";
+import {News} from "./view-models/news/news";
+import {NewsType} from "./view-models/newstype/newstype";
+import {TypeService} from "./services/type.service";
+import {NewsTypePaging} from "./view-models/newstype/newstype-paging";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,6 +21,9 @@ import {FormGroup} from "@angular/forms";
 })
 export class AppComponent implements OnInit{
   newsPaging: NewsPaging;
+  newsFirst : News;
+  newstypes : NewsTypePaging;
+
   keywords = '';
   // bsModalRef: BsModalRef;
   $timer: Observable<number>;
@@ -27,7 +34,8 @@ export class AppComponent implements OnInit{
               private toastr: ToastrService,
               private translate: TranslateService,
               // private modalService: BsModalService,
-              private newsService: NewsService,) {
+              private newsService: NewsService,
+              private newsTypesService : TypeService) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
@@ -42,17 +50,21 @@ export class AppComponent implements OnInit{
       }
       window.scrollTo(0, 0);
     });
-    console.log("bbbbbb");
+    this.getTypes();
     this.getNews();
   }
 
-  getNews(newPage = 1){
-    this.newsService.getLatestNews(newPage).subscribe(
+  getNews(){
+    this.newsService.getLatestNews().subscribe(
       res =>{
         if (res.success && res.data) {
           console.log("res day :    ");
           console.log(res.data);
           this.newsPaging = plainToClass(NewsPaging, res.data);
+          //
+          // this.newsLeft = this.newsPaging.Items.splice(0, 4);
+          // this.newsRight = this.newsPaging.Items.splice(0, 4);
+          this.newsFirst = this.newsPaging.Items[0];
         } else {
           this.toastr.error(" res is not succeeds" +res.message);
         }
@@ -60,6 +72,19 @@ export class AppComponent implements OnInit{
       error => {
         this.toastr.error("error while get news" + this.translate.instant('COMMON.GET.FAILED'));
       })
+  }
+  getTypes(){
+    this.newsTypesService.getNewsTypes().subscribe(res => {
+      if (res.success && res.data) {
+        console.log("res day :    ");
+        console.log(res.data);
+        this.newstypes = plainToClass(NewsTypePaging, res.data);
+      } else {
+        this.toastr.error(" res is not succeeds" +res.message);
+      }
+    }, error =>{
+      this.toastr.error("error while get types" + this.translate.instant('COMMON.GET.FAILED'));
+    })
   }
   static forRoot(): ModuleWithProviders {
     return {

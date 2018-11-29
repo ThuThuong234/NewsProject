@@ -23,7 +23,7 @@ export class FeedbackService extends APIService {
     if (keywords) {
       params = params.set('q', keywords);
     }
-    return super.apiGet<GetFeedbacksApiResult>('/admin/feedbacks', params, true);
+    return super.apiGet<GetFeedbacksApiResult>("",params, true);
   }
 
   public getFeedback(id: number, template_included: boolean = null) {
@@ -31,7 +31,7 @@ export class FeedbackService extends APIService {
     if (template_included) {
       params = params.set('template_included', template_included.toString());
     }
-    return super.apiGet<GetFeedbackApiResult>('/admin/feedbacks/' + id, params, true);
+    return super.apiGet<GetFeedbackApiResult>("",params, true);
   }
 
   public createFeedback(feedback: Feedback) {

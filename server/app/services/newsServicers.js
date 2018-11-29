@@ -25,7 +25,7 @@ exports.Getlastestnews = function () {
                     code: 'TEMPLATE_01'
                 };
             }
-            return resolve(result.Items);
+            return resolve(result);
         })
             .catch(error => {
                 logger.error(error);

@@ -24,7 +24,7 @@ import {BsDropdownModule, BsModalService} from "ngx-bootstrap";
 import { FeedbackService } from './services/feedback.service';
 import { NewsService } from './services/news.service';
 import { UserService } from './services/user.service';
-// import { FeedbackService } from './services/feedback.service';
+import { TypeService } from './services/type.service';
 // import { FeedbackService } from './services/feedback.service';
 import { SpinService } from './services/spin.service';
 
@@ -67,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NewsService,
     UserService,
     SpinService,
+    TypeService
   ],
   bootstrap: [AppComponent]
 })

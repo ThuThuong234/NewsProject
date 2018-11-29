@@ -5,5 +5,5 @@ import {News} from "./news";
 
 export class NewsPaging extends Paging {
   @Type(() => News)
-  news_list: News[];
+  Items: News[];
 }
