@@ -106,7 +106,7 @@ exports.insertNews = function (data) {
                 "title": data.title,
                 "content": data.content,
                 "image": data.image,
-                "postdate": data.postdate
+                "postdate": Date.now()
             }
         };
         return docClient.put(params, function (err, data) {
