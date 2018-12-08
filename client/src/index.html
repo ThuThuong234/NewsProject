@@ -8,6 +8,8 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="693015107956-568jk2nqalaqs5tmdiv6irq3hteut3nl.apps.googleusercontent.com">
 
   <!-- Favicons -->
   <link href="./assets/reader/img/favicon.png" rel="icon">
@@ -48,26 +50,12 @@
   <script src="./assets/reader/lib/sticky/sticky.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="./assets/reader/contactform/contactform.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
   <!-- Template Main Javascript File -->
   <script src="./assets/reader/js/main.js"></script>
   <link href="./assets/style.css" rel="stylesheet">
-  <script type="text/javascript">
-    $(window).on('load',function(){
-      if(sessionStorage.getItem('currentUser')!=null) {
-        console.log("check        ");
-        console.log(sessionStorage.getItem('currentUser').username);
-        $('#btnLogin').html(sessionStorage.getItem('currentUser').username);
-      }
-    });
-  </script>
 
-  <!-- =======================================================
-    Theme Name: Reveal
-    Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
 </head>
 <body id="body">
   <app-root></app-root>

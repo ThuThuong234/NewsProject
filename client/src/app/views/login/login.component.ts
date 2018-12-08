@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     this.authService.session$.subscribe(
       data => {
         this.session = data;
-        console.log("sesssssssssssssssssssssssssssssssss  ");
-        console.log(data);
         if (this.session && this.session.token != null) {
+          console.log("sesssssssssssssssssssssssssssssssss  ");
+          console.log(data);
           this.router.navigate(['/']);
         }
       }
