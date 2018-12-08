@@ -2,6 +2,7 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let typenew = require('../api/routes/typenew');
+let index = require('../api/routes/index');
 let should = chai.should();
 chai.use(chaiHttp);
 describe('TypeNew', function(){
@@ -12,7 +13,7 @@ describe('TypeNew', function(){
         done();
     });
 
-    describe('/GET type ', function () {
+    describe('/GET type:/id ', function () {
         it('it should GET new by typename', function (done) {
             let type_id = '1543291440432̣';
             chai.request(typenew)
