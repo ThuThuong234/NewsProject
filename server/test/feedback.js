@@ -1,88 +1,80 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let feedback = require('../api/routes/feedbacks');
+let feedbacks = require('../api/routes/feedbacks');
 let should = chai.should();
-
 chai.use(chaiHttp);
-describe('Feedbacks', () => {
-    beforeEach((done) => {
+describe('Feedbacks', function(){
+    beforeEach(function(done) {
         done();
     });
-    describe('/GET feedbacks', () => {
-        it('it should GET all the feedbacks', (done) => {
-            chai.request(feedback)
-                .get('/')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('array');
-                    res.body.length.should.be.eql(7);
-                    done();
-                });
-        });
+    afterEach(function (done) {
+        done();
     });
-    describe('/POST user', () => {
-        it('it should POST a user', (done) => {
-            let feedback = {
-                email: "datphan.fitiuh@gmail.com",
-                content: "Chúng tôi muốn làm việc với website"
-            };
-            chai.request(feedback)
+    describe('/POST feedbacks', () => {
+        it('it should POST a feedbacks', function(done){
+            chai.request(feedbacks)
                 .post('/')
-                .send(feedback)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('message').eql('Pet successfully added!');
-                    res.body.user.should.have.property('email').eql(user.email);
-                    res.body.user.should.have.property('content').eql(user.content);
-                    done();
-                });
-        });
-        it('it should not POST a book without status field', (done) => {
-            let pet = {
-                name: "minhlun"
-            };
-            chai.request(feedback)
-                .post('/')
-                .send(user)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('message').eql("Pet is invalid!");
-                    done();
-                });
-        });
-    });
-    describe('/GET/:email ', function () {
-        it('it should GET a feedbacks by the given email', function (done) {
-            let email = "datphan.fitiuh@gmail.com";
-            chai.request(feedback)
-                .get('/' + email)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
-    });
-    describe('/PUT/:email ', function () {
-        this.timeout(15000);
-        it('it should UPDATE a feedback given the email', function (done) {
-            this.timeout(15000);
-            let email = "datphan.fitiuh@gmail.com";
-            chai.request(feedback)
-                .put('/' + username)
                 .send({
-                    "email": "datphan.fitiuh@gmail.com",
-                    "content": "Chúng tôi muốn làm việc với website"
+                    'email':'datphan1.fitiuh@gmail.com',
+                    'content':'Chúng tôi muốn làm việc với website'
                 })
-                .end((err, res) => {
+                .end(function(err, res){
+                    should.equal(err, null);
                     res.should.have.status(200);
+                    res.should.be.json;
                     res.body.should.be.a('object');
-                    //res.body.user.should.have.property(user.username);
-                    //res.body.user.should.have.property(user.password);
-                    setTimeout(done, 1500);
+                    //res.body.should.have.property('username');
+                    //res.body.should.have.property('password');
+                    // res.body.username.should.be.a('string');
+                    //res.body.password.should.be.a('string');
+                    // res.body.user.should.have.property('username').eql('daica');
+                    //res.body.user.should.have.property('password').eql('123456');
+                    // storage.items.should.be.a('array');
+                    // storage.items.should.be.a('object');
+                    // storage.items.should.have.property('username');
+                    // storage.items.should.have.property('password');
+                    // storage.items.username.should.be.a('string');
+                    // storage.items.password.should.be.a('string');
+                    // storage.items.username.should.equal('minhlun');
+                    // storage.items.password.should.equal('123456');
+                    done();
                 });
-        });
+        }).timeout(5000);
+    });
+    describe('/GET/:feedback_id ', function () {
+        it('it should GET a email and content by the given feedback_id', function (done) {
+            let feedback_id = '1543291440363';
+            chai.request(feedbacks)
+                .get('/' + feedback_id)
+                .end(function (err, res) {
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    done();
+                });
+        }).timeout(5000);
+    });
+    describe('/DELETE/:feedback_id ', function () {
+        it('it should DELETE a user given the username', function (done) {
+            let feedback_id = "1543291440363";
+            chai.request(feedbacks)
+                .delete('/' + feedback_id)
+                .end(function(err, res){
+                    should.equal(err, null);
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    //res.body.should.have.property('username');
+                    //items.username.should.be.a('string');
+                    //res.req.params.username.should.equal('dat');
+                    // storage.items.should.be.a('array');
+                    // storage.items[1].should.be.a('object');
+                    // storage.items[1].should.have.property('username');
+                    // storage.items[1].username.should.be.a('string');
+                    // storage.items[1].username.should.equal('dat');
+                    // storage.items[1].password.should.equal('123456');
+                    done();
+                });
+        }).timeout(5000);
     });
 });
+
