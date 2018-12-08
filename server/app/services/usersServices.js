@@ -117,6 +117,7 @@ exports.getAllUser = function () {
 exports.insertUsers = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findUsersbyName(data.username).then(user => {
+            console.log(data.username);
             if (user.Items.length != 0) {
                 var notice = {
                     message: errors.TEMPLATE_01,
@@ -176,6 +177,7 @@ exports.updateUser = function (data) {
     return new Promise(function (resolve, reject) {
         helper.findUsersbyName(data.username)
             .then(function () {
+                console.log(data.username);
                 var params = {
                     TableName: "Users",
                     Key: {
@@ -221,12 +223,12 @@ exports.deleteUser = function (username) {
                 var params = {
                     TableName: 'Users',
                     Key: {
-                        "news_id": search_username.Items[0].username,
-                        "username": search_username.Items[0].password
+                        "username": search_username.Items[0].username,
+                        "password" : search_username.Items[0].password
                     },
                 };
                 return docClient.delete(params, function (err, data) {
-                    console.log("Dang xoa" + data);
+                    console.log("Dang xoa" + " " + data);
                     if (err) {
                         reject(err);
                     }

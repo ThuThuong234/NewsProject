@@ -1,6 +1,6 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let type = require('../api/routes/typenew');
+let feedback = require('../api/routes/feedbacks');
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -10,7 +10,7 @@ describe('Feedbacks', () => {
     });
     describe('/GET feedbacks', () => {
         it('it should GET all the feedbacks', (done) => {
-            chai.request(email)
+            chai.request(feedback)
                 .get('/')
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -23,10 +23,10 @@ describe('Feedbacks', () => {
     describe('/POST user', () => {
         it('it should POST a user', (done) => {
             let feedback = {
-                email:"datphan.fitiuh@gmail.com",
-                content:"Chúng tôi muốn làm việc với website"
+                email: "datphan.fitiuh@gmail.com",
+                content: "Chúng tôi muốn làm việc với website"
             };
-            chai.request(user)
+            chai.request(feedback)
                 .post('/')
                 .send(feedback)
                 .end((err, res) => {
@@ -42,7 +42,7 @@ describe('Feedbacks', () => {
             let pet = {
                 name: "minhlun"
             };
-            chai.request(user)
+            chai.request(feedback)
                 .post('/')
                 .send(user)
                 .end((err, res) => {
@@ -53,10 +53,10 @@ describe('Feedbacks', () => {
                 });
         });
     });
-    describe('/GET/:email ', function(){
-        it('it should GET a feedbacks by the given email', function(done) {
+    describe('/GET/:email ', function () {
+        it('it should GET a feedbacks by the given email', function (done) {
             let email = "datphan.fitiuh@gmail.com";
-            chai.request(user)
+            chai.request(feedback)
                 .get('/' + email)
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -65,23 +65,24 @@ describe('Feedbacks', () => {
                 });
         });
     });
-    describe('/PUT/:email ', function(){
+    describe('/PUT/:email ', function () {
         this.timeout(15000);
-        it('it should UPDATE a feedback given the email', function(done){
+        it('it should UPDATE a feedback given the email', function (done) {
             this.timeout(15000);
-            let email="datphan.fitiuh@gmail.com";
-            chai.request(user)
+            let email = "datphan.fitiuh@gmail.com";
+            chai.request(feedback)
                 .put('/' + username)
                 .send({
-                    "email":"datphan.fitiuh@gmail.com",
-                    "content":"Chúng tôi muốn làm việc với website"
+                    "email": "datphan.fitiuh@gmail.com",
+                    "content": "Chúng tôi muốn làm việc với website"
                 })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     //res.body.user.should.have.property(user.username);
                     //res.body.user.should.have.property(user.password);
-                    setTimeout(done,1500);
+                    setTimeout(done, 1500);
                 });
         });
     });
+});

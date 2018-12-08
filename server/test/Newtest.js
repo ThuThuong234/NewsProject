@@ -1,6 +1,6 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let type = require('../api/routes/typenew');
+let news = require('../api/routes/news');
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -118,5 +118,4 @@ describe('/DELETE/:news_id ', function() {
                 setTimeout(done,15000);
             });
     });
-});
 });

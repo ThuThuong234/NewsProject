@@ -156,7 +156,7 @@ exports.deleteComment = function (news_id) {
                     TableName: 'Comments',
                     Key: {
                         "news_id": search_newsid.Items[0].news_id,
-                        "username": search_newsid.Items[0].comments_content
+                        "comments_content": search_newsid.Items[0].comments_content
                     },
                 };
                 return docClient.delete(params, function (err, data) {

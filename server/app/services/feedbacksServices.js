@@ -75,32 +75,36 @@ exports.getFeedbacksDetail = function (feedback_id) {
             });
     });
 };
-exports.Deletefeedback = function (data) {
+exports.Deletenews = function (feedback_id) {
     return new Promise(function (resolve, reject) {
-        helper.findFeedbackbyID(data.feedbacks_id).then(function () {
-
-            var params = {
-                TableName: 'Feedbacks',
-                Key: {
-                    "feedbacks_id": data.feedbacks_id
-                },
-                ConditionExpression: "info.rating <= :val",
-                ExpressionAttributeValues: {
-                    ":val": 5.0
-                }
-            };
-            return docClient.delete(params, function (err, data) {
-                console.log("Dang xoa" + data);
-                if (err) {
-                    resolve({
-                        statusCode: 400,
-                        err: 'Could not delete massege:${err.stack} '
-                    });
-                }
-                else {
-                    resolve({statusCode: 200, body: JSON.stringify(params.Item)});
-                }
-            })
+        helper.findNewsbyID(feedback_id).then(search_feedback => {
+            console.log(search_feedback.Items);
+            if (search_feedback.Items.length == 0) {
+                throw {
+                    message: errors.TEMPLATE_01,
+                    code: 'TEMPLATE_01'
+                };
+            }
+            else {
+                console.log(search_feedback.Items[0].feedback_id);
+                console.log(search_feedback.Items[0].email);
+                var params = {
+                    TableName: 'Feedbacks',
+                    Key: {
+                        "feedback_id": search_feedback.Items[0].feedback_id,
+                        "email": search_feedback.Items[0].email
+                    },
+                };
+                return docClient.delete(params, function (err, data) {
+                    console.log("Dang xoa" + data);
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            }
         }).catch(error => {
             logger.error(error);
             return reject(error);
