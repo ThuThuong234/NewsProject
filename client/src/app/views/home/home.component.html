@@ -1,0 +1,448 @@
+
+
+
+<!--==========================
+  About Section
+============================-->
+<section id="about" class="wow fadeInUp">
+  <div class="container">
+    <div class="row" *ngIf="newsFirst">
+      <div class="col-lg-5 about-img">
+        <img src="{{newsFirst.image[0]}}" alt="">
+      </div>
+
+      <div class="col-lg-7 content">
+        <h2>{{newsFirst.title}}</h2>
+        <div class="text-truncate"><i class="ion-android-checkmark-circle"></i> {{newsFirst.content}}</div>
+
+      </div>
+    </div>
+
+  </div>
+</section><!-- #about -->
+
+<!--==========================
+  Services Section
+============================-->
+<section id="services">
+  <div class="container" *ngIf="newsPaging">
+    <div class="section-header">
+      <h2>News Post</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="box wow fadeInLeft">
+          <img src="{{newsPaging.Items[0].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[0].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[0].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInRight">
+          <img src="{{newsPaging.Items[1].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[1].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[1].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInLeft">
+          <img src="{{newsPaging.Items[2].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[2].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[2].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInRight">
+          <img src="{{newsPaging.Items[3].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[3].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[3].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInLeft">
+          <img src="{{newsPaging.Items[4].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[4].title}}</a></h4>
+          <p class="description text-truncate text-truncate">{{newsPaging.Items[4].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInRight">
+          <img src="{{newsPaging.Items[5].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[5].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[5].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInLeft">
+          <img src="{{newsPaging.Items[6].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[6].title}}</a></h4>
+          <p class="description text-truncate text-truncate">{{newsPaging.Items[6].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInRight">
+          <img src="{{newsPaging.Items[7].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[7].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[7].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInLeft">
+          <img src="{{newsPaging.Items[8].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[8].title}}</a></h4>
+          <p class="description text-truncate text-truncate">{{newsPaging.Items[8].content}}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="box wow fadeInRight">
+          <img src="{{newsPaging.Items[9].image[0]}}" alt="">
+          <h4 class="title"><a href="">{{newsPaging.Items[9].title}}</a></h4>
+          <p class="description text-truncate">{{newsPaging.Items[9].content}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- #services -->
+
+<!--==========================
+  Clients Section
+============================-->
+<section id="clients" class="wow fadeInUp">
+  <div class="container">
+    <div class="section-header">
+      <h2>Clients</h2>
+      <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim
+        export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export
+        irure minim illum fore</p>
+    </div>
+
+    <div class="owl-carousel clients-carousel">
+      <img src="./assets/reader/img/clients/client-1.png" alt="">
+      <img src="./assets/reader/img/clients/client-2.png" alt="">
+      <img src="./assets/reader/img/clients/client-3.png" alt="">
+      <img src="./assets/reader/img/clients/client-4.png" alt="">
+      <img src="./assets/reader/img/clients/client-5.png" alt="">
+      <img src="./assets/reader/img/clients/client-6.png" alt="">
+      <img src="./assets/reader/img/clients/client-7.png" alt="">
+      <img src="./assets/reader/img/clients/client-8.png" alt="">
+    </div>
+
+  </div>
+</section><!-- #clients -->
+<main id="main">
+  <!--==========================
+    Our Portfolio Section
+  ============================-->
+  <section id="portfolio" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Portfolio</h2>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row no-gutters">
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/1.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/1.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 1</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/2.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/2.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 2</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/3.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/3.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 3</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/4.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/4.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 4</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/5.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/5.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 5</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/6.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/6.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 6</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/7.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/7.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 7</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4">
+          <div class="portfolio-item wow fadeInUp">
+            <a href="assets/reader/img/portfolio/8.jpg" class="portfolio-popup">
+              <img src="assets/reader/img/portfolio/8.jpg" alt="">
+              <div class="portfolio-overlay">
+                <div class="portfolio-info"><h2 class="wow fadeInUp">Portfolio Item 8</h2></div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- #portfolio -->
+
+  <!--==========================
+    Testimonials Section
+  ============================-->
+  <section id="testimonials" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Feedbacks</h2>
+      </div>
+      <div class="owl-carousel testimonials-carousel">
+
+        <div class="testimonial-item">
+          <p>
+            <img src="assets/reader/img/quote-sign-left.png" class="quote-sign-left" alt="">
+            Chúng tôi thấy tin tức của website rất nhanh nắm bắt đúng thời gian tin tức lại phù hợp
+            <img src="assets/reader/img/quote-sign-right.png" class="quote-sign-right" alt="">
+          </p>
+          <img src="assets/reader/img/testimonial-1.jpg" class="testimonial-img" alt="">
+          <h3>Saul Goodman</h3>
+          <h4>Ceo &amp; Founder</h4>
+        </div>
+
+        <div class="testimonial-item">
+          <p>
+            <img src="assets/reader/img/quote-sign-left.png" class="quote-sign-left" alt="">
+            Bài viết admin trình bày hôm qua được, viết rất tốt, dễ hiểu và nhấn mạnh vào những khó khăn về tài chính của hầu hết các công ty trên thị trường
+            <img src="assets/reader/img/quote-sign-right.png" class="quote-sign-right" alt="">
+          </p>
+          <img src="assets/reader/img/testimonial-2.jpg" class="testimonial-img" alt="">
+          <h3>Sara Wilsson</h3>
+          <h4>Designer</h4>
+        </div>
+
+        <div class="testimonial-item">
+          <p>
+            <img src="assets/reader/img/quote-sign-left.png" class="quote-sign-left" alt="">
+            Chúng tôi yêu các bạn
+            <img src="assets/reader/img/quote-sign-right.png" class="quote-sign-right" alt="">
+          </p>
+          <img src="assets/reader/img/testimonial-3.jpg" class="testimonial-img" alt="">
+          <h3>Jena Karlis</h3>
+          <h4>Store Owner</h4>
+        </div>
+
+        <div class="testimonial-item">
+          <p>
+            <img src="assets/reader/img/quote-sign-left.png" class="quote-sign-left" alt="">We want to work with the site
+            <img src="assets/reader/img/quote-sign-right.png" class="quote-sign-right" alt="">
+          </p>
+          <img src="assets/reader/img/testimonial-4.jpg" class="testimonial-img" alt="">
+          <h3>Matt Brandon</h3>
+        </div>
+
+        <div class="testimonial-item">
+          <p>
+            <img src="assets/reader/img/quote-sign-left.png" class="quote-sign-left" alt="">
+            Chúng tôi muốn giao lưu với biên tập website
+            <img src="assets/reader/img/quote-sign-right.png" class="quote-sign-right" alt="">
+          </p>
+          <img src="assets/reader/img/testimonial-5.jpg" class="testimonial-img" alt="">
+          <h3>John Larson</h3>
+          <h4>Entrepreneur</h4>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- #testimonials -->
+
+  <!--==========================
+
+    Our Team Section
+  ============================-->
+  <section id="team" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Team</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="member">
+            <div class="pic"><img src="assets/reader/img/dat.jpg" alt=""></div>
+            <div class="details">
+              <h4>Dat Phan</h4>
+              <span>Admin</span>
+              <div class="social">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-google-plus"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="member">
+            <div class="pic"><img src="assets/reader/img/thuongnote.jpg" alt=""></div>
+            <div class="details">
+              <h4>Thuong Nguyen</h4>
+              <span>Admin</span>
+              <div class="social">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-google-plus"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="member">
+            <div class="pic"><img src="assets/reader/img/team-3.jpg" alt=""></div>
+            <div class="details">
+              <h4>Minh Nguyen</h4>
+              <span>Admin</span>
+              <div class="social">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-google-plus"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- #team -->
+
+  <!--==========================
+    Contact Section
+  ============================-->
+  <section id="contact" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contact Us</h2>
+        <p>Cộng tác với chúng tôi để khiến chúng tôi đem đến những điều tốt đẹp cho bạn</p>
+      </div>
+
+      <div class="row contact-info">
+
+        <div class="col-md-4">
+          <div class="contact-address">
+            <i class="ion-ios-location-outline"></i>
+            <h3>Address</h3>
+            <address>12 Nguyễn Văn Bảo, Phường 4, Gò Vấp, Tp Hồ Chí Minh, Việt Nam</address>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="contact-phone">
+            <i class="ion-ios-telephone-outline"></i>
+            <h3>Phone Number</h3>
+            <p><a href="tel:+155895548855">0908123456</a></p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="contact-email">
+            <i class="ion-ios-email-outline"></i>
+            <h3>Email</h3>
+            <p><a href="mailto:info@example.com">newsmail@gmail.com</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form">
+        <div id="sendmessage">Your message has been sent. Thank you!</div>
+        <div id="errormessage"></div>
+        <form action="" method="post" role="form" class="contactForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4"
+                     data-msg="Please enter at least 4 chars"/>
+              <div class="validation"></div>
+            </div>
+            <div class="form-group col-md-6">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                     data-rule="email" data-msg="Please enter a valid email"/>
+              <div class="validation"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                   data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"/>
+            <div class="validation"></div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" data-rule="required"
+                      data-msg="Please write something for us" placeholder="Message"></textarea>
+            <div class="validation"></div>
+          </div>
+          <div class="text-center">
+            <button type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section><!-- #contact -->
+</main>
+
+
+

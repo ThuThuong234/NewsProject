@@ -1,0 +1,9 @@
+[2018-12-08T10:55:10.891] [INFO] server - Express server listening on port 8080
+[2018-12-08T10:55:12.289] [INFO] server - Express server listening on port 8080
+[2018-12-08T17:04:41.773] [INFO] http - ::1 - - "POST /users/login HTTP/1.1" 404 2151 "http://localhost:4200/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36"
+[2018-12-08T17:04:44.534] [INFO] http - ::1 - - "POST /users/login HTTP/1.1" 404 2151 "http://localhost:4200/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36"
+[2018-12-08T17:06:31.646] [INFO] http - ::1 - - "POST /users/login HTTP/1.1" 404 2151 "" "PostmanRuntime/7.4.0"
+[2018-12-08T17:06:44.230] [INFO] http - ::1 - - "POST /login HTTP/1.1" 404 2151 "" "PostmanRuntime/7.4.0"
+[2018-12-08T17:58:31.364] [INFO] server - Express server listening on port 8080
+[2018-12-08T17:58:33.067] [INFO] server - Express server listening on port 8080
+[2018-12-08T17:59:15.094] [INFO] server - Express server listening on port 8080

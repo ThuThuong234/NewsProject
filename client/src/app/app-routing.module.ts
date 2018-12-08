@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-// Import Containers
-import { DefaultLayoutComponent } from './containers';
 import { AuthorizeService } from './services/authorize.service';
-import {DefaultAdminLayoutComponent} from "./containers/default-admin-layout/default-admin-layout.component";
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
+import { HomeComponent } from './views/home/home.component';
 import {AppComponent} from "./app.component";
+import {CreateNewsComponent} from "./views/news/create-news/create-news.component"
 
 const routes: Routes = [
 
   {
     path: '',
-    component: AppComponent,
+    component: HomeComponent,
     pathMatch: 'full',
   },
   {
@@ -43,23 +41,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login'
-    }
-  },
-  {
-    path: 'admin',
-    component: DefaultAdminLayoutComponent,
+    path: 'admin/news/create',
     canActivate: [AuthorizeService],
-    children: [
-      // {
-      //   path: 'feedbacks',
-      //   canActivate: [AuthorizeService],
-      //   loadChildren: './views/feedbacks/feedbacks.module#FeedbacksModule'
-      // }
-    ],
+    component:CreateNewsComponent,
+    pathMatch: 'full',
+
   }
 ];
 
@@ -68,3 +54,11 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingCoponents = [
+  AppComponent,
+  HomeComponent,
+  LoginComponent,
+  CreateNewsComponent,
+  P404Component,
+  P500Component
+]

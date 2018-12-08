@@ -78,8 +78,7 @@ exports.authenticate = function (username, password) {
                 }
 
                 let resultData = {
-                    id: user.id,
-                    username: user.username
+                    username: username
                 };
                 let token = auth_utils.getToken(resultData);
                 resultData.token = token;

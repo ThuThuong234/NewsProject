@@ -1,12 +1,10 @@
 
 export class SessionVM {
   token: string;
-  fullname: string;
   username: string;
 
-  constructor(token: string, fullname: string, account: string) {
+  constructor(token: string, account: string) {
     this.token = token
-    this.fullname = fullname;
     this.username = account;
   }
 

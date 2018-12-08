@@ -4,7 +4,6 @@ const errors = require("../../lib/errors");
 var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
 var aws = AWSConnect.dynamoConnection;
-const uuid = require('uuid/v1');
 var datetime = require('node-datetime');
 
 exports.successResponse = function (data = null) {

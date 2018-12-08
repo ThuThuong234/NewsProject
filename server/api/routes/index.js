@@ -7,6 +7,8 @@ const newsServicers = require("../../app/services/newsServicers");
 const usersServices = require("../../app/services/usersServices");
 const auth_utils = require('../../lib/auth_utils');
 app.use(bodyParser.json());
+
+
 app.get('/', function (req, res) {
     console.log();
     newsServicers.Getlastestnews().then(data => {

@@ -32,7 +32,7 @@ var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 // });
 
 var loadAllDataNews = allNews.forEach( function (news) {
-    let id = helper.genrenateID();
+    let id = helper.genrenateID();i
 
     var new_params = {
         TableName: "News",
@@ -54,23 +54,23 @@ var loadAllDataNews = allNews.forEach( function (news) {
             console.log("PutItem Successed: " + id);
     });
 });
-// var loadAllComment = allComments.forEach(function (comment) {
-//     var comment_params = {
-//         TableName: "Comments",
-//         Item: {
-//             "email": comment.email,
-//             "news_id": comment.news_id,
-//             "comments_content": comment.comments_content,
-//             "comment_time": comment.comment_time
-//         }
-//     };
-//     docClient.put(comment_params, function (err, data) {
-//         if (err)
-//             console.log("Unable to add news ", comment.email, ". Error Json:", JSON.stringify(err, null, 2));
-//         else
-//             console.log("PutItem Successed: ", comment.email);
-//     });
-// });
+var loadAllComment = allComments.forEach(function (comment) {
+    var comment_params = {
+        TableName: "Comments",
+        Item: {
+            "email": comment.email,
+            "news_id": comment.news_id,
+            "comments_content": comment.comments_content,
+            "comment_time": comment.comment_time
+        }
+    };
+    docClient.put(comment_params, function (err, data) {
+        if (err)
+            console.log("Unable to add news ", comment.email, ". Error Json:", JSON.stringify(err, null, 2));
+        else
+            console.log("PutItem Successed: ", comment.email);
+    });
+});
 // var loadAlltype = allLoai.forEach(function (loai) {
 //     let id = helper.genrenateID();
 //     var type_params = {

@@ -15,7 +15,7 @@ export class UserService extends APIService {
   }
 
   public login(login: Login) {
-    return super.apiPost<LoginApiResult>('/users/login', login);
+    return super.apiPost<LoginApiResult>('/admin/signin', login);
   }
 
   public logout() {

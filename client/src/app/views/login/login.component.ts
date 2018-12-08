@@ -7,6 +7,8 @@ import { Login } from '../../view-models/users/login';
 import { AuthenticateService } from '../../services/authenticate.service';
 import { SessionVM } from '../../view-models/session/session-vm';
 import { UserService } from '../../services/user.service';
+
+import {FormsModule} from '@angular/forms'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +28,8 @@ export class LoginComponent implements OnInit {
     this.authService.session$.subscribe(
       data => {
         this.session = data;
+        console.log("sesssssssssssssssssssssssssssssssss  ");
+        console.log(data);
         if (this.session && this.session.token != null) {
           this.router.navigate(['/']);
         }
@@ -38,10 +42,9 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.model).subscribe(
         res => {
           if (res.data && res.data.token) {
-            const newSession = new SessionVM(res.data.token,res.data.fullname, res.data.username);
+            const newSession = new SessionVM(res.data.token, res.data.username);
             this.authService.setSession(newSession);
             this.toastr.success(this.translate.instant('LOGIN.LOGIN_SUCESS'));
-            //fffffff
 
           } else {
             this.toastr.error(res.message);
