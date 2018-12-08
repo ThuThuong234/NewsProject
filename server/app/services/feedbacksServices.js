@@ -78,7 +78,7 @@ exports.getFeedbacksDetail = function (feedback_id) {
 exports.Deletenews = function (feedback_id) {
     return new Promise(function (resolve, reject) {
         helper.findNewsbyID(feedback_id).then(search_feedback => {
-            console.log(search_feedback.Items);
+            consolae.log(search_feedback.Items);
             if (search_feedback.Items.length == 0) {
                 throw {
                     message: errors.TEMPLATE_01,

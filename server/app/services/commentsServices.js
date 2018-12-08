@@ -125,7 +125,7 @@ exports.updateComment = function (data) {
                     ReturnValue: "UPDATE_COMMENT"
                 };
                 return docClient.update(params, function (err, data) {
-                    onsole.log("Dang cap nhat" + data);
+                    console.log("Dang cap nhat" + data);
                     if (err) {
                         reject(err);
                     }
