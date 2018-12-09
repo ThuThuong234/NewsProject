@@ -167,9 +167,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 0;
     height: 74px;
   }
+
   #header #logo h1 {
     font-size: 34px;
   }
+
   #header #logo img {
     max-height: 40px;
   }
@@ -562,6 +564,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   #about .about-img {
     height: auto;
   }
+
   #about .about-img img {
     margin-left: 0;
     padding-bottom: 30px;
@@ -672,11 +675,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   #services .box .box {
     margin-bottom: 20px;
   }
+
   #services .box .icon {
     float: none;
     text-align: center;
     padding-bottom: 15px;
   }
+
   #services .box h4, #services .box p {
     margin-left: 0;
     text-align: center;
@@ -1015,14 +1020,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /*#contact #google-map {*/
-  /*height: 290px;*/
-  /*margin-bottom: 20px;*/
+/*height: 290px;*/
+/*margin-bottom: 20px;*/
 /*}*/
 
 /*@media (max-width: 576px) {*/
-  /*#contact #google-map {*/
-    /*margin-top: 20px;*/
-  /*}*/
+/*#contact #google-map {*/
+/*margin-top: 20px;*/
+/*}*/
 /*}*/
 
 #contact .form #sendmessage {
@@ -1089,7 +1094,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .copyright {
   text-align: center;
-  padding-top: 30px;
 }
 
 #footer .credits {
@@ -1101,6 +1105,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #footer .credits a {
   color: #0c2e8a;
 }
+
 .input-group {
   position: relative;
   display: flex;
@@ -1108,6 +1113,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   align-items: stretch;
   width: 100%;
 }
+
 .input-group-text {
   display: flex;
   align-items: center;
@@ -1123,6 +1129,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border: 1px solid #e4e7ea;
   border-radius: 0.25rem;
 }
+
 .card-group > .card:first-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -1450,4 +1457,35 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ebccd1
+}
+
+#search input {
+  border-radius: 50px;
+  font-style: italic;
+  padding-left: 20px;
+  border: 2px solid #50d8af;
+}
+
+#search i.fa.fa-search {
+  position: relative;
+  right: 0;
+  left: 152px;
+  bottom: 30px;
+  font-size: 1.3em;
+  color: #50d8af;
+}
+
+
+/*footer*/
+
+@font-face {
+  font-family: 'WaltDisney';
+  src: url('./fonts/font-chu-cua-walt-disney.otf') format('truetype'),
+  url('./fonts/font-chu-cua-walt-disney.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+.member{
+  font-family: WaltDisney;
+  font-size: 1.5em;
 }

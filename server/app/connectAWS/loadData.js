@@ -32,7 +32,7 @@ var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 // });
 
 var loadAllDataNews = allNews.forEach( function (news) {
-    let id = helper.genrenateID();i
+    let id = helper.genrenateID();
 
     var new_params = {
         TableName: "News",

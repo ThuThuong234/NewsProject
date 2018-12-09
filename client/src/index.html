@@ -61,32 +61,4 @@
   <app-root></app-root>
 </body>
 
-<script>
-  function onSuccess(googleUser) {
-    console.log("aaa");
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    $('#email').val(googleUser.getBasicProfile().getEmail());
-    var app = angular.module('ngAppStrictDemo', []);
-    app.controller('myCtrl', function($scope) {
-      $scope.email = "googleUser.getBasicProfile().getEmail()";
-    });
-
-  }
-  function onFailure(error) {
-    alert(error);
-  }
-  function renderButton() {
-    console.log("bbbbbbbbbb");
-    gapi.signin2.render('g-signin2', {
-      'scope': 'profile email',
-      // 'width': 240,
-      // 'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': onSuccess,
-      'onfailure': onFailure
-    });
-  }
-</script>
-
 </html>

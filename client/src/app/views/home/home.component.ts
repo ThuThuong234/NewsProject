@@ -26,7 +26,7 @@ import {FeedbackService} from "../../services/feedback.service";
 })
 export class HomeComponent implements OnInit {
   session: SessionVM;
-  email : string;
+  email_feedback : string;
   newsPaging : NewsPaging;
   newsFirst : News;
   newstypes : NewsTypePaging;
@@ -69,15 +69,14 @@ export class HomeComponent implements OnInit {
 
       this.session = deserialize(SessionVM, currentUser);
       if (this.session) {
-        console.log("current");
-        console.log(this.session);
-        this.email = this.session.username;
+        this.email_feedback = this.session.username;
       }
 
     }
   }
   onLogin(){
-    this.router.navigate(['login'])
+    console.log("redirect:");
+    this.router.navigate(['/login']);
   }
 
   getNews(){

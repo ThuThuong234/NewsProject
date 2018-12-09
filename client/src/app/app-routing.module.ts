@@ -8,6 +8,9 @@ import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import {AppComponent} from "./app.component";
 import {CreateNewsComponent} from "./views/news/create-news/create-news.component"
+import {NewsTypeComponent} from "./views/news-type/news-type.component";
+import {TypeDetailsComponent} from "./views/type-details/type-details.component";
+import {DashboardComponent} from "./views/dashboard/dashboard.component";
 
 const routes: Routes = [
 
@@ -24,6 +27,22 @@ const routes: Routes = [
   {
     path: 'admin',
     redirectTo: 'login',
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'types',
+    component: NewsTypeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'types/:id',
+    component: TypeDetailsComponent,
     pathMatch: 'full',
   },
   {
@@ -60,5 +79,8 @@ export const routingCoponents = [
   LoginComponent,
   CreateNewsComponent,
   P404Component,
-  P500Component
+  P500Component,
+  NewsTypeComponent,
+  TypeDetailsComponent,
+  DashboardComponent,
 ]

@@ -28,7 +28,9 @@ export class AuthorizeService implements CanActivate {
 
   updateRedirectRoute(state: RouterStateSnapshot) {
     if (this.session) {
-      // Store the attempted URL for redirecting & navigate to login page
+      this.router.navigate(['/admin']);
+    }
+    else{
       this.authService.redirectUrl = state.url;
       this.router.navigate(['/login']);
     }

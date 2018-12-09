@@ -10,18 +10,35 @@
     <nav id="nav-menu-container">
       <ul class="nav-menu">
         <li class="menu-active"><a href="#body">Trang chủ</a></li>
-        <li><a href="#services">Xã hội</a></li>
-        <li><a href="#portfolio">Cộng nghệ</a></li>
-        <li><a href="#team">Văn hóa</a></li>
-        <li><a href="#team">Giải trí</a></li>
-        <li><a href="#team">Gia đình</a></li>
-        <li><a href="#team">Pháp luật</a></li>
-        <li><a href="#team">Tin khác</a></li>
-        <li><button id="btnLogin" class="btn btn-primary p-1" ng-click="onLogin()">{{ session!=null ? session.username  : "Login"}}</button></li>
+        <li><a routerLink="/types/1" routerLinkActive="active">Xã hội</a></li>
+        <li><a routerLink="/types/2" routerLinkActive="active">Cộng nghệ</a></li>
+        <li><a routerLink="/types/3" routerLinkActive="active">Văn hóa</a></li>
+        <li><a routerLink="/types/4" routerLinkActive="active">Giải trí</a></li>
+        <li><a routerLink="/types/5" routerLinkActive="active">Gia đình</a></li>
+        <li><a routerLink="/types/6" routerLinkActive="active">Pháp luật</a></li>
+        <li><a routerLink="/types/7" routerLinkActive="active">Tin khác</a></li>
+        <li><button id="btnLogin" class="btn btn-primary p-1" (click)="onLogin()">{{ session!=null ? session.username  : "Login"}}</button></li>
       </ul>
     </nav><!-- #nav-menu-container -->
   </div>
 </header><!-- #header -->
+
+<section id="search" class="mt-4">
+
+  <div class="container">
+    <div class="row  text-center" >
+      <div class="col-lg-4">
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="search.....">
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+
+  </div>
+
+</section>
 
 <!--==========================
   About Section
@@ -439,7 +456,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <input type="text" name="email" class="form-control" id="email" placeholder="Your Email"
-                     [(ngModel)]="email" [ngModelOptions]="{standalone: true}" disabled/>
+                     [(ngModel)]="email_feedback" [ngModelOptions]="{standalone: true}" disabled/>
             </div>
             <div class="form-group col-md-6">
             <div id="g-signin2" ></div>
@@ -460,3 +477,32 @@
     </div>
   </section>
 </main>
+
+
+<script>
+  function onSuccess(googleUser) {
+    console.log("aaa");
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    $('#email').val(googleUser.getBasicProfile().getEmail());
+    var app = angular.module('ngAppStrictDemo', []);
+    app.controller('myCtrl', function($scope) {
+      $scope.email_feedback = "googleUser.getBasicProfile().getEmail()";
+    });
+
+  }
+  function onFailure(error) {
+    alert(error);
+  }
+  function renderButton() {
+    console.log("bbbbbbbbbb");
+    gapi.signin2.render('g-signin2', {
+      'scope': 'profile email',
+      // 'width': 240,
+      // 'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': onSuccess,
+      'onfailure': onFailure
+    });
+  }
+</script>
