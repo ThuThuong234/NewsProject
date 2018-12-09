@@ -1064,7 +1064,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 15px;
 }
 
-#contact .form button[type="submit"] {
+#contact .form button[type="button"] {
   background: #50d8af;
   border: 0;
   border-radius: 3px;
@@ -1074,7 +1074,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   cursor: pointer;
 }
 
-#contact .form button[type="submit"]:hover {
+#contact .form button[type="button"]:hover {
   background: #2dc899;
 }
 

@@ -6,6 +6,7 @@ const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper')
 exports.insertFeedbacks = function (data) {
     return new Promise(async function (resolve, reject) {
+        console.log(data);
         let id = await helper.genrenateID();
         var params = {
             TableName: "Feedbacks",

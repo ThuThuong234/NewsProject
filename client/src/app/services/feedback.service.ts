@@ -35,7 +35,11 @@ export class FeedbackService extends APIService {
   }
 
   public createFeedback(feedback: Feedback) {
-    return super.apiPost<ApiResult>('/feedbacks', feedback, null, true);
+    let params = new HttpParams();
+    params = params.set('email', feedback.email);
+    params = params.set('content', feedback.content);
+    params = params.set('posted_date', feedback.posted_date.toDateString());
+    return super.apiPost<ApiResult>('/feedback', feedback,null , true);
   }
 
 }

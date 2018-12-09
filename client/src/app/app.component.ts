@@ -12,12 +12,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-  // this.session = localStorage.getItem('currentUser');
-  // if(this.session!=null)
-  // console.log(this.session.username);
-  }
-  onLogin(){
-    this.router.navigate(['login'])
+
   }
 
 

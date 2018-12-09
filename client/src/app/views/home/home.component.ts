@@ -15,15 +15,23 @@ import {NewsType} from "../../view-models/newstype/newstype";
 import {TypeService} from "../../services/type.service";
 import {NewsTypePaging} from "../../view-models/newstype/newstype-paging";
 import {SessionVM} from "../../view-models/session/session-vm";
+import {Feedback} from "../../view-models/feedbacks/feedback";
+import {FeedbackService} from "../../services/feedback.service";
+// import {AuthService, GoogleLoginProvider} from "angular-6-social-login";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  newsPaging: NewsPaging;
+  session: SessionVM;
+  email : string;
+  newsPaging : NewsPaging;
   newsFirst : News;
   newstypes : NewsTypePaging;
+  feedback : Feedback = new Feedback();
+  message_insert_feedback : string;
 
   keywords = '';
   // bsModalRef: BsModalRef;
@@ -36,7 +44,10 @@ export class HomeComponent implements OnInit {
               private translate: TranslateService,
               // private modalService: BsModalService,
               private newsService: NewsService,
-              private newsTypesService : TypeService) {
+              private newsTypesService : TypeService,
+              private feedbackService : FeedbackService,
+              // private socialAuthService: AuthService,
+              ) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
@@ -53,6 +64,20 @@ export class HomeComponent implements OnInit {
     });
     this.getTypes();
     this.getNews();
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser != null) {
+
+      this.session = deserialize(SessionVM, currentUser);
+      if (this.session) {
+        console.log("current");
+        console.log(this.session);
+        this.email = this.session.username;
+      }
+
+    }
+  }
+  onLogin(){
+    this.router.navigate(['login'])
   }
 
   getNews(){
@@ -87,12 +112,22 @@ export class HomeComponent implements OnInit {
       this.toastr.error("error while get types" + this.translate.instant('COMMON.GET.FAILED'));
     })
   }
+  sendFeedBack(){
+    this.feedback.posted_date = new Date();
+    console.log(this.feedback);
+    this.feedbackService.createFeedback(this.feedback).subscribe(
+      res =>{
+
+        this.message_insert_feedback= "success";
+      },
+      error => {
+        this.message_insert_feedback = "failed";
+      });
+  }
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: HomeComponent,
       providers: [TranslateService]
     };
   }
-
-
 }

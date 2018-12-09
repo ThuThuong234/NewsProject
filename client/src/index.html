@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"  ng-app="ngAppStrictDemo" ng-strict-di ng-controller="myCtrl">
 <head>
   <base href="/">
   <meta charset="utf-8">
@@ -22,7 +22,6 @@
 
   <!-- Bootstrap CSS File -->
   <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--<link href="../assets/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
   <!-- Libraries CSS Files -->
   <link href="./assets/reader/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -50,17 +49,44 @@
   <script src="./assets/reader/lib/sticky/sticky.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="./assets/reader/contactform/contactform.js"></script>
-  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
   <!-- Template Main Javascript File -->
   <script src="./assets/reader/js/main.js"></script>
   <link href="./assets/style.css" rel="stylesheet">
 
+
 </head>
 <body id="body">
   <app-root></app-root>
-
 </body>
 
+<script>
+  function onSuccess(googleUser) {
+    console.log("aaa");
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    $('#email').val(googleUser.getBasicProfile().getEmail());
+    var app = angular.module('ngAppStrictDemo', []);
+    app.controller('myCtrl', function($scope) {
+      $scope.email = "googleUser.getBasicProfile().getEmail()";
+    });
+
+  }
+  function onFailure(error) {
+    alert(error);
+  }
+  function renderButton() {
+    console.log("bbbbbbbbbb");
+    gapi.signin2.render('g-signin2', {
+      'scope': 'profile email',
+      // 'width': 240,
+      // 'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': onSuccess,
+      'onfailure': onFailure
+    });
+  }
+</script>
 
 </html>

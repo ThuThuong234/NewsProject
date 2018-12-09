@@ -12,6 +12,13 @@ import {BsDropdownModule, BsModalService} from "ngx-bootstrap";
 import {FormsModule} from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// import {
+//   SocialLoginModule,
+//   AuthServiceConfig,
+//   GoogleLoginProvider,
+//   FacebookLoginProvider,
+// } from "angular-6-social-login";
+
 // import services
 
 import { FeedbackService } from './services/feedback.service';
@@ -28,6 +35,17 @@ import { HomeComponent } from './views/home/home.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+// export function getAuthServiceConfigs() {
+//   let config = new AuthServiceConfig(
+//     [
+//       {
+//         id: GoogleLoginProvider.PROVIDER_ID,
+//         provider: new GoogleLoginProvider("693015107956-568jk2nqalaqs5tmdiv6irq3hteut3nl.apps.googleusercontent.com")
+//       },
+//     ]
+// );
+//   return config;
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     BrowserAnimationsModule,
+    // SocialLoginModule,
   ],
   providers: [
     FeedbackService,
@@ -59,6 +78,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     SpinService,
     TypeService,
     AuthenticateService,
+    // {
+    //   provide: AuthServiceConfig,
+    //   useFactory: getAuthServiceConfigs
+    // },
   ],
   bootstrap: [AppComponent]
 })

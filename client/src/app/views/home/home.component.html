@@ -1,4 +1,27 @@
+<header id="header">
+  <div class="container">
 
+    <div id="logo" class="pull-left">
+      <h1><a href="#body" class="scrollto">Links<span>News</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#body"><img src="./assets/reader/logo.png" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li class="menu-active"><a href="#body">Trang chủ</a></li>
+        <li><a href="#services">Xã hội</a></li>
+        <li><a href="#portfolio">Cộng nghệ</a></li>
+        <li><a href="#team">Văn hóa</a></li>
+        <li><a href="#team">Giải trí</a></li>
+        <li><a href="#team">Gia đình</a></li>
+        <li><a href="#team">Pháp luật</a></li>
+        <li><a href="#team">Tin khác</a></li>
+        <li><button id="btnLogin" class="btn btn-primary p-1" ng-click="onLogin()">{{ session!=null ? session.username  : "Login"}}</button></li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
 
 <!--==========================
   About Section
@@ -107,6 +130,8 @@
 <!--==========================
   Clients Section
 ============================-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <section id="clients" class="wow fadeInUp">
   <div class="container">
     <div class="section-header">
@@ -348,7 +373,7 @@
 
         <div class="col-lg-4 col-md-6">
           <div class="member">
-            <div class="pic"><img src="assets/reader/img/team-3.jpg" alt=""></div>
+            <div class="pic"><img src="../../../assets/reader/img/Minh.jpg" alt=""></div>
             <div class="details">
               <h4>Minh Nguyen</h4>
               <span>Admin</span>
@@ -407,48 +432,31 @@
     </div>
 
     <div class="container">
-      <div class="form">
+      <div class="form"  >
         <div id="sendmessage">Your message has been sent. Thank you!</div>
         <div id="errormessage"></div>
         <form action="" method="post" role="form" class="contactForm">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Email" data-rule="minlen:4"
-                     data-msg="Please enter at least 4 chars" disabled/>
-              <div class="validation"></div>
+              <input type="text" name="email" class="form-control" id="email" placeholder="Your Email"
+                     [(ngModel)]="email" [ngModelOptions]="{standalone: true}" disabled/>
             </div>
             <div class="form-group col-md-6">
-              <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-            </div>
+            <div id="g-signin2" ></div>
+          </div>
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" data-rule="required"
-                      data-msg="Please write something for us" placeholder="Message"></textarea>
+            <textarea class="form-control" name="message" rows="5" data-rule="required" id="content"
+                      data-msg="Please write something for us" placeholder="Message"
+                      [(ngModel)]="feedback.content" [ngModelOptions]="{standalone: true}"></textarea>
             <div class="validation"></div>
           </div>
           <div class="text-center">
-            <button type="submit">Send Message</button>
+            <button type="button" (click)="sendFeedBack()">Send Message</button>
           </div>
         </form>
       </div>
 
     </div>
-  </section><!-- #contact -->
+  </section>
 </main>
-
-<script>
-  function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-  };
-</script>

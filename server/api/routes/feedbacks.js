@@ -6,16 +6,6 @@ const feedbacksServices = require("../../app/services/feedbacksServices");
 var app = express();
 app.use(bodyParser.json());
 
-//insert
-app.post('/', function (req,res) {
-    var body = req.body;
-    feedbacksServices.insertFeedbacks(body).then(data => {
-        res.status(200).json(utils.successResponse(data));
-    })
-        .catch(error => {
-            res.json(utils.failedResponse(error));
-        });
-});
 //getfeedback
 app.get('/', function (req, res) {
     feedbacksServices.getFeedbacks().then(data => {
