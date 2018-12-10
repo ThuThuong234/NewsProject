@@ -26,9 +26,7 @@ app.get('/:id', function (req, res) {
 });
 //delete
 app.delete('/:id', (req, res,) => {
-    var body = req.body;
-    feedbacksServices.Deletefeedback(body).then(function () {
-
+    feedbacksServices.Deletefeedback(req.params.id).then(function () {
         res.status(200).json(utils.successResponse());
     })
         .catch(error => {

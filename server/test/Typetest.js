@@ -1,21 +1,19 @@
-
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let typenew = require('../api/routes/typenew');
 let index = require('../api/routes/index');
 let should = chai.should();
 chai.use(chaiHttp);
-describe('TypeNew', function(){
-    beforeEach(function(done) {
+describe('TypeNew', function() {
+    beforeEach(function (done) {
         done();
     });
     afterEach(function (done) {
         done();
     });
-
     describe('/GET type:/id ', function () {
         it('it should GET new by typename', function (done) {
-            let type_id = '1543291440432̣';
+            let type_id = '1543291440432';
             chai.request(typenew)
                 .get('/' + type_id)
                 .end(function (err, res) {
@@ -26,3 +24,4 @@ describe('TypeNew', function(){
                 });
         }).timeout(5000);
     });
+});

@@ -48,7 +48,7 @@ exports.Search = function (search_data) {
             }
         }
         docClient.scan(params, function (err, data) {
-            console.log("Dang tim" + data);
+            console.log("Dang tim" + " " +data.Items.length);
             if (err)
                 return reject(err);
             else resolve(data);
@@ -188,6 +188,7 @@ exports.updateNews = function (data) {
                     },
                     ReturnValue: "UPDATE_NEW"
                 };
+                console.log(data);
                 return docClient.update(params, function (err, data) {
                     console.log("Dang cap nhat" + data);
                     if (err) {

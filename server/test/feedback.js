@@ -42,7 +42,7 @@ describe('Feedbacks', function(){
         }).timeout(5000);
     });
     describe('/DELETE/:feedback_id ', function () {
-        it('it should DELETE a user given the username', function (done) {
+        it('it should DELETE a user given the feedback_id', function (done) {
             let feedback_id = "1543291440363";
             chai.request(feedbacks)
                 .delete('/' + feedback_id)
@@ -50,10 +50,8 @@ describe('Feedbacks', function(){
                     should.equal(err, null);
                     res.should.have.status(200);
                     res.should.be.json;
-
                     done();
                 });
         }).timeout(5000);
     });
 });
-

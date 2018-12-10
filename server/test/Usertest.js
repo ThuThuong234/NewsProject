@@ -87,7 +87,7 @@ describe('Users', function(){
     });
     describe('/DELETE/:username ', function () {
         it('it should DELETE a user given the username', function (done) {
-            let username = "dat";
+            let username = "dacia";
             chai.request(user)
                 .delete('/' + username)
                 .end(function(err, res){
