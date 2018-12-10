@@ -49,12 +49,31 @@
   <script src="./assets/reader/lib/sticky/sticky.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="./assets/reader/contactform/contactform.js"></script>
-
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+
   <!-- Template Main Javascript File -->
   <script src="./assets/reader/js/main.js"></script>
   <link href="./assets/style.css" rel="stylesheet">
+  <script>
+    function onSuccess(googleUser) {
+      $('#email').val(googleUser.getBasicProfile().getEmail());
+      sessionStorage.setItem("reader_email",googleUser.getBasicProfile().getEmail());
+      };
 
+    function onFailure(error) {
+      alert(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('g-signin2', {
+        'scope': 'profile email',
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
 
 </head>
 <body id="body">

@@ -113,7 +113,7 @@ export class HomeComponent implements OnInit {
   }
   sendFeedBack(){
     this.feedback.posted_date = new Date();
-    console.log(this.feedback);
+    this.feedback.email = sessionStorage.getItem("reader_email");
     this.feedbackService.createFeedback(this.feedback).subscribe(
       res =>{
 

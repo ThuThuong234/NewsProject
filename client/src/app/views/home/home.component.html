@@ -40,6 +40,7 @@
 
 </section>
 
+
 <!--==========================
   About Section
 ============================-->
@@ -148,7 +149,6 @@
   Clients Section
 ============================-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <section id="clients" class="wow fadeInUp">
   <div class="container">
     <div class="section-header">
@@ -479,30 +479,4 @@
 </main>
 
 
-<script>
-  function onSuccess(googleUser) {
-    console.log("aaa");
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    $('#email').val(googleUser.getBasicProfile().getEmail());
-    var app = angular.module('ngAppStrictDemo', []);
-    app.controller('myCtrl', function($scope) {
-      $scope.email_feedback = "googleUser.getBasicProfile().getEmail()";
-    });
 
-  }
-  function onFailure(error) {
-    alert(error);
-  }
-  function renderButton() {
-    console.log("bbbbbbbbbb");
-    gapi.signin2.render('g-signin2', {
-      'scope': 'profile email',
-      // 'width': 240,
-      // 'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': onSuccess,
-      'onfailure': onFailure
-    });
-  }
-</script>
