@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.session = data;
         if (this.session && this.session.token != null) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/admin']);
         }
       }
     );

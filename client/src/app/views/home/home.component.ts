@@ -83,12 +83,8 @@ export class HomeComponent implements OnInit {
     this.newsService.getLatestNews().subscribe(
       res =>{
         if (res.success && res.data) {
-          console.log("res day :    ");
           console.log(res.data);
           this.newsPaging = plainToClass(NewsPaging, res.data);
-          //
-          // this.newsLeft = this.newsPaging.Items.splice(0, 4);
-          // this.newsRight = this.newsPaging.Items.splice(0, 4);
           this.newsFirst = this.newsPaging.Items[0];
         } else {
           this.toastr.error(" res is not succeeds" +res.message);

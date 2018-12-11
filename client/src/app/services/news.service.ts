@@ -21,11 +21,11 @@ export class NewsService extends APIService {
   }
 
   public getNewsList() {
-    return super.apiGet<GetNewsApiResults>("/news");
+    return super.apiGet<GetNewsApiResults>("/admin/news",null,true);
   }
 
   public getNews(id: number) {
-    return super.apiGet<GetNewsApiResult>("/news/"+id);
+    return super.apiGet<GetNewsApiResult>("/admin/news/"+id);
   }
 
   // public updateNews(id, news: News) {

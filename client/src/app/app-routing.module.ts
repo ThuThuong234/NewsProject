@@ -11,6 +11,7 @@ import {CreateNewsComponent} from "./views/news/create-news/create-news.componen
 import {NewsTypeComponent} from "./views/news-type/news-type.component";
 import {TypeDetailsComponent} from "./views/type-details/type-details.component";
 import {DashboardComponent} from "./views/dashboard/dashboard.component";
+import {NewsComponent} from "./views/news/news.component";
 
 const routes: Routes = [
 
@@ -26,15 +27,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    component: DashboardComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'admin',
     redirectTo: 'login',
     pathMatch: 'full',
   },
 
-  {
-    path: 'admin',
-    component: DashboardComponent,
-    pathMatch: 'full',
-  },
   {
     path: 'types',
     component: NewsTypeComponent,
@@ -44,6 +45,23 @@ const routes: Routes = [
     path: 'types/:id',
     component: TypeDetailsComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'admin/news',
+    component: NewsComponent,
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'news/:id',
+    component: NewsTypeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'admin/news/create',
+    component:CreateNewsComponent,
+    pathMatch: 'full',
+
   },
   {
     path: '404',
@@ -59,13 +77,6 @@ const routes: Routes = [
       title: '500'
     }
   },
-  {
-    path: 'admin/news/create',
-    canActivate: [AuthorizeService],
-    component:CreateNewsComponent,
-    pathMatch: 'full',
-
-  }
 ];
 
 @NgModule({
@@ -82,5 +93,6 @@ export const routingCoponents = [
   P500Component,
   NewsTypeComponent,
   TypeDetailsComponent,
+  NewsComponent,
   DashboardComponent,
 ]

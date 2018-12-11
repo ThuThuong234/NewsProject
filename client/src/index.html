@@ -23,8 +23,7 @@
   <!-- Bootstrap CSS File -->
   <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Libraries CSS Files -->
-  <link href="./assets/reader/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/admin/css/datatables.min.css">
   <link href="./assets/reader/lib/animate/animate.min.css" rel="stylesheet">
   <link href="./assets/reader/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="./assets/reader/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -38,6 +37,7 @@
 
   <!-- JavaScript Libraries -->
   <script src="./assets/reader/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="./assets/admin/js/datatables.min.js"></script>
   <script src="./assets/reader/lib/jquery/jquery-migrate.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/reader/lib/easing/easing.min.js"></script>
@@ -50,11 +50,41 @@
   <!-- Contact Form JavaScript File -->
   <script src="./assets/reader/contactform/contactform.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
 
   <!-- Template Main Javascript File -->
   <script src="./assets/reader/js/main.js"></script>
   <link href="./assets/style.css" rel="stylesheet">
+
+
+  <!--admin-->
+
+  <link href="./assets/admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="./assets/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="./assets/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="./assets/admin/vendor/metisMenu/metisMenu.min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="./assets/admin/dist/js/sb-admin-2.js"></script>
+
+  <!--summernote-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+
+
+  <!-- include summernote -->
+  <link rel="stylesheet" href="./assets/admin/dist/dist/summernote-bs4.css">
+  <script type="text/javascript" src="./assets/admin/dist/dist/summernote-bs4.js"></script>
+
+  <![endif]-->
   <script>
     function onSuccess(googleUser) {
       $('#email').val(googleUser.getBasicProfile().getEmail());
@@ -73,6 +103,23 @@
         'onfailure': onFailure
       });
     }
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        "order": [[ 3, "desc" ]]
+      });
+      $('.dataTables_length').addClass('bs-select');
+    });
+
+  </script>
+
+  <script>
+    $('#summernote').summernote({
+      placeholder: 'Hello stand alone ui',
+      tabsize: 2,
+      height: 100
+    });
   </script>
 
 </head>

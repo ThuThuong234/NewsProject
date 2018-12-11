@@ -8,6 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {NewsPaging} from "../../view-models/news/news-paging";
 import {Observable, Subscription} from "rxjs";
 import {plainToClass} from "class-transformer";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-news',
@@ -15,45 +16,38 @@ import {plainToClass} from "class-transformer";
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  // news:News = {
-  //   username: "string";
-  // type_id: 1;
-  // title: "string";
-  // content: "string";
-  // image: ["dfsd"];
-  // postdate: new Date()
-  // }
-
   newsPaging: NewsPaging;
-  keywords = '';
-  // bsModalRef: BsModalRef;
-  $timer: Observable<number>;
   subscription: Subscription;
 
-  constructor(
+  constructor(private router: Router,
     private titleService: Title,
     private toastr: ToastrService,
     private translate: TranslateService,
-    // private modalService: BsModalService,
     private newsService: NewsService,) {}
 
   ngOnInit() {
-    this.titleService.setTitle(this.translate.instant('PAGES.TITLE.NEWS.INDEX'));
+    this.titleService.setTitle(this.translate.instant('News'));
     this.getNews();
   }
 
-  getNews(newPage = 1){
+  getNews(){
     this.newsService.getNewsList().subscribe(
       res =>{
-      if (res.success && res.data) {
-        this.newsPaging = plainToClass(NewsPaging, res.data);
-      } else {
-        this.toastr.error(res.message);
-      }
-    },
+        if (res.success && res.data) {
+          console.log(res.data);
+          this.newsPaging = plainToClass(NewsPaging, res.data);
+        } else {
+          this.toastr.error(" res is not succeeds" +res.message);
+        }
+      },
       error => {
-        this.toastr.error(this.translate.instant('COMMON.GET.FAILED'));
+        this.toastr.error("error while get news" + this.translate.instant('COMMON.GET.FAILED'));
       })
+  }
+
+  createNews(){
+
+    this.router.navigate(['/admin/news/create']);
   }
 
 }
