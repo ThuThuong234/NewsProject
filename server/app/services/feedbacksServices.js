@@ -14,7 +14,7 @@ exports.insertFeedbacks = function (data) {
                 "feedback_id": id,
                 "email": data.email,
                 "content": data.content,
-                "postdate": data.postdate
+                "posted_date": data.posted_date
             }
         };
         return docClient.put(params, function (err, data) {

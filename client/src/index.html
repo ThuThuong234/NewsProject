@@ -23,6 +23,8 @@
   <!-- Bootstrap CSS File -->
   <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/admin/css/datatables.min.css">
   <link href="./assets/reader/lib/animate/animate.min.css" rel="stylesheet">
   <link href="./assets/reader/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
@@ -36,7 +38,10 @@
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- JavaScript Libraries -->
-  <script src="./assets/reader/lib/jquery/jquery.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+  <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>-->
   <script type="text/javascript" src="./assets/admin/js/datatables.min.js"></script>
   <script src="./assets/reader/lib/jquery/jquery-migrate.min.js"></script>
   <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -72,20 +77,16 @@
   <!-- Custom Theme JavaScript -->
   <script src="./assets/admin/dist/js/sb-admin-2.js"></script>
 
-  <!--summernote-->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
+  <link  href="./assets/admin/summernote/dist/summernote-bs4.css" type="text/css">
+  <script type="text/javascript" src="./assets/admin/summernote/dist/summernote-bs4.js"></script>
 
-  <!-- include summernote -->
-  <link rel="stylesheet" href="./assets/admin/dist/dist/summernote-bs4.css">
-  <script type="text/javascript" src="./assets/admin/dist/dist/summernote-bs4.js"></script>
-
-  <![endif]-->
   <script>
+
     function onSuccess(googleUser) {
       $('#email').val(googleUser.getBasicProfile().getEmail());
       sessionStorage.setItem("reader_email",googleUser.getBasicProfile().getEmail());
@@ -106,21 +107,26 @@
   </script>
   <script>
     $(document).ready(function () {
+      console.log("bat dau ne");
       $('#myTable').DataTable({
         "order": [[ 3, "desc" ]]
       });
       $('.dataTables_length').addClass('bs-select');
+      $('#summernote').summernote({
+        height: 300,
+        tabsize: 2
+      });
     });
 
   </script>
 
-  <script>
-    $('#summernote').summernote({
-      placeholder: 'Hello stand alone ui',
-      tabsize: 2,
-      height: 100
-    });
-  </script>
+<script>
+  function create(){
+    var markupStr = $('#summernote').summernote('code');
+    console.log(markupStr);
+  }
+</script>
+
 
 </head>
 <body id="body">

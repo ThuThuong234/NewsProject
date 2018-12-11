@@ -1469,8 +1469,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 #search i.fa.fa-search {
   position: relative;
   right: 0;
-  left: 152px;
-  bottom: 30px;
+  left: 155px;
+  bottom: 25px;
   font-size: 1.3em;
   color: #50d8af;
 }
@@ -8697,5 +8697,12 @@ button.close {
 }
 #side-menu.nav{
   display: block!important;
+}
+
+
+/*summernote*/
+
+.form-group.note-form-group.note-group-select-from-files{
+  display: none;
 }
 /*# sourceMappingURL=bootstrap.min.css.map */

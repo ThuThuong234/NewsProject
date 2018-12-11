@@ -18,7 +18,7 @@ var loadAllDataFeedbacks = allFeedbacks.forEach(function (feedback) {
             "feedback_id":id ,
             "email": feedback.email,
             "content": feedback.content,
-            "postdate": feedback.postdate
+            "posted_date": feedback.posted_date
         }
     };
 

@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {BsModalRef, } from "ngx-bootstrap";
 
 import {AppRoutingModule,routingCoponents} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -56,6 +57,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     BrowserAnimationsModule,
+    // BsModalRef,
+    // BsModalService
   ],
   providers: [
     FeedbackService,

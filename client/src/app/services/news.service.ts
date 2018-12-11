@@ -28,10 +28,21 @@ export class NewsService extends APIService {
     return super.apiGet<GetNewsApiResult>("/admin/news/"+id);
   }
 
+  public createNews(news: News) {
+    return super.apiPost<ApiResult>('/admin/news', news, null, true);
+  }
+
+
+
   // public updateNews(id, news: News) {
   //   const data = {
   //     fullname: news.username
   //   };
   //   return super.apiPut<ApiResult>('/users/' + id, data, null, true);
   // }
+
+  public deleteNews(id: number) {
+    return super.apiDelete<ApiResult>('/admin/news/' + id, null, true);
+  }
+
 }

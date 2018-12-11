@@ -291,6 +291,7 @@
               <th class="th-sm text-center">Title</th>
               <th class="th-sm text-center">Posted date</th>
               <th class="th-sm text-center">Author</th>
+              <th class="th-sm text-center"></th>
             </tr>
             </thead>
             <tbody *ngFor="let news of newsPaging.Items;let i = index">
@@ -300,6 +301,7 @@
               <td>{{news.title}}</td>
               <td>{{news.postdate}}</td>
               <td>{{news.username}}</td>
+              <td (click)="deleteItem(news.news_id)"><i class="far fa-trash-alt"></i></td>
             </tr>
             </tbody>
           </table>
