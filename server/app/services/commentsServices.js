@@ -27,32 +27,41 @@ var fs = require("fs");
 // });
 exports.insertComment = function (data) {
     return new Promise(async function (resolve, reject) {
-        let id = await helper.genrenateID();
-        var params = {
-            TableName: "Comments",
-            Item: {
-                "email": data.email,
-                "news_id": id,
-                "comments_content": data.comments_content,
-                "comment_time": data.comment_time
+        if(!helper.CheckEmail(data.email)){
+            var notice = {
+                message: errors.USER_03,
+                code: 'USER_03'
             }
-        };
-        return docClient.put(params, function (err, data) {
-            console.log("Dang put" + data);
-            if (err) {
-                reject(err);
-            }
-            else {
-                if (data == null) {
-                    throw {
-                        message: errors.CREATE,
-                        code: 'CREATE'
-                    };
+            return reject(notice);
+        }
+        else {
+            let id = await helper.genrenateID();
+            var params = {
+                TableName: "Comments",
+                Item: {
+                    "email": data.email,
+                    "news_id": id,
+                    "comments_content": data.comments_content,
+                    "comment_time": data.comment_time
                 }
-                else
-                    resolve(data);
-            }
-        });
+            };
+            return docClient.put(params, function (err, data) {
+                console.log("Dang put" + data);
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    if (data == null) {
+                        throw {
+                            message: errors.CREATE,
+                            code: 'CREATE'
+                        };
+                    }
+                    else
+                        resolve(data);
+                }
+            });
+        }
     }).catch(error => {
         logger.error(error);
         return reject(error);
@@ -150,24 +159,26 @@ exports.deleteComment = function (news_id) {
                 };
             }
             else {
-                console.log(search_newsid.Items[0].news_id);
-                console.log(search_newsid.Items[0].comments_content);
-                var params = {
-                    TableName: 'Comments',
-                    Key: {
-                        "news_id": search_newsid.Items[0].news_id,
-                        "comments_content": search_newsid.Items[0].comments_content
-                    },
-                };
-                return docClient.delete(params, function (err, data) {
-                    console.log("Dang xoa" + data);
-                    if (err) {
-                        reject(err);
-                    }
-                    else {
-                        resolve(data);
-                    }
-                })
+                search_newsid.Items.forEach(function(comment) {
+                    console.log(search_newsid.Items[0].news_id);
+                    console.log(search_newsid.Items[0].comments_content);
+                    var params = {
+                        TableName: 'Comments',
+                        Key: {
+                            "news_id": comment.news_id,
+                            "comments_content": comment.comments_content
+                        },
+                    };
+                    return docClient.delete(params, function (err, data) {
+                        console.log("Dang xoa" + data);
+                        if (err) {
+                            reject(err);
+                        }
+                        else {
+                            resolve(data);
+                        }
+                    })
+                });
             }
         }).catch(error => {
             logger.error(error);

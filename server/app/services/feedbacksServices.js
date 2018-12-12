@@ -6,33 +6,40 @@ const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper')
 exports.insertFeedbacks = function (data) {
     return new Promise(async function (resolve, reject) {
-        console.log(data);
-        let id = await helper.genrenateID();
-        var params = {
-            TableName: "Feedbacks",
-            Item: {
-                "feedback_id": id,
-                "email": data.email,
-                "content": data.content,
-                "posted_date": data.posted_date
+        if(!helper.CheckEmail(data.email)){
+            var notice = {
+                message: errors.USER_03,
+                code: 'USER_03'
             }
-        };
-        return docClient.put(params, function (err, data) {
-            console.log(" Dang put " + data);
-            if (err) {
-                reject(err);
-            }
-            else {
-                if (data == null){
-                    throw {
-                        message: errors.CREATE,
-                        code: 'CREATE'
-                    };
-            }
-        else
-            resolve(data);
+            return reject(notice);
         }
-        });
+        else {
+            let id = await helper.genrenateID();
+            var params = {
+                TableName: "Feedbacks",
+                Item: {
+                    "feedback_id": id,
+                    "email": data.email,
+                    "content": data.content
+                }
+            };
+            return docClient.put(params, function (err, data) {
+                console.log(" Dang put " + data);
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    if (data == null) {
+                        throw {
+                            message: errors.CREATE,
+                            code: 'CREATE'
+                        };
+                    }
+                    else
+                        resolve(data);
+                }
+            });
+        }
     }).catch(error => {
         logger.error(error);
         return reject(error);

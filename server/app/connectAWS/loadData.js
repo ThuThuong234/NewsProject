@@ -21,15 +21,13 @@ var loadAllDataFeedbacks = allFeedbacks.forEach(function (feedback) {
             "posted_date": feedback.posted_date
         }
     };
-
+    
     docClient.put(feedback_params, function (err, data) {
         if (err)
             console.log("Unable to add news ", feedback.email, ". Error Json:", JSON.stringify(err, null, 2));
         else
             console.log("PutItem Successed: ", feedback.email);
     });
-
-
 });
 
 // var loadAllDataNews = allNews.forEach( function (news) {

@@ -115,41 +115,54 @@ exports.getAllUser = function () {
 };
 exports.insertUsers = function (data) {
     return new Promise(function (resolve, reject) {
-        helper.findUsersbyName(data.username).then(user => {
-            console.log(data.username);
-            if (user.Items.length != 0) {
-                var notice = {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                }
-                return reject(notice);
+        if(!helper.CheckEmail(data.username)){
+            var notice = {
+                message: errors.USER_03,
+                code: 'USER_03'
             }
-            else {
-                var params = {
-                    TableName: "Users",
-                    Item: data
-                };
-                return docClient.put(params, function (err, data) {
-                    console.log("Dang nhap user" + data);
-                    if (err) {
-                        reject(err);
+            return reject(notice);
+        }
+        else{
+            helper.findUsersbyName(data.username).then(user => {
+                console.log(data.username);
+                if (user.Items.length != 0) {
+                    var notice = {
+                        message: errors.TEMPLATE_01,
+                        code: 'TEMPLATE_01'
                     }
-                    else {
-                        if (data == null) {
-                            throw {
-                                message: errors.CREATE,
-                                code: 'CREATE'
-                            };
+                    return reject(notice);
+                }else {
+                    var params = {
+                        TableName: "Users",
+                        Item:{
+                            "username": data.username,
+                            "password" :data.password
+                        },
+
+                    };
+                    return docClient.put(params, function (err, data) {
+                        console.log("Dang nhap user" + data);
+                        if (err) {
+                            reject(err);
                         }
-                        else
-                            resolve(data);
-                    }
-                });
-            }
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
-        });
+                        else {
+                            if (data == null) {
+                                throw {
+                                    message: errors.CREATE,
+                                    code: 'CREATE'
+                                };
+                            }
+                            else
+                                resolve(data);
+                        }
+                    });
+                }
+
+            }).catch(error => {
+                logger.error(error);
+                return reject(error);
+            });
+        }
     })
 }
 exports.getUser = function (username) {
@@ -206,40 +219,5 @@ exports.updateUser = function (data) {
         });
     })
 }
-exports.deleteUser = function (username) {
-    return new Promise(function (resolve, reject) {
-        helper.findUsersbyName(username).then(search_username => {
-            console.log(search_username.Items);
-            if(search_username.Items.length==0){
-                throw {
-                    message: errors.TEMPLATE_01,
-                    code: 'TEMPLATE_01'
-                };
-            }
-            else {
-                console.log(search_username.Items[0].username);
-                console.log(search_username.Items[0].password);
-                var params = {
-                    TableName: 'Users',
-                    Key: {
-                        "username": search_username.Items[0].username,
-                        "password" : search_username.Items[0].password
-                    },
-                };
-                return docClient.delete(params, function (err, data) {
-                    console.log("Dang xoa" + " " + data);
-                    if (err) {
-                        reject(err);
-                    }
-                    else {
-                        resolve(data);
-                    }
-                })
-            }
-        }).catch(error => {
-            logger.error(error);
-            return reject(error);
-        });
-    })
-};
+
 

@@ -13,11 +13,12 @@ describe('Feedbacks', function(){
     });
     describe('/POST feedbacks', () => {
         it('it should POST a feedbacks', function(done){
-            chai.request(feedbacks)
-                .post('/')
+            chai.request(index)
+                .post('/feedback')
                 .send({
                     'email':'datphan1.fitiuh@gmail.com',
-                    'content':'Chúng tôi muốn làm việc với website'
+                    'content':'Chúng tôi muốn làm việc với website',
+                    'posted_date':Date.now()
                 })
                 .end(function(err, res){
                     should.equal(err, null);

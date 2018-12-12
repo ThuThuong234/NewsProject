@@ -14,12 +14,12 @@ describe('News', () => {
             chai.request(news)
                 .post('/')
                 .send({
-                    'news_id': '1543293172800',
-                    'username': 'thuong',
+                    'username': 'thuongnguyen@gmail.com',
                     'title': 'Co ba oi',
                     'type_id': 3,
                     'content': 'Hello co ba',
-                    'image': ['https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg']
+                    'image': ['https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg', 'https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin18.jpg'],
+                    'postdate': Date.now()
                 })
                 .end(function (err, res) {
                     should.equal(err, null);
@@ -32,7 +32,7 @@ describe('News', () => {
     });
     describe('/GET/:id ', function () {
         it('it should GET a new by the given id', function (done) {
-            let id = "1544324964933";
+            let id = "1544599945612";
             chai.request(news)
                 .get('/' + id)
                 .end(function (err, res) {
@@ -69,7 +69,7 @@ describe('News', () => {
     });
     describe('/DELETE/:id ', function () {
         it('it should DELETE a new given the id', function (done) {
-            let id = "1544323193266";
+            let id = "1544599945612";
             chai.request(news)
                 .delete('/' + id)
                 .end(function(err, res){

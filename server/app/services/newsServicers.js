@@ -6,6 +6,7 @@ const auth_utils = require('../../lib/auth_utils');
 const ldap_utils = require('../../lib/ldap_utils');
 const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper');
+const commentServices = require('../services/commentsServices');
 
 
 var docClient = AWSConnect.docClient;
@@ -16,7 +17,7 @@ exports.Getlastestnews = function () {
             TableName: 'News',
             Limit: 10,
             ProjectionExpression: "news_id,user_id,title,content,image,postdate",
-            ScanIndexForward : false,
+            ScanIndexForward: false,
         }
         return docClient.scan(params).promise().then(result => {
             if (result.Items.length == 0) {
@@ -48,7 +49,7 @@ exports.Search = function (search_data) {
             }
         }
         docClient.scan(params, function (err, data) {
-            console.log("Dang tim" + " " +data.Items.length);
+            console.log("Dang tim" + " " + data.Items.length);
             if (err)
                 return reject(err);
             else resolve(data);
@@ -62,6 +63,9 @@ exports.Deletenews = function (news_id) {
     return new Promise(function (resolve, reject) {
         helper.findNewsbyID(news_id).then(search_news => {
             console.log(search_news.Items);
+            commentServices.deleteComment(news_id);
+            return search_news;
+        }).then(search_news => {
             if (search_news.Items.length == 0) {
                 throw {
                     message: errors.TEMPLATE_01,
@@ -96,35 +100,44 @@ exports.Deletenews = function (news_id) {
 };
 exports.insertNews = function (data) {
     return new Promise(function (resolve, reject) {
-        let id = helper.genrenateID();
-        var params = {
-            TableName: "News",
-            Item: {
-                "news_id": id,
-                "username": data.username,
-                "type_id": data.type_id,
-                "title": data.title,
-                "content": data.content,
-                "image": data.image,
-                "postdate": Date.now()
+        if (!helper.CheckEmail(data.username)) {
+            var notice = {
+                message: errors.USER_03,
+                code: 'USER_03'
             }
-        };
-        return docClient.put(params, function (err, data) {
-            console.log("Dang put" + data);
-            if (err) {
-                reject(err);
-            }
-            else {
-                if (data == null) {
-                    throw {
-                        message: errors.CREATE,
-                        code: 'CREATE'
-                    };
+            return reject(notice);
+        }
+        else {
+            let id = helper.genrenateID();
+            var params = {
+                TableName: "News",
+                Item: {
+                    "news_id": id,
+                    "username": data.username,
+                    "type_id": data.type_id,
+                    "title": data.title,
+                    "content": data.content,
+                    "image": data.image,
+                    "postdate": Date.now()
+                },
+            };
+            return docClient.put(params, function (err, data) {
+                console.log("Dang put" + data);
+                if (err) {
+                    reject(err);
                 }
-                else
-                    resolve(data);
-            }
-        });
+                else {
+                    if (data == null) {
+                        throw {
+                            message: errors.CREATE,
+                            code: 'CREATE'
+                        };
+                    }
+                    else
+                        resolve(data);
+                }
+            });
+        }
     }).catch(error => {
         logger.error(error);
         return reject(error);

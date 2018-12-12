@@ -23,7 +23,6 @@ app.get('/', function (req, res) {
 app.post("/signin",(req,res) => {
     let username = req.body.username;
     let password = req.body.password;
-
     usersServices.authenticate(username, password)
         .then(data => {
             res.json(utils.successResponse(data));
@@ -64,14 +63,14 @@ app.put('/:username', function (req, res) {
 });
 
 // delete item
-app.delete('/:username', (req, res,) => {
-    console.log(req.params.username);
-    usersServices.deleteUser(req.params.username).then(() => {
-        res.status(200).json(utils.successResponse());
-    })
-        .catch(error => {
-            res.json(utils.failedResponse(error));
-        })
-});
+// app.delete('/:username', (req, res,) => {
+//     console.log(req.params.username);
+//     usersServices.deleteUser(req.params.username).then(() => {
+//         res.status(200).json(utils.successResponse());
+//     })
+//         .catch(error => {
+//             res.json(utils.failedResponse(error));
+//         })
+// });
 
 module.exports = app;

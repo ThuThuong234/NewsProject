@@ -5,7 +5,15 @@ var AWSConnect = require("../connectAWS/ConnectAWS");
 var docClient = AWSConnect.docClient;
 var aws = AWSConnect.dynamoConnection;
 var datetime = require('node-datetime');
-
+class RegExp1 extends RegExp {
+    [Symbol.match](str) {
+        var result = RegExp.prototype[Symbol.match].call(this, str);
+        if (result) {
+            return true;
+        }
+        return false;
+    }
+}
 exports.successResponse = function (data = null) {
     if (data == null) {
         return {
@@ -194,4 +202,6 @@ exports.findNewsbyTypeId = function (type_id) {
         });
     });
 }
-
+exports.CheckEmail = function (email){
+    return email.match(new RegExp1('[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}'));
+}

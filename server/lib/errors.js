@@ -6,6 +6,7 @@ module.exports = {
     SERVICE_01: 'Error occurred while calling service.',
     USER_01: 'The email has already existed.',
     USER_02: 'The user does not exist.',
+    USER_03: 'This email validation failed.',
     CREATE: 'Something wrong! Cannot create data.',
     UPDATE: 'Something wrong! Cannot update data.',
     DELETE: 'Something wrong! Cannot delete data.',
