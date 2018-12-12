@@ -55,7 +55,6 @@
   <!-- Contact Form JavaScript File -->
   <script src="./assets/reader/contactform/contactform.js"></script>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
   <!-- Template Main Javascript File -->
   <script src="./assets/reader/js/main.js"></script>
   <link href="./assets/style.css" rel="stylesheet">
@@ -76,6 +75,7 @@
 
   <!-- Custom Theme JavaScript -->
   <script src="./assets/admin/dist/js/sb-admin-2.js"></script>
+
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -107,26 +107,30 @@
   </script>
   <script>
     $(document).ready(function () {
-      console.log("bat dau ne");
       $('#myTable').DataTable({
         "order": [[ 3, "desc" ]]
       });
       $('.dataTables_length').addClass('bs-select');
+
       $('#summernote').summernote({
         height: 300,
-        tabsize: 2
+        tabsize: 2,
+        placeholder: 'Content of news',
+        hint: {
+          words: ['apple', 'orange', 'watermelon', 'lemon'],
+          match: /\b(\w{1,})$/,
+          search: function (keyword, callback) {
+            callback($.grep(this.words, function (item) {
+              return item.indexOf(keyword) === 0;
+            }));
+          }
+        }
+      });
+      $('.note-editing-area').mouseleave(function(){
+        sessionStorage.setItem("currentInsertNews",$('#summernote').summernote('code'));
       });
     });
-
   </script>
-
-<script>
-  function create(){
-    var markupStr = $('#summernote').summernote('code');
-    console.log(markupStr);
-  }
-</script>
-
 
 </head>
 <body id="body">

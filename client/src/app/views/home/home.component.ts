@@ -75,7 +75,6 @@ export class HomeComponent implements OnInit {
     }
   }
   onLogin(){
-    console.log("redirect:");
     this.router.navigate(['/login']);
   }
 

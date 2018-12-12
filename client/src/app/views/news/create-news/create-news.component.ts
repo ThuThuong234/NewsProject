@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
-import {Login} from "../../../view-models/users/login";
+import {OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {News} from "../../../view-models/news/news";
 import {NewsService} from "../../../services/news.service";
 import {Router} from "@angular/router";
 import {deserialize} from "class-transformer";
 import {SessionVM} from "../../../view-models/session/session-vm";
+import {ModalDirective} from "ngx-bootstrap";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-news',
@@ -16,16 +16,20 @@ import {SessionVM} from "../../../view-models/session/session-vm";
 export class CreateNewsComponent implements OnInit {
   news: News = new News();
   session: SessionVM;
-  // public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
-  constructor(private router: Router,private newsService: NewsService,
-              ) { }
+  @ViewChild('confirmsave') confirmModal: ModalDirective;
+
+  constructor(private router: Router,
+              private newsService: NewsService,
+              private toastr: ToastrService,
+  ) {
+  }
 
   ngOnInit() {
 
   }
-
-  createNews(){
+  insertNews() {
     this.news.postdate = new Date();
+    this.news.content = sessionStorage.getItem('currentInsertNews');
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser != null) {
 
@@ -35,14 +39,19 @@ export class CreateNewsComponent implements OnInit {
       }
     }
 
-    if(this.news){
-      this.newsService.createNews(this.news).subscribe(res =>{
+    if (this.news.title != null && this.news.title != "" && this.news.content != null && this.news.content != "") {
+      this.newsService.createNews(this.news).subscribe(res => {
           if (res.success) {
-
-          } else {}
-
+            this.router.navigate(['/admin/news']);
+          } else {
+            this.toastr.error(res.message);
+          }
         },
-        error1 => {});
+        error1 => {
+          this.toastr.error(error1);
+        });
+    } else {
+      alert("validate failed");
     }
   }
 }
