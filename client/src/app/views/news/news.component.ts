@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {News} from '../../view-models/news/news';
 import {NewsService} from "../../services/news.service";
 import {Title} from "@angular/platform-browser";
@@ -8,8 +8,7 @@ import {NewsPaging} from "../../view-models/news/news-paging";
 import {Observable, Subscription} from "rxjs";
 import {plainToClass} from "class-transformer";
 import {Router} from "@angular/router";
-// import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {ConfirmComponent} from "../shared/confirm/confirm.component";
+import { ModalDirective} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-news',
@@ -18,15 +17,15 @@ import {ConfirmComponent} from "../shared/confirm/confirm.component";
 })
 export class NewsComponent implements OnInit {
   newsPaging: NewsPaging;
+  news : News = new News();
   subscription: Subscription;
-  // bsModalRef: BsModalRef;
+  @ViewChild('deleteModal') deleteModal: ModalDirective;
 
   constructor(private router: Router,
               private titleService: Title,
               private toastr: ToastrService,
               private translate: TranslateService,
               private newsService: NewsService,
-              // private modalService: BsModalService,
               ) {
   }
 
@@ -55,33 +54,21 @@ export class NewsComponent implements OnInit {
     this.router.navigate(['/admin/news/create']);
   }
 
-  deleteItem(news_id) {
-    // if (news_id) {
-    //   const initialState = {
-    //     title: this.translate.instant('COMMON.TITLE.CONFIRM'),
-    //     content: this.translate.instant('COMMON.TEXT.DELETE')
-    //   };
-    //   this.bsModalRef = this.modalService.show(ConfirmComponent, {initialState});
-    //   this.bsModalRef.content.onClose.subscribe(del => {
-    //     if (del) {
-    //       this.newsService.deleteNews(news_id).subscribe(
-    //         res => {
-    //           if (res.success) {
-    //             // this.toastr.success(this.translate.instant('COMMON.DELETE.SUCCESS'));
-    //             // this.getFeedbacks(this.feedbackPaging.current_page);
-    //             // this.dataChanged.emit(true);
-    //           } else {
-    //             this.toastr.error(res.message);
-    //           }
-    //         },
-    //         error => {
-    //           this.toastr.error(this.translate.instant('COMMON.DELETE.FAILED'));
-    //         });
-    //     }
-    //   });
-    // }
-    // this.newsService.deleteNews(news_id).subscribe();
+  openModaldeleteItem(news_id) {
+    if (news_id) {
+      this.news.news_id = news_id;
+      this.deleteModal.show();
+    }
   }
-
+  closeDeleteModal() {
+    this.deleteModal.hide();
+  }
+  deleteNews(id) {
+    this.newsService.deleteNews(id).subscribe(result => {
+      this.closeDeleteModal();
+      this.toastr.success('Deleted successfully', 'News');
+      this.getNews();
+    });
+  }
 
 }

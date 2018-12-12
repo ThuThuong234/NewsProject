@@ -291,7 +291,7 @@
               <th class="th-sm text-center">Title</th>
               <th class="th-sm text-center">Posted date</th>
               <th class="th-sm text-center">Author</th>
-              <th class="th-sm text-center"></th>
+              <th class="th-sm text-center">Action</th>
             </tr>
             </thead>
             <tbody *ngFor="let news of newsPaging.Items;let i = index">
@@ -301,7 +301,7 @@
               <td>{{news.title}}</td>
               <td>{{news.postdate}}</td>
               <td>{{news.username}}</td>
-              <td (click)="deleteItem(news.news_id)"><i class="far fa-trash-alt"></i></td>
+              <td class="text-center"><i class="fa fa-trash" (click)="openModaldeleteItem(news.news_id)"></i></td>
             </tr>
             </tbody>
           </table>
@@ -316,3 +316,20 @@
 </div>
 <!-- /#wrapper -->
 
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="text-danger">Delete</h2>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="closeDeleteModal()">No</button>
+        <button type="button" class="btn btn-danger" (click)="deleteNews(news.news_id)">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

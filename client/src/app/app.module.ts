@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {BsModalRef, } from "ngx-bootstrap";
+import { ModalModule} from "ngx-bootstrap";
 
 import {AppRoutingModule,routingCoponents} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -20,10 +20,8 @@ import { NewsService } from './services/news.service';
 import { UserService } from './services/user.service';
 import { TypeService } from './services/type.service';
 import { AuthenticateService } from './services/authenticate.service';
-// import { FeedbackService } from './services/feedback.service';
+
 import { SpinService } from './services/spin.service';
-import { CreateNewsComponent } from './views/news/create-news/create-news.component';
-import { HomeComponent } from './views/home/home.component';
 import { TypeDetailsComponent } from './views/type-details/type-details.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 
@@ -57,8 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     BrowserAnimationsModule,
-    // BsModalRef,
-    // BsModalService
+
+    ModalModule.forRoot(),
   ],
   providers: [
     FeedbackService,
@@ -66,9 +64,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserService,
     SpinService,
     TypeService,
-    AuthenticateService,
+    AuthenticateService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+ 
+
 })
 export class AppModule {
 }
