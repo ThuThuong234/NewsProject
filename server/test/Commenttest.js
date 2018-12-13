@@ -30,7 +30,7 @@ describe('Comments', function(){
     });
     describe('/GET/:id ', function () {
         it('it should GET a comment by the given new_id', function (done) {
-            let new_id = "7";
+            let new_id = "1544676641123";
             chai.request(comment)
                 .get('/' + new_id)
                 .end(function (err, res) {
