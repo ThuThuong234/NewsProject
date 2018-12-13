@@ -83,6 +83,7 @@ export class HomeComponent implements OnInit {
           console.log(res.data);
           this.newsPaging = plainToClass(NewsPaging, res.data);
           this.newsFirst = this.newsPaging.Items[0];
+          console.log("aaaaaaaaaaa"+this.newsPaging);
         } else {
           this.toastr.error(" res is not succeeds" +res.message);
         }
