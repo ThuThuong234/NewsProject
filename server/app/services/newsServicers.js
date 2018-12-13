@@ -16,7 +16,7 @@ exports.Getlastestnews = function () {
         var params = {
             TableName: 'News',
             Limit: 10,
-            ProjectionExpression: "news_id,user_id,title,content,image,postdate",
+            ProjectionExpression: "news_id,username,title,content,image,postdate",
             ScanIndexForward: false,
         }
         return docClient.scan(params).promise().then(result => {

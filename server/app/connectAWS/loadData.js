@@ -9,7 +9,6 @@ var allLoai = JSON.parse(fs.readFileSync("../data/typenew.json", "utf-8"));
 var allUser = JSON.parse(fs.readFileSync("../data/users.json", "utf-8"));
 var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 
-
 // var loadAllDataFeedbacks = allFeedbacks.forEach(function (feedback) {
 //     let id = helper.genrenateID()
 //     var feedback_params = {
@@ -41,8 +40,7 @@ var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 //             "type_id": news.type_id,
 //             "title": news.title,
 //             "content": news.content,
-//             "image": news.image,
-//             "postdate": news.postdate
+//             "postdate": Date.now()
 //         }
 //     };
 //
@@ -70,12 +68,13 @@ var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 //             console.log("PutItem Successed: ", comment.email);
 //     });
 // });
+// let id = 0;
 // var loadAlltype = allLoai.forEach(function (loai) {
-//     let id = helper.genrenateID();
+//
 //     var type_params = {
 //         TableName: "TypeNew",
 //         Item: {
-//             "type_id": id,
+//             "type_id": ++id,
 //             "typename": loai.typename
 //         }
 //     };
