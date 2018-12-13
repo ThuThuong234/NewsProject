@@ -12,6 +12,7 @@ import {NewsTypeComponent} from "./views/news-type/news-type.component";
 import {TypeDetailsComponent} from "./views/type-details/type-details.component";
 import {DashboardComponent} from "./views/dashboard/dashboard.component";
 import {NewsComponent} from "./views/news/news.component";
+import {NewsDetailsComponent} from "./views/news/news-details/news-details.component";
 
 const routes: Routes = [
 
@@ -53,13 +54,19 @@ const routes: Routes = [
   },
 
   {
-    path: 'news/:id',
+    path: 'types/:id',
     component: NewsTypeComponent,
     pathMatch: 'full',
   },
   {
     path: 'admin/news/create',
     component:CreateNewsComponent,
+    pathMatch: 'full',
+
+  },
+  {
+    path: 'news/:id',
+    component:NewsDetailsComponent,
     pathMatch: 'full',
 
   },
@@ -95,4 +102,5 @@ export const routingCoponents = [
   TypeDetailsComponent,
   NewsComponent,
   DashboardComponent,
+  NewsDetailsComponent,
 ]

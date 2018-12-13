@@ -10,13 +10,13 @@
     <nav id="nav-menu-container">
       <ul class="nav-menu">
         <li class="menu-active"><a href="#body">Trang chủ</a></li>
-        <li><a routerLink="/types/1" routerLinkActive="active">Xã hội</a></li>
-        <li><a routerLink="/types/2" routerLinkActive="active">Cộng nghệ</a></li>
-        <li><a routerLink="/types/3" routerLinkActive="active">Văn hóa</a></li>
-        <li><a routerLink="/types/4" routerLinkActive="active">Giải trí</a></li>
-        <li><a routerLink="/types/5" routerLinkActive="active">Gia đình</a></li>
-        <li><a routerLink="/types/6" routerLinkActive="active">Pháp luật</a></li>
-        <li><a routerLink="/types/7" routerLinkActive="active">Tin khác</a></li>
+        <li><a (click)="getTypes(1)">Xã hội</a></li>
+        <li><a (click)="getTypes(2)" >Cộng nghệ</a></li>
+        <li><a (click)="getTypes(3)" routerLinkActive="active">Văn hóa</a></li>
+        <li><a (click)="getTypes(4)">Giải trí</a></li>
+        <li><a (click)="getTypes(5)">Gia đình</a></li>
+        <li><a (click)="getTypes(6)">Pháp luật</a></li>
+        <li><a (click)="getTypes(7)">Tin khác</a></li>
         <li><button id="btnLogin" class="btn btn-primary p-1" (click)="onLogin()">{{ session!=null ? session.username  : "Login"}}</button></li>
       </ul>
     </nav><!-- #nav-menu-container -->

@@ -24,6 +24,8 @@ import { AuthenticateService } from './services/authenticate.service';
 import { SpinService } from './services/spin.service';
 import { TypeDetailsComponent } from './views/type-details/type-details.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { NewsDetailsComponent } from './views/news/news-details/news-details.component';
+import {CommentsService} from "./services/comments.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -36,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     routingCoponents,
     TypeDetailsComponent,
     DashboardComponent,
+    NewsDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserService,
     SpinService,
     TypeService,
+    CommentsService,
     AuthenticateService
   ],
   bootstrap: [AppComponent],

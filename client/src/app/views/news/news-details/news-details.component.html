@@ -39,37 +39,24 @@
   </div>
 
 </section>
-<section id="mainTypeDetails">
 
-  <div >
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <table id="myTable" class="table mt-2"   *ngIf="newsPaging">
-            <thead>
-            <tr>
-              <th class="th-sm text-center">STT</th>
-              <th class="th-sm text-center">News_id</th>
-              <th class="th-sm text-center">Title</th>
-              <th class="th-sm text-center">Posted date</th>
-              <th class="th-sm text-center">Author</th>
-            </tr>
-            </thead>
-            <tbody *ngFor="let news of newsPaging.Items;let i = index">
-            <tr (click)="viewDetail(news.news_id)">
-              <td class="text-center">{{i}}</td>
-              <td class="text-center">{{news.news_id}}</td>
-              <td class="text-center">{{news.title}}</td>
-              <td class="text-center">{{news.postdate}}</td>
-              <td class="text-center">{{news.username}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <!-- /.row -->
+<section id="main_news_details">
+  <div class="container" *ngIf="news">
+    <h1 class="title">{{news.title}}</h1>
+    <div class="row">
+      <div class="col-lg-12 text-right">{{news.postdate}}</div>
+      <div class="col-lg-12" id="demo"></div>
+      <div class="col-lg-12 text-right">{{news.username}}</div>
     </div>
-    <!-- /.container-fluid -->
+  </div>
+</section>
+
+<section id="view comment">
+  <div class="container" *ngIf="commentPaging">
+    <div class="row" *ngFor="let comment of commentPaging.Items">
+      <div class="col-lg-3">{{comment.email}}</div>
+      <div class="col-lg-9">{{comment.content}}</div>
+    </div>
   </div>
 </section>
 

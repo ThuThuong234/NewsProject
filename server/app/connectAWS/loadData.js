@@ -10,49 +10,49 @@ var allUser = JSON.parse(fs.readFileSync("../data/users.json", "utf-8"));
 var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
 
 
-var loadAllDataFeedbacks = allFeedbacks.forEach(function (feedback) {
-    let id = helper.genrenateID()
-    var feedback_params = {
-        TableName: "Feedbacks",
-        Item: {
-            "feedback_id":id ,
-            "email": feedback.email,
-            "content": feedback.content,
-            "posted_date": feedback.posted_date
-        }
-    };
-    
-    docClient.put(feedback_params, function (err, data) {
-        if (err)
-            console.log("Unable to add news ", feedback.email, ". Error Json:", JSON.stringify(err, null, 2));
-        else
-            console.log("PutItem Successed: ", feedback.email);
-    });
-});
-
-// var loadAllDataNews = allNews.forEach( function (news) {
-//     let id = helper.genrenateID();
-//
-//     var new_params = {
-//         TableName: "News",
+// var loadAllDataFeedbacks = allFeedbacks.forEach(function (feedback) {
+//     let id = helper.genrenateID()
+//     var feedback_params = {
+//         TableName: "Feedbacks",
 //         Item: {
-//             "news_id": id,
-//             "username": news.username,
-//             "type_id": news.type_id,
-//             "title": news.title,
-//             "content": news.content,
-//             "image": news.image,
-//             "postdate": news.postdate
+//             "feedback_id":id ,
+//             "email": feedback.email,
+//             "content": feedback.content,
+//             "posted_date": feedback.posted_date
 //         }
 //     };
 //
-//     docClient.put(new_params, function (err, data) {
+//     docClient.put(feedback_params, function (err, data) {
 //         if (err)
-//             console.log("Unable to add news ", ". Error Json:", JSON.stringify(err, null, 2));
+//             console.log("Unable to add news ", feedback.email, ". Error Json:", JSON.stringify(err, null, 2));
 //         else
-//             console.log("PutItem Successed: " + id);
+//             console.log("PutItem Successed: ", feedback.email);
 //     });
 // });
+
+var loadAllDataNews = allNews.forEach( function (news) {
+    let id = helper.genrenateID();
+
+    var new_params = {
+        TableName: "News",
+        Item: {
+            "news_id": id,
+            "username": news.username,
+            "type_id": news.type_id,
+            "title": news.title,
+            "content": news.content,
+            "image": news.image,
+            "postdate": news.postdate
+        }
+    };
+
+    docClient.put(new_params, function (err, data) {
+        if (err)
+            console.log("Unable to add news ", ". Error Json:", JSON.stringify(err, null, 2));
+        else
+            console.log("PutItem Successed: " + id);
+    });
+});
 // var loadAllComment = allComments.forEach(function (comment) {
 //     var comment_params = {
 //         TableName: "Comments",

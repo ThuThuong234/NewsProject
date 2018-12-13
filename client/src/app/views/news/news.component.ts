@@ -70,5 +70,8 @@ export class NewsComponent implements OnInit {
       this.getNews();
     });
   }
+  viewDetail(id){
+    this.router.navigate(['/news',id]);
+  }
 
 }

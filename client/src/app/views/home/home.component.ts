@@ -62,7 +62,6 @@ export class HomeComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-    this.getTypes();
     this.getNews();
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser != null) {
@@ -93,18 +92,9 @@ export class HomeComponent implements OnInit {
         this.toastr.error("error while get news" + this.translate.instant('COMMON.GET.FAILED'));
       })
   }
-  getTypes(){
-    this.newsTypesService.getNewsTypes().subscribe(res => {
-      if (res.success && res.data) {
-        console.log("res day :    ");
-        console.log(res.data);
-        this.newstypes = plainToClass(NewsTypePaging, res.data);
-      } else {
-        this.toastr.error(" res is not succeeds" +res.message);
-      }
-    }, error =>{
-      this.toastr.error("error while get types" + this.translate.instant('COMMON.GET.FAILED'));
-    })
+  getTypes(id :number){
+
+    this.router.navigate(['/types/',id]);
   }
   sendFeedBack(){
     this.feedback.posted_date = new Date();

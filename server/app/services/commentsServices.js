@@ -5,26 +5,6 @@ const logger = log4js.getLogger('auth_utils');
 const errors = require('../../lib/errors');
 const helper = require('../helpers/api_helper')
 var fs = require("fs");
-// var allComments = JSON.parse(fs.readFileSync("../data/comments.json", "utf-8"));
-// var loadAllData = allComments.forEach(function (comment) {
-//
-//     var comment_params = {
-//         TableName: "Comments",
-//         Item: {
-//             "email": comment.email,
-//             "news_id": comment.news_id,
-//             "comments_content": comment.comments_content,
-//             "comment_time": comment.comment_time
-//         }
-//     };
-//
-//     docClient.put(comment_params, function (err, data) {
-//         if (err)
-//             console.log("Unable to add news ", comment.email, ". Error Json:", JSON.stringify(err, null, 2));
-//         else
-//             console.log("PutItem Successed: ", comment.email);
-//     });
-// });
 exports.insertComment = function (data) {
     return new Promise(async function (resolve, reject) {
         if(!helper.CheckEmail(data.email)){
@@ -35,12 +15,11 @@ exports.insertComment = function (data) {
             return reject(notice);
         }
         else {
-            let id = await helper.genrenateID();
             var params = {
                 TableName: "Comments",
                 Item: {
                     "email": data.email,
-                    "news_id": id,
+                    "news_id": data.news_id,
                     "comments_content": data.comments_content,
                     "comment_time": data.comment_time
                 }

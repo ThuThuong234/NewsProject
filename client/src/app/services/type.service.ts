@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { SpinService } from './spin.service';
 import {GetNewsTypeApiResult} from "../data-transfer/newstype/getNewsType.api-result";
 import {GetNewsTypesApiResults} from "../data-transfer/newstype/getNewsTypes.api-results";
+import {GetNewsApiResults} from "../data-transfer/news/getNews.api-results";
 
 @Injectable()
 export class TypeService extends APIService {
@@ -18,6 +19,6 @@ export class TypeService extends APIService {
   }
 
   public getNewsType(id) {
-    return super.apiGet<GetNewsTypeApiResult>('/admin/types' + id, null, true);
+    return super.apiGet<GetNewsApiResults>('/types/' + id, null, true);
   }
 }

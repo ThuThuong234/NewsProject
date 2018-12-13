@@ -4,6 +4,7 @@ const auth_untils = require('../../lib/auth_utils');
 const utils = require('../../app/helpers/api_helper');
 const usersServices = require("../../app/services/usersServices");
 const newsServicers = require("../../app/services/newsServicers");
+const commentsServicers = require("../../app/services/commentsServices");
 var app = express();
 app.use(bodyParser.json());
 
@@ -62,6 +63,15 @@ app.delete('/:id', (req, res,) => {
 // search new
 app.get('/:title', function (req, res) {
     newsServicers.Search(req.params.title).then(data => {
+        res.status(200).json(utils.successResponse(data));
+    })
+        .catch(error => {
+            res.json(utils.failedResponse(error));
+        });
+});
+app.get('/:id/comments', function (req, res) {
+    utils.findCommentbyID(req.params.id).then(data => {
+        console.log(req.params.id);
         res.status(200).json(utils.successResponse(data));
     })
         .catch(error => {

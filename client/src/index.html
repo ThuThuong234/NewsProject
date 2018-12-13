@@ -85,6 +85,13 @@
   <link  href="./assets/admin/summernote/dist/summernote-bs4.css" type="text/css">
   <script type="text/javascript" src="./assets/admin/summernote/dist/summernote-bs4.js"></script>
 
+  <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+
   <script>
 
     function onSuccess(googleUser) {
@@ -126,12 +133,23 @@
           }
         }
       });
+
       $('.note-editing-area').mouseleave(function(){
         sessionStorage.setItem("currentInsertNews",$('#summernote').summernote('code'));
       });
+
+
     });
   </script>
+  <script>
+    $(document).ready(function () {
+      console.log("oi troi oi");
+      console.log(sessionStorage.getItem('ssNewsContent'));
+      // document.getElementById("demo").innerHTML = sessionStorage.getItem('ssNewsContent');
+      document.getElementById("demo").innerHTML =  "<p>Ngày 29/10/2018, báo điện tử Nhân đạo và Đời sống đã đăng tải bài viết “Hết hạn đăng kiểm, xe bồn bê tông vẫn 'tung hoành' giữa nội đô”.Những chiếc xe bồn này đã bị lực lượng chức năng xử phạt hành chính.</p><p><img src=\"https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin22.jpg\" style=\"width: 549px;\"></p><p>Không những vậy, chủ nhân điều khiển chiếc xe bồn hết hạn đăng kiểm mang BKS 31F-3175 của Công ty CP xây dựng và đầu tư thương mại Việt Hàn cũng đã bị Cảnh sát Giao thông đội 6 – Công an TP Hà Nội tước quyền sử dụng giấy phép lái xe.Trong công văn số 673/TB-PC08-Đ6 được lập ngày 31/10/2018 do Thượng tá Nguyễn Chí Công ký nêu rõ: Người bị tước quyền sử dụng giấy phép lái xe là ông Nguyễn Văn Khôi đã có hành vi vi phạm, không mang giấy đăng ký xe; không mang giấy chứng nhận kiểm định ATKT và bảo vệ môi trường; không mang giấy chứng nhận bảo hiểm TNDS; có tem kiểm định ATKT và bảo vệ môi trường nhưng đã hết hạn sử dụng dưới 01 tháng.Thời hạn tước quyền sử dụng giấy phép lái xe là 2 tháng (kể từ ngày 31/10/2018 đến ngày 31/12/2018).<br></p><p><img src=\"https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin22.jpg\" style=\"width: 549px;\"></p><p>Tuy nhiên, dù đã bị xử phạt, nhưng vào khoảng 15h15 ngày 12/11/2018 theo ghi nhận của PV, những chiếc xe bồn của Công ty Việt Hàn vẫn tiếp tục ngang nhiên hoạt động không đúng giờ quy định, như chưa hề có chuyện gì xảy ra.Phải chăng, những chế tài xử phạt chưa đủ mạnh để Công ty Việt Hàn phải tuân thủ theo pháp luật? Có hay không, việc Công ty này đang bất chấp pháp luật, bất chấp sự an toàn của người tham gia giao thông xung quanh để đạt được mục đích riêng của mình?Theo ghi nhận trước đó, dù đã hết hạn đăng kiểm nhưng chiếc xe bồn chở bê tông mang phù hiệu Bê tông Việt Hàn vô tư chạy rầm rầm cả ngày lẫn đêm không đúng giờ quy định trên đường Dương Đình Nghệ (TP. Hà Nội).Theo ghi nhận của PV, khoảng 14h20 ngày 25/10/2018, hàng chục chiếc xe bồn chở bê tông mang phù hiệu Bê tông Việt Hàn nối đuôi nhau chạy rầm rầm từ ngoại thành vào đường Dương Đình Nghệ để xây dựng công trình nhà cao tầng tại khu đô thị Dịch Vọng, quận Cầu Giấy, Hà Nội.Không những vậy, một chiếc xe bồn mang BKS 31F-3175 của Công ty CP xây dựng và đầu tư thương mại Việt Hàn có địa chỉ tại Phú Đô, Nam Từ Liêm, Hà Nội đã hết hạn đăng kiểm từ ngày 22/10 nhưng vẫn chở hàng chục khối bê tông, lưu thông trên đường của TP Hà Nội.Đến 15h cùng ngày, PV thấy lực lượng Cảnh sát Giao thông đội 6 – Công an TP Hà Nội ra đường Dương Đình Nghệ chặn chốt lập biên bản xử lý vi phạm. Tại đây, hàng chục chiếc xe bị dừng lập biên bản rồi những chiếc xe này lại tiếp tục được chạy đến chỗ công trình tại khu đô thị Dịch Vọng.<br></p><p><img src=\"https://s3-us-west-2.amazonaws.com/newsweb11ctt/Tin22.jpg\" style=\"width: 549px;\"><br></p>"
 
+    });
+  </script>
 </head>
 <body id="body">
   <app-root></app-root>

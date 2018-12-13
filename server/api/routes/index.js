@@ -28,7 +28,7 @@ app.post('/feedback', function (req, res) {
             res.json(utils.failedResponse(error));
         });
 });
-app.get('/type/:id', function (req, res) {
+app.get('/types/:id', function (req, res) {
     newsServicers.getNewsbyTypeId(req.params.id).then(data => {
         res.status(200).json(utils.successResponse(data));
     })

@@ -295,7 +295,7 @@
             </tr>
             </thead>
             <tbody *ngFor="let news of newsPaging.Items;let i = index">
-            <tr>
+            <tr (click)="viewDetail(news.news_id)">
               <td>{{i}}</td>
               <td>{{news.news_id}}</td>
               <td>{{news.title}}</td>
