@@ -42,6 +42,9 @@ export class TypeDetailsComponent implements OnInit {
         this.toastr.error("error while get news" + this.translate.instant('COMMON.GET.FAILED'));
       });
   }
+  onLogin(){
+    this.router.navigate(['/login']);
+  }
   getTypes(id :number){
 
     this.router.navigate(['/types/',id]);

@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
           console.log(res.data);
           this.newsPaging = plainToClass(NewsPaging, res.data);
           this.newsFirst = this.newsPaging.Items[0];
-          console.log("aaaaaaaaaaa"+this.newsPaging);
+          console.log(this.newsPaging);
         } else {
           this.toastr.error(" res is not succeeds" +res.message);
         }
@@ -97,10 +97,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/types/',id]);
   }
   sendFeedBack(){
+    this.feedback.posted_date = new Date();
     this.feedback.email = sessionStorage.getItem("reader_email");
     this.feedbackService.createFeedback(this.feedback).subscribe(
       res =>{
-
         this.message_insert_feedback= "success";
       },
       error => {

@@ -40,27 +40,6 @@
 
 </section>
 
-
-<!--==========================
-  About Section
-============================-->
-<section id="about" class="wow fadeInUp">
-  <div class="container">
-    <div class="row" *ngIf="newsFirst">
-      <div class="col-lg-5 about-img">
-        <img src="{{newsFirst.image[0]}}" alt="">
-      </div>
-
-      <div class="col-lg-7 content">
-        <h2>{{newsFirst.title}}</h2>
-        <div class="text-truncate"><i class="ion-android-checkmark-circle"></i> {{newsFirst.content}}</div>
-
-      </div>
-    </div>
-
-  </div>
-</section><!-- #about -->
-
 <!--==========================
   Services Section
 ============================-->
@@ -73,104 +52,88 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="box wow fadeInLeft">
-          <img src="{{newsPaging.Items[0].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[0].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[0].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[0].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[0].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInRight">
-          <img src="{{newsPaging.Items[1].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[1].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[1].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[1].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[1].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInLeft">
-          <img src="{{newsPaging.Items[2].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[2].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[2].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[2].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[2].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInRight">
-          <img src="{{newsPaging.Items[3].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[3].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[3].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[3].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[3].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInLeft">
-          <img src="{{newsPaging.Items[4].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[4].title}}</a></h4>
-          <p class="description text-truncate text-truncate">{{newsPaging.Items[4].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[4].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[4].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInRight">
-          <img src="{{newsPaging.Items[5].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[5].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[5].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[5].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[5].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInLeft">
-          <img src="{{newsPaging.Items[6].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[6].title}}</a></h4>
-          <p class="description text-truncate text-truncate">{{newsPaging.Items[6].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[6].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[6].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInRight">
-          <img src="{{newsPaging.Items[7].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[7].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[7].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[7].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[7].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInLeft">
-          <img src="{{newsPaging.Items[8].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[8].title}}</a></h4>
-          <p class="description text-truncate text-truncate">{{newsPaging.Items[8].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[8].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[8].username}}</p>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="box wow fadeInRight">
-          <img src="{{newsPaging.Items[9].image[0]}}" alt="">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
           <h4 class="title"><a href="">{{newsPaging.Items[9].title}}</a></h4>
-          <p class="description text-truncate">{{newsPaging.Items[9].content}}</p>
+          <p class="description text-right">{{newsPaging.Items[9].postdate}}</p>
+          <p class="description text-right bold">{{newsPaging.Items[9].username}}</p>
         </div>
       </div>
     </div>
   </div>
 </section><!-- #services -->
 
-<!--==========================
-  Clients Section
-============================-->
-
-<section id="clients" class="wow fadeInUp">
-  <div class="container">
-    <div class="section-header">
-      <h2>Clients</h2>
-      <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim
-        export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export
-        irure minim illum fore</p>
-    </div>
-
-    <div class="owl-carousel clients-carousel">
-      <img src="./assets/reader/img/clients/client-1.png" alt="">
-      <img src="./assets/reader/img/clients/client-2.png" alt="">
-      <img src="./assets/reader/img/clients/client-3.png" alt="">
-      <img src="./assets/reader/img/clients/client-4.png" alt="">
-      <img src="./assets/reader/img/clients/client-5.png" alt="">
-      <img src="./assets/reader/img/clients/client-6.png" alt="">
-      <img src="./assets/reader/img/clients/client-7.png" alt="">
-      <img src="./assets/reader/img/clients/client-8.png" alt="">
-    </div>
-
-  </div>
-</section><!-- #clients -->
 <main id="main">
   <!--==========================
     Our Portfolio Section
