@@ -27,7 +27,6 @@ export class CreateNewsComponent implements OnInit {
 
   }
   insertNews() {
-    this.news.postdate = new Date();
     this.news.content = sessionStorage.getItem('currentInsertNews');
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser != null) {

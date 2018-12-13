@@ -97,7 +97,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/types/',id]);
   }
   sendFeedBack(){
-    this.feedback.posted_date = new Date();
     this.feedback.email = sessionStorage.getItem("reader_email");
     this.feedbackService.createFeedback(this.feedback).subscribe(
       res =>{
