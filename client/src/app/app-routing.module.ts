@@ -13,6 +13,9 @@ import {TypeDetailsComponent} from "./views/type-details/type-details.component"
 import {DashboardComponent} from "./views/dashboard/dashboard.component";
 import {NewsComponent} from "./views/news/news.component";
 import {NewsDetailsComponent} from "./views/news/news-details/news-details.component";
+import {CommentsComponent} from "./views/comments/comments.component";
+import {FeedbacksComponent} from "./views/feedbacks/feedbacks.component";
+import {UsersComponent} from "./views/users/users.component";
 
 const routes: Routes = [
 
@@ -38,7 +41,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'types',
+    path: 'admin/types',
     component: NewsTypeComponent,
     pathMatch: 'full',
   },
@@ -69,6 +72,12 @@ const routes: Routes = [
     component:NewsDetailsComponent,
     pathMatch: 'full',
 
+  },
+
+  {
+    path: 'admin/feedbacks',
+    component: FeedbacksComponent,
+    pathMatch: 'full',
   },
   {
     path: '404',
@@ -103,4 +112,7 @@ export const routingCoponents = [
   NewsComponent,
   DashboardComponent,
   NewsDetailsComponent,
+  CommentsComponent,
+  FeedbacksComponent,
+  UsersComponent
 ]

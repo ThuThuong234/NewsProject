@@ -6,6 +6,8 @@ import {deserialize} from "class-transformer";
 import {SessionVM} from "../../../view-models/session/session-vm";
 import {ModalDirective} from "ngx-bootstrap";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "angular-6-social-login";
+import {AuthenticateService} from "../../../services/authenticate.service";
 
 @Component({
   selector: 'app-create-news',
@@ -20,6 +22,7 @@ export class CreateNewsComponent implements OnInit {
   constructor(private router: Router,
               private newsService: NewsService,
               private toastr: ToastrService,
+              private authService : AuthenticateService,
   ) {
   }
 
@@ -51,5 +54,22 @@ export class CreateNewsComponent implements OnInit {
     } else {
       alert("validate failed");
     }
+  }
+
+  doLogout(){
+    this.authService.clearSession();
+    this.router.navigate(['/']);
+  }
+  navigateNews(){
+
+    this.router.navigate(['/admin/news']);
+  }
+  navigateTypes(){
+
+    this.router.navigate(['/admin/types']);
+  }
+  navigateFeedbacks(){
+
+    this.router.navigate(['/admin/feedbacks']);
   }
 }

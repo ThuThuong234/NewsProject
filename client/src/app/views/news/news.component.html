@@ -251,16 +251,16 @@
             <!-- /input-group -->
           </li>
           <li>
-            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="#wrapper"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
           </li>
           <li>
-            <a href="forms.html"><i class="fa fa-credit-card"></i> Type</a>
+            <a (click)="navigateTypes()"><i class="fa fa-credit-card"></i> Type</a>
           </li>
           <li>
-            <a href="tables.html"><i class="fa fa-edit fa-fw"></i> News</a>
+            <a (click)="navigateNews()"><i class="fa fa-edit fa-fw"></i> News</a>
           </li>
           <li class="active">
-            <a href="#"><i class="fa fa-comment"></i> Feedbacks</a>
+            <a (click)="navigateFeedbacks()"><i class="fa fa-comment"></i> Feedbacks</a>
 
           </li>
 
@@ -295,13 +295,16 @@
             </tr>
             </thead>
             <tbody *ngFor="let news of newsPaging.Items;let i = index">
-            <tr (click)="viewDetail(news.news_id)">
+            <tr >
               <td>{{i}}</td>
-              <td>{{news.news_id}}</td>
-              <td>{{news.title}}</td>
+              <td >{{news.news_id}}</td>
+              <td (click)="viewDetail(news.news_id)">{{news.title}}</td>
               <td>{{news.postdate}}</td>
               <td>{{news.username}}</td>
-              <td class="text-center"><i class="fa fa-trash" (click)="openModaldeleteItem(news.news_id)"></i></td>
+              <td class="text-center">
+                <i class="fa fa-edit fa-fw" (click)="openEditNewsModal(news.news_id)"></i>
+                <i class="fa fa-trash" (click)="openModaldeleteItem(news.news_id)"></i>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -333,3 +336,32 @@
     </div>
   </div>
 </div>
+<div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="col-lg-12 p-4 "><h2 style="color: #0c2e8a">Edit News</h2></div>
+      <div class="col-lg-10 p-4 "><input type="text" class="form-control"[(ngModel)]="news.title"></div>
+      <div class="col-lg-2 p-4">
+        <select class="selectpicker form-control" [(ngModel)]="news.type_id">
+          <option value="1" selected>Xã hội</option>
+          <option value="2">Cộng nghệ</option>
+          <option value="3">Văn hóa</option>
+          <option value="4">Giải trí</option>
+          <option value="5">Gia đình</option>
+          <option value="6">Pháp luật</option>
+          <option value="7">Tin khác</option>
+        </select>
+
+      </div>
+      <div class="col-lg-12 p-4">
+        <textarea id="edit_summernote" placeholder="Content of news"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger " (click)="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="updateNews()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8081',
+  apiUrl: 'http://newserver-env.fdrs26k7bm.us-west-2.elasticbeanstalk.com',
   apiHeaderKey: 'x-api-key',
   apiHeaderValue: '123@news_tool',
   apiHeaderAuth: 'x-access-token',

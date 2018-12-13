@@ -22,4 +22,12 @@ export class DashboardComponent implements OnInit {
 
     this.router.navigate(['/admin/news']);
   }
+  navigateTypes(){
+
+    this.router.navigate(['/admin/types']);
+  }
+  navigateFeedbacks(){
+
+    this.router.navigate(['/admin/feedbacks']);
+  }
 }

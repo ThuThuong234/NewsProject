@@ -16,22 +16,14 @@ export class FeedbackService extends APIService {
     super(http, spintService);
   }
 
-  public getFeedbacks(current_page: number, keywords: string, request_id: number) {
-    let params = new HttpParams();
-    params = params.set('current_page', current_page.toString());
-    params = params.set('request_id', request_id.toString());
-    if (keywords) {
-      params = params.set('q', keywords);
-    }
-    return super.apiGet<GetFeedbacksApiResult>("",params, true);
+  public getFeedbacks() {
+
+    return super.apiGet<GetFeedbacksApiResult>("/admin/feedbacks",null, true);
   }
 
-  public getFeedback(id: number, template_included: boolean = null) {
-    let params = new HttpParams();
-    if (template_included) {
-      params = params.set('template_included', template_included.toString());
-    }
-    return super.apiGet<GetFeedbackApiResult>("",params, true);
+  public getFeedback(id: number) {
+
+    return super.apiGet<GetFeedbackApiResult>("/admin/feedbacks"+id,null, true);
   }
 
   public createFeedback(feedback: Feedback) {
