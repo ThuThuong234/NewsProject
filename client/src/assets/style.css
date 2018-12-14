@@ -666,6 +666,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #services .box p {
   font-size: 14px;
   margin-left: 150px;
+  margin-right: 15px;
   margin-bottom: 0;
   line-height: 24px;
 }

@@ -16,6 +16,7 @@ import {NewsDetailsComponent} from "./views/news/news-details/news-details.compo
 import {CommentsComponent} from "./views/comments/comments.component";
 import {FeedbacksComponent} from "./views/feedbacks/feedbacks.component";
 import {UsersComponent} from "./views/users/users.component";
+import {SeachComponent} from "./seach/seach.component";
 
 const routes: Routes = [
 
@@ -73,6 +74,12 @@ const routes: Routes = [
     pathMatch: 'full',
 
   },
+  {
+    path: 'news/search/:title',
+    component:SeachComponent,
+    pathMatch: 'full',
+
+  },
 
   {
     path: 'admin/feedbacks',
@@ -114,5 +121,5 @@ export const routingCoponents = [
   NewsDetailsComponent,
   CommentsComponent,
   FeedbacksComponent,
-  UsersComponent
+  UsersComponent,SeachComponent
 ]

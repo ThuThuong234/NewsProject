@@ -23,6 +23,9 @@ export class NewsService extends APIService {
   public getNewsList() {
     return super.apiGet<GetNewsApiResults>("/admin/news",null,true);
   }
+  public search(title:String) {
+    return super.apiGet<GetNewsApiResults>("/"+title,null,true);
+  }
 
   public getNews(id: number) {
     return super.apiGet<GetNewsApiResult>("/admin/news/"+id);

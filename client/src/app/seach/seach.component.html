@@ -1,0 +1,66 @@
+<header id="header">
+  <div class="container">
+
+    <div id="logo" class="pull-left">
+      <h1><a href="#body" class="scrollto">Links<span>News</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#body"><img src="./assets/reader/logo.png" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li class="menu-active"><a href="#body">Trang chủ</a></li>
+        <li><a (click)="getTypes(1)">Xã hội</a></li>
+        <li><a (click)="getTypes(2)" >Cộng nghệ</a></li>
+        <li><a (click)="getTypes(3)" routerLinkActive="active">Văn hóa</a></li>
+        <li><a (click)="getTypes(4)">Giải trí</a></li>
+        <li><a (click)="getTypes(5)">Gia đình</a></li>
+        <li><a (click)="getTypes(6)">Pháp luật</a></li>
+        <li><a (click)="getTypes(7)">Tin khác</a></li>
+        <li><button id="btnLogin" class="btn btn-primary p-1" (click)="onLogin()">{{ session!=null ? session.username  : "Login"}}</button></li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
+
+<section id="search" class="mt-4">
+
+  <div class="container">
+    <div class="row  text-center" >
+      <div class="col-lg-4">
+
+      </div>
+      <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="search....." [(ngModel)]="title">
+        <i class="fa fa-search" (click)="search()"></i>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!--==========================
+  Services Section
+============================-->
+<section id="services">
+  <div class="container" *ngIf="searchPaging">
+    <div class="section-header">
+      <h2>News Post</h2>
+    </div>
+
+    <div class="row" *ngFor="let news of searchPaging.Items">
+      <div class="col-lg-12">
+        <div class="box wow fadeInLeft">
+          <div class="icon"><i class="fa fa-bar-chart"></i></div>
+          <h4 class="title"><a (click)="navigate(news.news_id)">{{news.title}}</a></h4>
+          <p class="description text-right">{{news.postdate}}</p>
+          <p class="description text-right bold">{{news.username}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- #services -->
+
+
+

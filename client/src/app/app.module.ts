@@ -26,6 +26,7 @@ import { TypeDetailsComponent } from './views/type-details/type-details.componen
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NewsDetailsComponent } from './views/news/news-details/news-details.component';
 import {CommentsService} from "./services/comments.service";
+import { SeachComponent } from './seach/seach.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TypeDetailsComponent,
     DashboardComponent,
     NewsDetailsComponent,
+    SeachComponent,
   ],
   imports: [
     BrowserModule,
